@@ -4,20 +4,20 @@ const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
 
 //手写koa2配置
-import mongoose from 'mongoose';
-import router from 'koa-router';
-import bodyparser from 'koa-bodyparser';
-import apiRouter from './routes'
+// import mongoose from 'mongoose'
+// import router from 'koa-router'
+// import bodyparser from 'koa-bodyparser'
+// import apiRouter from './routes'
 //导入配置文件
-import confs from './config'
+// import confs from './config'
 
 const app = new Koa()
 
-mongoose.connect(confs.mongodb)
+// mongoose.connect(confs.mongodb)
 
-const index = router.get('/', ctx=> {
-  ctx.response.body = 'hello koa RESTful API'
-})
+// const index = router.get('/', ctx=> {
+//   ctx.response.body = 'hello koa RESTful API'
+// })
 
 // Import and Set Nuxt.js options
 let config = require('../nuxt.config.js')
@@ -46,9 +46,9 @@ async function start() {
   })
 
   //手写koa2配置
-  app.use(bodyparser)
+  // app.use(bodyparser)
   // app.use(apiRouter.routes());
-  app.use(index.routes());
+  // app.use(index.routes());
 
   app.listen(port, host)
   consola.ready({
