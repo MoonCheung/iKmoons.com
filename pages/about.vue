@@ -8,6 +8,7 @@
 
 <script>
 export default {
+  layout: 'dark',
   asyncData() {
     return new Promise((resolve)=> {
       setTimeout(function() {

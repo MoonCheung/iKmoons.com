@@ -29,7 +29,7 @@ module.exports = {
   */
   css: [
     'element-ui/lib/theme-chalk/index.css',
-    '@/assets/styles/main.sass'
+    {src: '@/assets/styles/main.scss',lang: 'scss'}
   ],
 
   /*
@@ -63,5 +63,11 @@ module.exports = {
     extend(config, ctx) {
 
     }
+  },
+  /**
+   * Nuxt 使用中间件
+   */
+  router: {
+    middleware: ['visits', 'user-agent']
   }
 }
