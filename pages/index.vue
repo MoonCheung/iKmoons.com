@@ -6,7 +6,6 @@
       <nuxt-link to="/about">
         About-Page
       </nuxt-link>
-      </div>
     </div>
   </section>
 </template>
@@ -17,6 +16,11 @@ import Logo from '~/components/Logo.vue'
 export default {
   components: {
     Logo
+  },
+  data () {
+    return {
+      name: 'world!!!'
+    }
   },
   asyncData(){
     return new Promise((resolve) =>{

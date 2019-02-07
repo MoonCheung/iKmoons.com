@@ -3,6 +3,7 @@
     <nuxt-link to="/">
       index-page
     </nuxt-link>
+    <button @click="$store.commit('increment')">vue状态树:{{ $store.state.counter }}</button>
   </div>
 </template>
 

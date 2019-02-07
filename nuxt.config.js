@@ -67,7 +67,7 @@ module.exports = {
   /**
    * Nuxt 使用中间件
    */
-  router: {
-    middleware: ['visits', 'user-agent']
-  }
+  // router: {
+  //   middleware: ['visits', 'user-agent']
+  // }
 }
