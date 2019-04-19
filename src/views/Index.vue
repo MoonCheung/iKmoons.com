@@ -1,33 +1,52 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo"
-         src="../assets/logo.png" />
-    <div>{{ name }}</div>
-  </div>
+  <Layout class="layout">
+    <nav-header></nav-header>
+    <Layout>
+      <Row type="flex"
+           justify="space-between">
+        <Col span="3">
+        <nav-left></nav-left>
+        </Col>
+        <Col span="21">
+        <!-- <Layout> -->
+        <!-- <router-view></router-view> -->
+        <Breadcrumb :style="{margin: '10px 0'}">
+          <BreadcrumbItem>Home</BreadcrumbItem>
+          <BreadcrumbItem>Components</BreadcrumbItem>
+          <BreadcrumbItem>Layout</BreadcrumbItem>
+        </Breadcrumb>
+        <Content :style="{padding: '24px', height: '100vh', background: '#fff'}">
+          Content
+        </Content>
+        <!-- </Layout> -->
+        </Col>
+      </Row>
+    </Layout>
+
+  </Layout>
 </template>
 
 <script>
-// @是/src的别名
+import NavHeader from "@/components/NavHeader";
+import NavLeft from "@/components/NavLeft";
 
 export default {
   name: "Index",
-  components: {},
-  data() {
-    return {
-      name: "hello 安装iview成功"
-    };
+  components: {
+    NavHeader,
+    NavLeft
   }
 };
 </script>
 
-<style>
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  /* margin-top: 60px; */
+<style lang="scss" scoped>
+.layout {
+  position: relative;
+  overflow: hidden;
+  height: 100vh
 }
 </style>
+
+
+
 
