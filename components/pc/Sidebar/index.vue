@@ -1,5 +1,5 @@
 <template>
-  <div>侧边栏</div>
+  <aside>侧边栏</aside>
 </template>
 
 <script>

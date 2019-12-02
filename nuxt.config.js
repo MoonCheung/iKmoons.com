@@ -34,6 +34,7 @@ module.exports = {
    ** Global CSS
    */
   css: [
+    'normalize.css/normalize.css',
     '@/assets/styles/index'
   ],
   /*
@@ -53,11 +54,7 @@ module.exports = {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/pwa',
-    // Simple usage
-    'nuxt-buefy',
-    // Or you can customize
-    ['nuxt-buefy', { /* buefy options */ }]
+    '@nuxtjs/pwa'
   ],
   /*
    ** Axios module configuration

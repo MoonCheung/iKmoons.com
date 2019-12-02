@@ -1,19 +1,15 @@
 <template>
   <div>
-    <v-navbar />
-    <nuxt />
-    <v-footer />
+    <pc-index />
   </div>
 </template>
 
 <script>
-import VNavbar from '@/components/Navbar';
-import VFooter from '@/components/Footer';
+import PcIndex from '@/components/pc/index';
 
 export default {
   components: {
-    VNavbar,
-    VFooter
+    PcIndex
   }
 }
 </script>

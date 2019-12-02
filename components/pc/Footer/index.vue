@@ -1,6 +1,6 @@
 <template>
   <footer class="footer">
-    <div class="content has-text-centered">
+    <div class="container">
       <p>
         <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
         <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
@@ -17,4 +17,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.footer {
+  .container {
+    flex-grow: 1;
+    margin: 0 auto;
+    position: relative;
+  }
+}
 </style>
