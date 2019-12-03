@@ -19,7 +19,6 @@ export default {
 <style lang="scss" scoped>
 .footer {
   .container {
-    flex-grow: 1;
     margin: 0 auto;
     position: relative;
   }

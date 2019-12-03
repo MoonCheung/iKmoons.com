@@ -3,21 +3,21 @@
        role="navigation">
     <div class="container">
       <div class="navbar-brand">
-        <a class="navbar-item"
-           href="#">
+        <nuxt-link to="#"
+                   class="navbar-item">
           <img src="https://bulma.io/images/bulma-logo.png"
                width="112"
                height="28">
-        </a>
+        </nuxt-link>
       </div>
       <div class="navbar-menu">
         <div class="navbar-start">
-          <a href="#"
-             class="navbar-item">首页</a>
-          <a href="#"
-             class="navbar-item">归档</a>
-          <a href="#"
-             class="navbar-item">关于</a>
+          <nuxt-link to="/#"
+                     class="navbar-item">首页</nuxt-link>
+          <nuxt-link to="/#"
+                     class="navbar-item">归档</nuxt-link>
+          <nuxt-link to="/#"
+                     class="navbar-item">关于</nuxt-link>
         </div>
       </div>
     </div>
@@ -33,26 +33,32 @@ export default {
 <style lang="scss" scoped>
 .navbar {
   .container {
-    flex-grow: 1;
     margin: 0 auto;
     position: relative;
-    width: 1080px;
   }
   &-brand {
     flex-grow: 0;
-    flex-shrink: 1;
+    flex-shrink: 0;
+    overflow: hidden;
+    padding: 0 0.571rem;
+
+    .navbar-item {
+      display: inline-block;
+    }
   }
   &-menu {
     flex-grow: 1;
-    flex-shrink: 1;
+    flex-shrink: 0;
 
     .navbar-start {
       display: flex;
+      overflow: hidden;
+      margin-right: auto;
       align-items: center;
       justify-content: flex-start;
-      margin-right: auto;
 
       .navbar-item {
+        line-height: 2.5rem;
         padding: 0.375rem 1rem;
         white-space: nowrap;
       }
