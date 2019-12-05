@@ -25,12 +25,21 @@ module.exports = {
    */
   css: [
     'normalize.css/normalize.css',
+    '@fortawesome/fontawesome-svg-core/styles.css',
     '@/assets/styles/index'
   ],
+  /**
+   * Preprocessor configuration
+   */
+  styleResources: {
+    scss: './assets/variables.scss',
+  },
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: [
+    '@/plugins/font-awesome'
+  ],
   /*
    ** Nuxt.js dev-modules
    */
@@ -44,7 +53,10 @@ module.exports = {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    '@nuxtjs/device',
+    '@nuxtjs/style-resources',
+    '@nuxtjs/component-cache'
   ],
   /*
    ** Axios module configuration

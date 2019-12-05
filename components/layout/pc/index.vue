@@ -4,7 +4,7 @@
     <main class="hero-body">
       <article class="container">
         <nuxt />
-        <v-sidebar />
+        <v-aside v-show="!noAsidePage" />
       </article>
     </main>
     <v-footer class="hero-foot" />
@@ -14,14 +14,22 @@
 <script>
 import VNavbar from './Navbar/index';
 import VFooter from './Footer/index';
-import VSidebar from './Sidebar/index';
+import VAside from './Sidebar/index';
 
 export default {
   name: 'PcIndex',
   components: {
     VNavbar,
     VFooter,
-    VSidebar
+    VAside
+  },
+  computed: {
+    noAsidePage () {
+      return ['about'].includes(this.$route.name);
+    }
+  },
+  created () {
+    console.log(this.noAsidePage)
   }
 }
 </script>

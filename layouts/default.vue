@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import PcIndex from '@/components/pc/index';
+import PcIndex from '@/components/layout/pc/index';
 
 export default {
   components: {

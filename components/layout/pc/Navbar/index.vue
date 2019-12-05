@@ -3,7 +3,7 @@
        role="navigation">
     <div class="container">
       <div class="navbar-brand">
-        <nuxt-link to="#"
+        <nuxt-link to="/"
                    class="navbar-item">
           <img src="https://bulma.io/images/bulma-logo.png"
                width="112"
@@ -12,11 +12,11 @@
       </div>
       <div class="navbar-menu">
         <div class="navbar-start">
-          <nuxt-link to="/#"
+          <nuxt-link to="/"
                      class="navbar-item">首页</nuxt-link>
-          <nuxt-link to="/#"
+          <nuxt-link to="/archive"
                      class="navbar-item">归档</nuxt-link>
-          <nuxt-link to="/#"
+          <nuxt-link to="/about"
                      class="navbar-item">关于</nuxt-link>
         </div>
       </div>
