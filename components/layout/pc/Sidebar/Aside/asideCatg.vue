@@ -1,18 +1,116 @@
 <template>
   <div class="catg-wrap">
-    分类管理
+    <div class="catg-head">
+      <i class="head-icon">
+        <svg-icon name="classify" />
+      </i>
+      <span class="head-title">分类</span>
+    </div>
+    <div class="catg-list">
+      <div class="catg-item"
+           v-for="(item,index) in catgList"
+           :key="index">
+        <nuxt-link to="/#"
+                   no-prefetch>
+          <div class="catg-left">
+            <svg-icon :name="item.icon" />
+          </div>
+          <div class="catg-right">
+            <span class="catg-name">{{item.catg}}</span>
+            <span class="catg-count">共&nbsp;{{item.num}}&nbsp;篇文章</span>
+          </div>
+        </nuxt-link>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'CatgList'
+  name: 'CatgList',
+  data () {
+    return {
+      catgList: [
+        { id: 1, icon: 'catgCode', catg: '技术心得', num: 1 },
+        { id: 2, icon: 'catgBook', catg: '开卷益处', num: 2 },
+        { id: 3, icon: 'catgBulb', catg: '我思我在', num: 3 },
+        { id: 4, icon: 'catgTravel', catg: '诗与远方', num: 4 }
+      ]
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-.catg-wrap {
-  background-color: #088da5;
-  color: #fff;
+.catg {
+  &-wrap {
+    padding: 0.6rem;
+    margin-bottom: 0.6rem;
+
+    .catg-head {
+      padding: 0.2rem;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      border-bottom: 1px solid $border-frame;
+
+      .head-icon {
+        margin-right: 0.4rem;
+        flex-grow: 0;
+        flex-shrink: 0;
+        .icon {
+          width: 1.25em;
+          height: 1.25em;
+        }
+      }
+
+      .head-title {
+        flex-grow: 1;
+        flex-shrink: 0;
+        font-weight: bold;
+      }
+    }
+
+    .catg-list {
+      .catg-item {
+        padding: 0.6rem 0 0.6rem 0.4rem;
+
+        & > a {
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+
+          .catg-left {
+            margin-right: 0.4rem;
+            flex-grow: 0;
+            flex-shrink: 0;
+
+            .icon {
+              width: 1.25em;
+              height: 1.25em;
+            }
+          }
+
+          .catg-right {
+            flex-grow: 1;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+            .catg-name {
+              flex-grow: 1;
+              flex-shrink: 0;
+            }
+
+            .catg-count {
+              flex-grow: 0;
+              flex-shrink: 0;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 </style>
