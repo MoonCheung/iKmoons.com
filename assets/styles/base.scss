@@ -51,7 +51,6 @@ a:hover {
   }
 }
 
-.aside,
 .section {
   padding: 0.6rem;
 }
@@ -67,7 +66,7 @@ a:hover {
   align-items: stretch;
   flex-direction: column;
   justify-content: space-between;
-  background-color: var(--white-ter);
+  background-color: var(--grey-lightest);
 
   .hero-head,
   .hero-foot {
@@ -91,6 +90,19 @@ a:hover {
       }
     }
   }
+}
+
+// svg 样式
+.icon {
+  width: $svg-width;
+  height: $svg-height;
+}
+
+.hot-wrap,
+.tag-wrap,
+.catg-wrap {
+  background-color: var(--white-bis);
+  color: $secondary-text-color;
 }
 
 .footer {

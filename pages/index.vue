@@ -2,32 +2,22 @@
   <div class="main-wrap">
     <header class="header">
       <div class="container">
-        <div class="card">
-          <div class="card-image"
-               style="background-color: red">
-            <nuxt-link to="/#"
-                       no-prefetch>1</nuxt-link>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-image"
-               style="background-color: blue">
-            <nuxt-link to="/#"
-                       no-prefetch>2</nuxt-link>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-image"
-               style="background-color: yellow">
-            <nuxt-link to="/#"
-                       no-prefetch>3</nuxt-link>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-image"
-               style="background-color: green">
-            <nuxt-link to="/#"
-                       no-prefetch>4</nuxt-link>
+        <div class="card"
+             v-for="(item,index) in catgList"
+             :key="index">
+          <div class="card-wrap">
+            <nuxt-link class="card-link"
+                       to="/#"
+                       no-prefetch>
+              <img class="card-img"
+                   :src="item.link"
+                   alt="item.name" />
+              <div class="card-item">
+                <i class="card-icon">
+                  <svg-icon :name="item.icon" /></i>
+                <span class="card-title">{{item.catg}}</span>
+              </div>
+            </nuxt-link>
           </div>
         </div>
       </div>
@@ -117,10 +107,10 @@ export default {
   data () {
     return {
       catgList: [
-        { id: 1, link: '01', catg: '我思我在' },
-        { id: 2, link: '02', catg: '技术心得' },
-        { id: 3, link: '03', catg: '开卷益处' },
-        { id: 4, link: '04', catg: '诗与远方' }
+        { id: 1, name: 'code', icon: 'code', link: '//static.ikmoons.com/code.jpg', catg: '码不停蹄' },
+        { id: 2, name: 'book', icon: 'book', link: '//static.ikmoons.com/book.jpg', catg: '开卷益处' },
+        { id: 3, name: 'gear', icon: 'gear', link: '//static.ikmoons.com/gear.jpg', catg: '技术心得' },
+        { id: 4, name: 'travel', icon: 'travel', link: '//static.ikmoons.com/travel.jpg', catg: '诗与远方' }
       ]
     }
   }
@@ -144,9 +134,34 @@ export default {
       width: 180px;
       height: 100%;
 
-      &-image {
-        height: 125px;
-        padding: 1.25rem;
+      &-wrap {
+        overflow: hidden;
+        border-radius: $radius-size;
+        height: 118px;
+
+        .card-link {
+          position: relative;
+          display: inline-block;
+
+          .card-img {
+            width: 180px;
+          }
+          .card-item {
+            position: absolute;
+            left: 35%;
+            bottom: 14%;
+            text-align: center;
+
+            .card-icon {
+              display: block;
+            }
+            .card-title {
+              margin: 1rem 0;
+              color: $primary-color-text;
+              display: inline-block;
+            }
+          }
+        }
       }
     }
   }

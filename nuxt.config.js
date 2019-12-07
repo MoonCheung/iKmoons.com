@@ -25,21 +25,27 @@ module.exports = {
    */
   css: [
     'normalize.css/normalize.css',
-    '@fortawesome/fontawesome-svg-core/styles.css',
     '@/assets/styles/index'
   ],
   /**
    * Preprocessor configuration
    */
   styleResources: {
-    scss: './assets/variables.scss',
+    scss: './assets/styles/init.scss',
+  },
+  /**
+   * svg configuration
+   */
+  svgSprite: {
+    input: '~/assets/sprite/svg',
+    output: '~/assets/sprite/gen',
+    defaultSprite: 'icons',
+    elementClass: 'icon'
   },
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [
-    '@/plugins/font-awesome'
-  ],
+  plugins: [],
   /*
    ** Nuxt.js dev-modules
    */
@@ -56,7 +62,8 @@ module.exports = {
     '@nuxtjs/pwa',
     '@nuxtjs/device',
     '@nuxtjs/style-resources',
-    '@nuxtjs/component-cache'
+    '@nuxtjs/component-cache',
+    '@nuxtjs/svg-sprite'
   ],
   /*
    ** Axios module configuration

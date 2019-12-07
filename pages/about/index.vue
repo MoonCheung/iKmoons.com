@@ -1,5 +1,6 @@
 <template>
   <div class="main-wrap">
+    <header>我的头像</header>
     <div class="main-about">关于我的</div>
   </div>
 </template>
@@ -10,5 +11,11 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+.main {
+  &-wrap {
+    width: $width-size;
+    min-width: $width-size;
+  }
+}
 </style>

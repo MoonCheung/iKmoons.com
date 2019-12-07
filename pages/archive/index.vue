@@ -12,4 +12,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.main {
+  &-wrap {
+    width: 760px;
+    min-width: 760px;
+    background-color: #81d8d0;
+  }
+}
 </style>
