@@ -73,7 +73,7 @@ export default {
       display: flex;
       flex-direction: row;
       justify-content: flex-start;
-      border-bottom: 1px solid $border-frame;
+      border-bottom: 0.071rem solid $border-frame;
 
       .head-icon {
         margin-right: 0.4rem;

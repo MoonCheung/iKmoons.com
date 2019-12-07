@@ -1,6 +1,43 @@
 <template>
   <div class="tag-wrap">
-    标签管理
+    <div class="tag-head">
+      <i class="head-icon">
+        <svg-icon name="tag" />
+      </i>
+      <span class="head-title">标签</span>
+    </div>
+    <div class="tag-all">
+      <span class="tag-item">
+        <nuxt-link to="/#">
+          <span class="tag-name">标签</span>
+          [<i class="tag-count">6</i>]
+        </nuxt-link>
+      </span>
+      <span class="tag-item">
+        <nuxt-link to="/#">
+          <span class="tag-name">标签</span>
+          [<i class="tag-count">6</i>]
+        </nuxt-link>
+      </span>
+      <span class="tag-item">
+        <nuxt-link to="/#">
+          <span class="tag-name">标签标签标</span>
+          [<i class="tag-count">6</i>]
+        </nuxt-link>
+      </span>
+      <span class="tag-item">
+        <nuxt-link to="/#">
+          <span class="tag-name">签标签标签</span>
+          [<i class="tag-count">6</i>]
+        </nuxt-link>
+      </span>
+      <span class="tag-item">
+        <nuxt-link to="/#">
+          <span class="tag-name">标签</span>
+          [<i class="tag-count">6</i>]
+        </nuxt-link>
+      </span>
+    </div>
   </div>
 </template>
 
@@ -11,8 +48,51 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.tag-wrap {
-  color: #fff;
-  background-color: #c2002c;
+.tag {
+  &-wrap {
+    padding: 0.6rem;
+
+    .tag-head {
+      padding: 0.2rem;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      border-bottom: 0.071rem solid $border-frame;
+
+      .head-icon {
+        margin-right: 0.4rem;
+        flex-grow: 0;
+        flex-shrink: 0;
+        .icon {
+          width: 1.25em;
+          height: 1.25em;
+        }
+      }
+
+      .head-title {
+        flex-grow: 1;
+        flex-shrink: 0;
+        font-weight: bold;
+      }
+    }
+
+    .tag-all {
+      padding: 0.6rem 0;
+
+      .tag-item {
+        display: inline-block;
+        padding: 0.4rem;
+        margin-bottom: 0.4rem;
+        border-radius: $radius-size * 2;
+        border: 0.071rem solid $border-frame;
+
+        .tag-count {
+          font-style: normal;
+          padding: 0.1rem;
+          font-size: 0.857rem;
+        }
+      }
+    }
+  }
 }
 </style>

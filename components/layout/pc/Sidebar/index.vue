@@ -35,6 +35,5 @@ export default {
   width: 304px;
   min-width: 304px;
   margin-left: 1.143rem;
-  background-color: blue;
 }
 </style>

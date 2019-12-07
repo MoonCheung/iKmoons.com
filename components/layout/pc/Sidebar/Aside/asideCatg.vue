@@ -31,9 +31,9 @@ export default {
   data () {
     return {
       catgList: [
-        { id: 1, icon: 'catgCode', catg: '技术心得', num: 1 },
+        { id: 1, icon: 'catgCode', catg: '码不停蹄', num: 1 },
         { id: 2, icon: 'catgBook', catg: '开卷益处', num: 2 },
-        { id: 3, icon: 'catgBulb', catg: '我思我在', num: 3 },
+        { id: 3, icon: 'catgGear', catg: '技术心得', num: 3 },
         { id: 4, icon: 'catgTravel', catg: '诗与远方', num: 4 }
       ]
     }
@@ -52,7 +52,7 @@ export default {
       display: flex;
       flex-direction: row;
       justify-content: flex-start;
-      border-bottom: 1px solid $border-frame;
+      border-bottom: 0.071rem solid $border-frame;
 
       .head-icon {
         margin-right: 0.4rem;

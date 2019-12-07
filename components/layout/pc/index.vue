@@ -27,9 +27,6 @@ export default {
     noAsidePage () {
       return ['about'].includes(this.$route.name);
     }
-  },
-  created () {
-    console.log(this.noAsidePage)
   }
 }
 </script>
