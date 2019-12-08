@@ -14,7 +14,8 @@
                    alt="item.name" />
               <div class="card-item">
                 <i class="card-icon">
-                  <svg-icon :name="item.icon" /></i>
+                  <svg-icon :name="item.icon" />
+                </i>
                 <span class="card-title">{{item.catg}}</span>
               </div>
             </nuxt-link>
