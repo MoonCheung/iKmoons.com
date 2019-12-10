@@ -126,3 +126,105 @@ a:hover {
     justify-content: center;
   }
 }
+
+// 按钮样式
+.btn {
+  position: relative;
+  margin: 0.286rem 0;
+  padding: 0.286rem;
+
+  &.is-small {
+    font-size: 0.75rem;
+  }
+
+  &.is-normal {
+    font-size: 1rem;
+  }
+
+  &.is-medium {
+    font-size: 1.25rem;
+  }
+
+  &.is-large {
+    font-size: 1.5rem;
+  }
+
+  &.is-light {
+    background-color: whitesmoke;
+    border-color: transparent;
+    color: rgba(0, 0, 0, 0.7);
+  }
+
+  &.is-light:hover {
+    background-color: #eeeeee;
+    border-color: transparent;
+    color: rgba(0, 0, 0, 0.7);
+  }
+
+  &.is-light:focus {
+    border-color: transparent;
+    color: rgba(0, 0, 0, 0.7);
+  }
+
+  &.is-light:focus:not(:active) {
+    box-shadow: 0 0 0 0.125em rgba(245, 245, 245, 0.25);
+  }
+
+  &.is-light:active {
+    background-color: #e8e8e8;
+    border-color: transparent;
+    color: rgba(0, 0, 0, 0.7);
+  }
+
+  // Loading style
+  &.is-loading {
+    color: transparent;
+    pointer-events: none;
+    border-color: transparent;
+  }
+
+  &.is-loading::before {
+    position: absolute;
+    content: "加载中...";
+    color: black;
+  }
+
+  &.is-loading::after {
+    position: absolute;
+    left: calc(44.5% - (1em / 2));
+    top: calc(50% - (1em / 2));
+  }
+
+  &.is-loading::after {
+    -webkit-animation: spinAround 600ms infinite linear;
+    animation: spinAround 600ms infinite linear;
+    border: 2px solid var(--grey);
+    border-radius: 290486px;
+    border-right-color: transparent;
+    border-top-color: transparent;
+    content: "";
+    display: block;
+    height: 1em;
+    width: 1em;
+  }
+}
+
+@-webkit-keyframes spinAround {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+@keyframes spinAround {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(359deg);
+  }
+}
