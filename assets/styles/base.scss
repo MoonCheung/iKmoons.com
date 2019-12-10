@@ -66,7 +66,6 @@ a:hover {
   align-items: stretch;
   flex-direction: column;
   justify-content: space-between;
-  background-color: var(--grey-lightest);
 
   .hero-head,
   .hero-foot {
@@ -89,6 +88,17 @@ a:hover {
         }
       }
     }
+  }
+
+  .particles-js-canvas-el {
+    background-color: var(--grey-lightest);
+    display: inline-flex;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
   }
 }
 
