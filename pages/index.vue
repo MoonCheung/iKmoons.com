@@ -7,7 +7,7 @@
              :key="index">
           <div class="card-wrap">
             <nuxt-link class="card-link"
-                       to="/#"
+                       :to="`/catg/${item.catg}`"
                        no-prefetch>
               <img class="card-img"
                    :src="item.link"
@@ -26,85 +26,73 @@
     <section class="section">
       <div class="container">
         <div class="media"
-             style="background-color: #b4127c">
+             v-for="(item,index) in allArtList"
+             :key="index">
           <div class="media-left">
             <figure class="image">
-              <img src="https://dummyimage.com/240x140/000/fff"
+              <img :src="item.banner == ''? 'https://dummyimage.com/220x140/7a657a/fff':item.banner"
                    alt="Placeholder image">
             </figure>
           </div>
           <div class="media-content">
-            <a class="media-head">标题</a>
-            <div class="content">列表内容</div>
-            <div class="level">
+            <nuxt-link class="media-link"
+                       :to="`/article/${item.id}`"
+                       no-prefetch>
+              <h2 class="link-head">{{item.title}}</h2>
+              <div class="link-content">{{item.desc}}</div>
+            </nuxt-link>
+            <div class="media-level">
               <div class="level-left">
-                <time>11:09 PM - 1 Jan 2016</time>
+                <i class="left-icon">
+                  <svg-icon name="catg-samll" />
+                </i>
+                <span>{{item.catg}}</span>
+                <span>{{item.pv}}&nbsp;次阅读</span>
+                <span>{{item.like}}&nbsp;人喜欢</span>
+                <span>{{item.comment}}&nbsp;评论</span>
+              </div>
+              <div class="level-right">
+                <i class="right-icon">
+                  <svg-icon name="time" />
+                </i>
+                <time class="right-time">
+                  {{item.cdate}}
+                </time>
               </div>
             </div>
           </div>
         </div>
-        <div class="media"
-             style="background-color: #51a663">
-          <div class="media-left">
-            <figure class="image">
-              <img src="https://dummyimage.com/240x140/000/fff"
-                   alt="Placeholder image">
-            </figure>
-          </div>
-          <div class="media-content">
-            <a class="media-head">标题</a>
-            <div class="content">列表内容</div>
-            <div class="level">
-              <div class="level-left">
-                <time>11:09 PM - 1 Jan 2016</time>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="media"
-             style="background-color: #69d7ac">
-          <div class="media-left">
-            <figure class="image">
-              <img src="https://dummyimage.com/240x140/000/fff"
-                   alt="Placeholder image">
-            </figure>
-          </div>
-          <div class="media-content">
-            <a class="media-head">标题</a>
-            <div class="content">列表内容</div>
-            <div class="level">
-              <div class="level-left">
-                <time>11:09 PM - 1 Jan 2016</time>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="media"
-             style="background-color: #0d6785">
-          <div class="media-left">
-            <figure class="image">
-              <img src="https://dummyimage.com/240x140/000/fff"
-                   alt="Placeholder image">
-            </figure>
-          </div>
-          <div class="media-content">
-            <a class="media-head">标题</a>
-            <div class="content">列表内容</div>
-            <div class="level">
-              <div class="level-left">
-                <time>11:09 PM - 1 Jan 2016</time>
-              </div>
-            </div>
-          </div>
-        </div>
+        <button v-if="!noMore"
+                class="btn"
+                :class="actLoadMore"
+                @click="fetchMoreArt">
+          continue
+        </button>
+        <button v-else
+                class="btn is-light">
+          {{ noMore }}
+        </button>
       </div>
     </section>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'Home',
+  watchQuery: true,
+  fetch ({ store }) {
+    return Promise.all([
+      store.dispatch('articles/fetchAllArt')
+    ])
+  },
+  head () {
+    return {
+      title: "首页"
+    }
+  },
   data () {
     return {
       catgList: [
@@ -114,6 +102,21 @@ export default {
         { id: 4, name: 'travel', icon: 'travel', link: '//static.ikmoons.com/travel.jpg', catg: '诗与远方' }
       ]
     }
+  },
+  computed: {
+    ...mapGetters({
+      allArtList: 'articles/artList',
+      loadMore: 'articles/loadMore',
+      noMore: 'articles/noMore',
+    }),
+    actLoadMore () {
+      return this.loadMore == false ? "is-light" : "is-loading";
+    }
+  },
+  methods: {
+    fetchMoreArt () {
+      this.$store.dispatch('articles/fetchMoreArt');
+    },
   }
 };
 </script>
@@ -168,9 +171,6 @@ export default {
   }
 
   .section {
-    color: #fff;
-    background-color: red;
-
     & > .container {
       display: flex;
       flex-direction: column;
@@ -182,19 +182,91 @@ export default {
       display: flex;
       flex-direction: row;
       justify-content: flex-start;
+      margin-bottom: 0.571rem;
+      padding-bottom: 0.571rem;
+      border-bottom: 0.071rem dashed $border-frame;
 
       &-left {
         flex-grow: 0;
         flex-shrink: 0;
+        margin-right: 0.429rem;
+
+        .image {
+          & > img {
+            width: 220px;
+            height: 140px;
+          }
+        }
       }
 
       &-content {
         flex-grow: 1;
         flex-shrink: 0;
-        // 暂时
-        // display: flex;
-        // flex-direction: column;
-        // justify-content: space-between;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .media-link {
+          flex: 1 0 0;
+
+          .link-head {
+            font-size: 1.143rem;
+            padding: 0.429rem 0;
+          }
+
+          .link-content,
+          .link-content:hover {
+            color: $secondary-text-color;
+          }
+        }
+
+        .media-level {
+          flex: 0 0 0;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          margin-bottom: 0.143rem;
+
+          .level-left {
+            flex: 1 0 0;
+            font-size: 0.857rem;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            .left-icon {
+              display: inline-flex;
+              align-self: flex-start;
+              & > .icon {
+                width: 1em;
+                height: 1em;
+              }
+            }
+            .left-icon ~ span {
+              display: inline-flex;
+              margin-left: 0.286rem;
+            }
+          }
+          .level-right {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            font-size: 0.857rem;
+
+            .right-icon {
+              display: inline-flex;
+              margin-right: 0.286rem;
+
+              & > .icon {
+                width: 1em;
+                height: 1em;
+              }
+            }
+            .right-time {
+              display: inline-flex;
+            }
+          }
+        }
       }
     }
   }

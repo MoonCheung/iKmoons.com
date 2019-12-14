@@ -24,7 +24,7 @@ export default {
   },
   computed: {
     noChildPage () {
-      return ['archive'].includes(this.$route.name);
+      return ['archive', 'article-id', 'catg-id'].includes(this.$route.name);
     }
   }
 }
