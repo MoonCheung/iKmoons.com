@@ -4,7 +4,7 @@
  * @Github: https://github.com/MoonCheung
  * @Date: 2019-12-11 14:50:20
  * @LastEditors: MoonCheung
- * @LastEditTime: 2019-12-14 22:56:38
+ * @LastEditTime: 2019-12-15 23:40:24
  */
 
 export const state = () => {
@@ -14,6 +14,9 @@ export const state = () => {
       artList: [],
       noMore: "",
       loadMore: false
+    },
+    deil: {
+      artDeil: {}
     }
   }
 }
@@ -27,6 +30,9 @@ export const getters = {
   },
   noMore: (state) => {
     return state.list.noMore;
+  },
+  artDeil: (state) => {
+    return state.deil.artDeil;
   }
 }
 
@@ -51,6 +57,10 @@ export const mutations = {
     const { paging, loadMore } = data
     state.list.paging = paging;
     state.list.loadMore = loadMore;
+  },
+
+  GET_ART_DEIL(state, data) {
+    state.deil.artDeil = data;
   }
 }
 
@@ -67,6 +77,7 @@ export const actions = {
       commit('POST_ART_LIST', null);
     }
   },
+
   // 获取更多文章列表API
   async fetchMoreArt({ commit, state }) {
     try {
@@ -85,6 +96,20 @@ export const actions = {
     } catch (err) {
       console.log('error', err);
       commit('POST_MORE_ART', null);
+    }
+  },
+
+  // 获取指定ID的文章详情API
+  async getArtDeil({ commit }, query) {
+    try {
+      const id = query.id;
+      const data = await this.$axios.$get(`/art/fetchartdeil/${id}`);
+      if (data.code === 1) {
+        commit('GET_ART_DEIL', data.artDeil);
+      }
+    } catch (err) {
+      console.log('error', err);
+      commit('GET_ART_DEIL', null);
     }
   }
 }
