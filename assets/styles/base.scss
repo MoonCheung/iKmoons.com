@@ -52,7 +52,7 @@ a:hover {
 }
 
 .section {
-  padding: 0.6rem;
+  padding: 0.857rem 0.857rem 0 0.857rem;
 }
 
 .header {
@@ -108,6 +108,8 @@ a:hover {
   height: $svg-height;
 }
 
+.section,
+.art-wrap,
 .hot-wrap,
 .tag-wrap,
 .catg-wrap,
@@ -186,7 +188,7 @@ a:hover {
   &.is-loading::before {
     position: absolute;
     content: "加载中...";
-    color: black;
+    color: $secondary-text-color;
   }
 
   &.is-loading::after {

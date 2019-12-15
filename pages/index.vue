@@ -66,7 +66,7 @@
                 class="btn"
                 :class="actLoadMore"
                 @click="fetchMoreArt">
-          continue
+          下一页
         </button>
         <button v-else
                 class="btn is-light">
