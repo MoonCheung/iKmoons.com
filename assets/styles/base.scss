@@ -187,7 +187,7 @@ a:hover {
 
   &.is-loading::before {
     position: absolute;
-    content: "加载中...";
+    content: '加载中...';
     color: $secondary-text-color;
   }
 
@@ -204,7 +204,7 @@ a:hover {
     border-radius: 290486px;
     border-right-color: transparent;
     border-top-color: transparent;
-    content: "";
+    content: '';
     display: block;
     height: 1em;
     width: 1em;

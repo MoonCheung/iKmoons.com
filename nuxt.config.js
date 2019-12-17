@@ -1,5 +1,18 @@
+import apiMap from './config/api.config';
+import { isDevMode } from './config/env.config';
+
 module.exports = {
   mode: 'universal',
+  /**
+   * Dev property configuration
+   */
+  dev: isDevMode,
+  /**
+   * Environment configuration
+   */
+  env: {
+    BASE: apiMap.BASE_URL
+  },
   /*
    ** Headers of the page
    */
@@ -45,7 +58,10 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: [
+    { src: '@/plugins/axios' },
+    { src: '@/plugins/particles', ssr: false }
+  ],
   /*
    ** Nuxt.js dev-modules
    */
@@ -63,13 +79,31 @@ module.exports = {
     '@nuxtjs/device',
     '@nuxtjs/style-resources',
     '@nuxtjs/component-cache',
-    '@nuxtjs/svg-sprite'
+    '@nuxtjs/svg-sprite',
+    '@nuxtjs/markdownit'
   ],
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    proxy: true,
+    prefix: apiMap.PREFIX,
+    credentials: true,
+    baseURL: apiMap.BASE_URL + apiMap.PREFIX
+  },
+  /**
+   * Development environment configuration
+   */
+  proxy: {
+    '/api': apiMap.BASE_URL
+  },
+  /**
+   * markdown config
+   */
+  markdownit: {
+    injected: true
+  },
   /*
    ** Build configuration
    */

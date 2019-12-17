@@ -16,13 +16,17 @@
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/component-cache": "^1.1.5",
     "@nuxtjs/device": "^1.2.4",
+    "@nuxtjs/markdownit": "^1.2.7",
     "@nuxtjs/pwa": "^3.0.0-0",
     "@nuxtjs/style-resources": "^1.0.0",
     "@nuxtjs/svg-sprite": "^0.4.5",
+    "@nuxtjs/toast": "^3.3.0",
     "cross-env": "^5.2.0",
+    "esm": "^3.2.25",
     "koa": "^2.6.2",
     "normalize.css": "^8.0.1",
-    "nuxt": "^2.0.0"
+    "nuxt": "^2.0.0",
+    "particles.js": "^2.0.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^1.0.1",

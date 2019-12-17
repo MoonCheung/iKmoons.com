@@ -40,12 +40,20 @@ module.exports = {
       }
     ],
     'no-console': 'off',
+    'no-undef': 'off',
+    "eqeqeq": "off",
     // nuxt 相关规则
     'nuxt/no-cjs-in-config': 'off',
     // vue 相关规则
     'vue/attributes-order': ['off', {
       "order": [
         "OTHER_ATTR"
+      ]
+    }],
+    'vue/order-in-components': ['off', {
+      "order": [
+        "data",
+        "computed",
       ]
     }]
   }
