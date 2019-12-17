@@ -158,6 +158,10 @@ export default {
 
             .card-icon {
               display: block;
+
+              & > .icon {
+                color: #fff;
+              }
             }
             .card-title {
               margin: 1rem 0;

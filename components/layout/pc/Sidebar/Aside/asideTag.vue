@@ -10,7 +10,7 @@
       <span class="tag-item"
             v-for="(item,index) in list"
             :key="index">
-        <nuxt-link to="/#">
+        <nuxt-link :to="`/tags/${item.tagname}`">
           <span class="tag-name">{{item.tagname}}</span>
           [<i class="tag-count">{{item.tagNum.count}}</i>]
         </nuxt-link>

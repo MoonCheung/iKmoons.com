@@ -31,10 +31,10 @@ export default {
   data () {
     return {
       catgList: [
-        { id: 1, icon: 'catgCode', catg: '码不停蹄', num: 1 },
-        { id: 2, icon: 'catgBook', catg: '开卷益处', num: 2 },
-        { id: 3, icon: 'catgGear', catg: '技术心得', num: 3 },
-        { id: 4, icon: 'catgTravel', catg: '诗与远方', num: 4 }
+        { id: 1, icon: 'code', catg: '码不停蹄', num: 1 },
+        { id: 2, icon: 'book', catg: '开卷益处', num: 2 },
+        { id: 3, icon: 'gear', catg: '技术心得', num: 3 },
+        { id: 4, icon: 'travel', catg: '诗与远方', num: 4 }
       ]
     }
   }
@@ -85,7 +85,8 @@ export default {
             flex-grow: 0;
             flex-shrink: 0;
 
-            .icon {
+            & > .icon {
+              color: #9e9e9e;
               width: 1.25em;
               height: 1.25em;
             }
