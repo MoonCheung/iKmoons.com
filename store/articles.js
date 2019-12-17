@@ -4,7 +4,7 @@
  * @Github: https://github.com/MoonCheung
  * @Date: 2019-12-11 14:50:20
  * @LastEditors: MoonCheung
- * @LastEditTime: 2019-12-15 23:40:24
+ * @LastEditTime: 2019-12-17 15:00:07
  */
 
 export const state = () => {
@@ -13,10 +13,16 @@ export const state = () => {
       paging: 0,
       artList: [],
       noMore: "",
-      loadMore: false
+      loadMore: false,
+      fetching: false
     },
     deil: {
-      artDeil: {}
+      artDeil: {},
+      fetching: false
+    },
+    hot: {
+      hotArtList: [],
+      fetching: false
     }
   }
 }
@@ -61,6 +67,10 @@ export const mutations = {
 
   GET_ART_DEIL(state, data) {
     state.deil.artDeil = data;
+  },
+
+  GET_HOT_ARTLIST(state, data) {
+    state.hot.hotArtList = data;
   }
 }
 
@@ -70,7 +80,7 @@ export const actions = {
     try {
       const data = await this.$axios.$post('/art/fetchallart', { page: 0 });
       if (data.code === 1) {
-        commit('POST_ART_LIST', data.artList);
+        commit('POST_ART_LIST', data.result);
       }
     } catch (err) {
       console.log('error', err);
@@ -91,7 +101,7 @@ export const actions = {
       }
       const data = await this.$axios.$post('/art/fetchallart', param);
       if (data.code === 1) {
-        commit('POST_MORE_ART', data.artList);
+        commit('POST_MORE_ART', data.result);
       }
     } catch (err) {
       console.log('error', err);
@@ -105,11 +115,24 @@ export const actions = {
       const id = query.id;
       const data = await this.$axios.$get(`/art/fetchartdeil/${id}`);
       if (data.code === 1) {
-        commit('GET_ART_DEIL', data.artDeil);
+        commit('GET_ART_DEIL', data.result);
       }
     } catch (err) {
       console.log('error', err);
       commit('GET_ART_DEIL', null);
+    }
+  },
+
+  // 获取热门文章列表接口
+  async fetchHotArt({ commit }) {
+    try {
+      const data = await this.$axios.$get('/art/fetchhotart');
+      if (data.code === 1) {
+        commit('GET_HOT_ARTLIST', data.result)
+      }
+    } catch (err) {
+      console.log('error', err);
+      commit('GET_HOT_ARTLIST', null);
     }
   }
 }

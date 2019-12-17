@@ -7,43 +7,13 @@
       <span class="head-title">热门文章</span>
     </div>
     <div class="hot-list">
-      <div class="hot-item">
-        <div class="hot-left">1</div>
+      <div class="hot-item"
+           v-for="(item,index) in list"
+           :key="index">
+        <div class="hot-left"></div>
         <div class="hot-right">
-          <nuxt-link to="/#">
-            列表1
-          </nuxt-link>
-        </div>
-      </div>
-      <div class="hot-item">
-        <div class="hot-left">2</div>
-        <div class="hot-right">
-          <nuxt-link to="/#">
-            列表1
-          </nuxt-link>
-        </div>
-      </div>
-      <div class="hot-item">
-        <div class="hot-left">3</div>
-        <div class="hot-right">
-          <nuxt-link to="/#">
-            列表1
-          </nuxt-link>
-        </div>
-      </div>
-      <div class="hot-item">
-        <div class="hot-left">4</div>
-        <div class="hot-right">
-          <nuxt-link to="/#">
-            列表1
-          </nuxt-link>
-        </div>
-      </div>
-      <div class="hot-item">
-        <div class="hot-left">5</div>
-        <div class="hot-right">
-          <nuxt-link to="/#">
-            列表1
+          <nuxt-link :to="`/article/${item.id}`">
+            {{item.title}}
           </nuxt-link>
         </div>
       </div>
@@ -52,11 +22,13 @@
 </template>
 
 <script>
+
 export default {
   name: 'HotList',
-  data () {
-    return {
-      hotsList: []
+  props: {
+    list: {
+      type: Array,
+      default: () => []
     }
   }
 }
@@ -92,6 +64,8 @@ export default {
     }
 
     .hot-list {
+      counter-reset: hotIcon;
+
       .hot-item {
         display: flex;
         padding: 0.6rem 0 0.6rem 0.4rem;
@@ -110,6 +84,12 @@ export default {
           border-radius: $radius-size;
           background-color: var(--grey-lighter);
         }
+
+        .hot-left:before {
+          counter-increment: hotIcon;
+          content: counter(hotIcon);
+        }
+
         .hot-right {
           flex-grow: 1;
           flex-shrink: 0;

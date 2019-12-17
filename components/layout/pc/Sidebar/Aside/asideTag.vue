@@ -7,34 +7,12 @@
       <span class="head-title">标签</span>
     </div>
     <div class="tag-all">
-      <span class="tag-item">
+      <span class="tag-item"
+            v-for="(item,index) in list"
+            :key="index">
         <nuxt-link to="/#">
-          <span class="tag-name">标签</span>
-          [<i class="tag-count">6</i>]
-        </nuxt-link>
-      </span>
-      <span class="tag-item">
-        <nuxt-link to="/#">
-          <span class="tag-name">标签</span>
-          [<i class="tag-count">6</i>]
-        </nuxt-link>
-      </span>
-      <span class="tag-item">
-        <nuxt-link to="/#">
-          <span class="tag-name">标签标签标</span>
-          [<i class="tag-count">6</i>]
-        </nuxt-link>
-      </span>
-      <span class="tag-item">
-        <nuxt-link to="/#">
-          <span class="tag-name">签标签标签</span>
-          [<i class="tag-count">6</i>]
-        </nuxt-link>
-      </span>
-      <span class="tag-item">
-        <nuxt-link to="/#">
-          <span class="tag-name">标签</span>
-          [<i class="tag-count">6</i>]
+          <span class="tag-name">{{item.tagname}}</span>
+          [<i class="tag-count">{{item.tagNum.count}}</i>]
         </nuxt-link>
       </span>
     </div>
@@ -44,6 +22,12 @@
 <script>
 export default {
   name: 'TagList',
+  props: {
+    list: {
+      type: Array,
+      default: () => []
+    }
+  }
 }
 </script>
 
@@ -82,7 +66,7 @@ export default {
       .tag-item {
         display: inline-block;
         padding: 0.4rem;
-        margin-bottom: 0.4rem;
+        margin: 0 0.4rem 0.4rem 0;
         border-radius: $radius-size * 2;
         border: 0.071rem solid $border-frame;
 

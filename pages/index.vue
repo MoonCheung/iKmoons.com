@@ -107,7 +107,7 @@ export default {
     ...mapGetters({
       allArtList: 'articles/artList',
       loadMore: 'articles/loadMore',
-      noMore: 'articles/noMore',
+      noMore: 'articles/noMore'
     }),
     actLoadMore () {
       return this.loadMore == false ? "is-light" : "is-loading";

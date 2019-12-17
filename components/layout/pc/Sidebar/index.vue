@@ -1,14 +1,15 @@
 <template>
   <div class="aside">
-    <aside-hot />
+    <aside-hot :list="hotArtList" />
     <affix>
       <aside-catg v-show="noChildPage" />
-      <aside-tag />
+      <aside-tag :list="tagList" />
     </affix>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import AsideHot from './Aside/asideHot';
 import AsideCatg from './Aside/asideCatg';
 import AsideTag from './Aside/asideTag';
@@ -23,6 +24,10 @@ export default {
     Affix
   },
   computed: {
+    ...mapState({
+      hotArtList: state => state.articles.hot.hotArtList,
+      tagList: state => state.tags.list.tagList
+    }),
     noChildPage () {
       return ['archive', 'article-id', 'catg-id'].includes(this.$route.name);
     }
