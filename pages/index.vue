@@ -7,16 +7,16 @@
              :key="index">
           <div class="card-wrap">
             <nuxt-link class="card-link"
-                       :to="`/catg/${item.catg}`"
+                       :to="`/catg/${item.categoryname}`"
                        no-prefetch>
               <img class="card-img"
                    :src="item.link"
                    alt="item.name" />
               <div class="card-item">
                 <i class="card-icon">
-                  <svg-icon :name="item.icon" />
+                  <svg-icon :name="item.name" />
                 </i>
-                <span class="card-title">{{item.catg}}</span>
+                <span class="card-title">{{item.categoryname}}</span>
               </div>
             </nuxt-link>
           </div>
@@ -78,7 +78,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapState } from 'vuex';
 
 export default {
   name: 'Home',
@@ -93,17 +93,10 @@ export default {
       title: "首页"
     }
   },
-  data () {
-    return {
-      catgList: [
-        { id: 1, name: 'code', icon: 'code', link: '//static.ikmoons.com/code.jpg', catg: '码不停蹄' },
-        { id: 2, name: 'book', icon: 'book', link: '//static.ikmoons.com/book.jpg', catg: '开卷益处' },
-        { id: 3, name: 'gear', icon: 'gear', link: '//static.ikmoons.com/gear.jpg', catg: '技术心得' },
-        { id: 4, name: 'travel', icon: 'travel', link: '//static.ikmoons.com/travel.jpg', catg: '诗与远方' }
-      ]
-    }
-  },
   computed: {
+    ...mapState({
+      catgList: state => state.catg.list.catgList
+    }),
     ...mapGetters({
       allArtList: 'articles/artList',
       loadMore: 'articles/loadMore',

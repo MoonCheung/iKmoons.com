@@ -10,14 +10,14 @@
       <div class="catg-item"
            v-for="(item,index) in catgList"
            :key="index">
-        <nuxt-link to="/#"
+        <nuxt-link :to="`/catg/${item.categoryname}`"
                    no-prefetch>
           <div class="catg-left">
-            <svg-icon :name="item.icon" />
+            <svg-icon :name="item.name" />
           </div>
           <div class="catg-right">
-            <span class="catg-name">{{item.catg}}</span>
-            <span class="catg-count">共&nbsp;{{item.num}}&nbsp;篇文章</span>
+            <span class="catg-name">{{item.categoryname}}</span>
+            <span class="catg-count">共&nbsp;{{item.catgNum.count}}&nbsp;篇文章</span>
           </div>
         </nuxt-link>
       </div>
@@ -26,17 +26,14 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   name: 'CatgList',
-  data () {
-    return {
-      catgList: [
-        { id: 1, icon: 'code', catg: '码不停蹄', num: 1 },
-        { id: 2, icon: 'book', catg: '开卷益处', num: 2 },
-        { id: 3, icon: 'gear', catg: '技术心得', num: 3 },
-        { id: 4, icon: 'travel', catg: '诗与远方', num: 4 }
-      ]
-    }
+  computed: {
+    ...mapState({
+      catgList: state => state.catg.list.catgList
+    }),
   }
 }
 </script>
