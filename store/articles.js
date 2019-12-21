@@ -4,7 +4,7 @@
  * @Github: https://github.com/MoonCheung
  * @Date: 2019-12-11 14:50:20
  * @LastEditors: MoonCheung
- * @LastEditTime: 2019-12-21 14:27:09
+ * @LastEditTime: 2019-12-21 15:10:19
  */
 
 export const state = () => {
@@ -45,9 +45,9 @@ export const mutations = {
   // 获取文章列表API
   POST_ART_LIST(state, data) {
     if (data.length > 0) {
-      state.list.noMore = ""
-      state.list.fetching = false;
-      state.list.artList = data
+      state.list.paging = 0;
+      state.list.noMore = "";
+      state.list.artList = data;
     }
   },
   UPDATE_ART_LIST(state, actions) {
@@ -61,6 +61,7 @@ export const mutations = {
       state.list.noMore = "没有更多了..."
       state.list.artList.push(...data);
     } else {
+      state.list.noMore = "";
       state.list.artList.push(...data);
     }
   },
