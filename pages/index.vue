@@ -64,7 +64,7 @@
         </div>
         <button v-if="!noMore"
                 class="btn"
-                :class="actLoadMore"
+                :class="artLoadMore"
                 @click="fetchMoreArt">
           下一页
         </button>
@@ -82,7 +82,6 @@ import { mapGetters, mapState } from 'vuex';
 
 export default {
   name: 'Home',
-  watchQuery: true,
   fetch ({ store }) {
     return Promise.all([
       store.dispatch('articles/fetchAllArt')
@@ -102,7 +101,7 @@ export default {
       loadMore: 'articles/loadMore',
       noMore: 'articles/noMore'
     }),
-    actLoadMore () {
+    artLoadMore () {
       return this.loadMore == false ? "is-light" : "is-loading";
     }
   },

@@ -4,7 +4,7 @@
  * @Github: https://github.com/MoonCheung
  * @Date: 2019-12-16 23:20:20
  * @LastEditors: MoonCheung
- * @LastEditTime: 2019-12-20 23:58:11
+ * @LastEditTime: 2019-12-21 14:02:37
  */
 
 
@@ -49,8 +49,14 @@ export const mutations = {
 
   // 获取指定标签文章列表
   POST_APPT_TAG(state, data) {
-    state.appt.noMore = "";
-    state.appt.tagList = data;
+    if (data.length <= 4) {
+      state.appt.noMore = "没有更多了...";
+      state.appt.tagList = data;
+    } else {
+      state.appt.noMore = "";
+      state.appt.tagList = data;
+    }
+
   },
   UPDATE_APPT_TAG(state, actions) {
     state.list.fetching = actions;

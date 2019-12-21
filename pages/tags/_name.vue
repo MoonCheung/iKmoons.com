@@ -102,7 +102,7 @@ export default {
   }
   &-main {
     display: flex;
-    padding: 0.714rem;
+    padding: 0.857rem 0.857rem 0 0.857rem;
     flex-direction: column;
     justify-content: flex-start;
 

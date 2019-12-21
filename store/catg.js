@@ -4,7 +4,7 @@
  * @Github: https://github.com/MoonCheung
  * @Date: 2019-12-18 22:53:11
  * @LastEditors: MoonCheung
- * @LastEditTime: 2019-12-20 22:40:30
+ * @LastEditTime: 2019-12-21 14:05:04
  */
 
 export const state = () => {
@@ -12,10 +12,10 @@ export const state = () => {
     list: {
       catgList: [],
       catgIcon: [
-        { name: 'code', link: '//static.ikmoons.com/code.jpg' },
         { name: 'book', link: '//static.ikmoons.com/book.jpg' },
-        { name: 'gear', link: '//static.ikmoons.com/gear.jpg' },
-        { name: 'travel', link: '//static.ikmoons.com/travel.jpg' }
+        { name: 'code', link: '//static.ikmoons.com/code.jpg' },
+        { name: 'travel', link: '//static.ikmoons.com/travel.jpg' },
+        { name: 'gear', link: '//static.ikmoons.com/gear.jpg' }
       ],
       fetching: false
     },
@@ -63,8 +63,13 @@ export const mutations = {
 
   // 获取指定分类文章列表
   POST_APPT_CATG(state, data) {
-    state.appt.noMore = "";
-    state.appt.catgList = data;
+    if (data.length <= 4) {
+      state.appt.noMore = "没有更多了...";
+      state.appt.catgList = data;
+    } else {
+      state.appt.noMore = "";
+      state.appt.catgList = data;
+    }
   },
   UPDATE_APPT_CATG(state, actions) {
     state.appt.fetching = actions;
