@@ -4,7 +4,7 @@
  * @Github: https://github.com/MoonCheung
  * @Date: 2019-12-11 14:50:20
  * @LastEditors: MoonCheung
- * @LastEditTime: 2019-12-21 15:10:19
+ * @LastEditTime: 2019-12-22 14:00:42
  */
 
 export const state = () => {
@@ -21,6 +21,11 @@ export const state = () => {
     },
     hot: {
       hotArtList: [],
+      fetching: false
+    },
+    arch: {
+      artList: [],
+      count: 0,
       fetching: false
     }
   }
@@ -89,6 +94,15 @@ export const mutations = {
   },
   UPDATE_HOT_ARTLIST(state, actions) {
     state.hot.fetching = actions;
+  },
+
+  // 获取文章归档接口
+  GET_ART_ARCH(state, { result, count }) {
+    state.arch.count = count;
+    state.arch.artList = result;
+  },
+  UPDATE_ART_ARCH(state, actions) {
+    state.arch.fetching = actions;
   }
 }
 
@@ -151,11 +165,25 @@ export const actions = {
       commit('UPDATE_HOT_ARTLIST', true);
       const data = await this.$axios.$get('/art/fetchhotart');
       if (data.code === 1) {
-        commit('GET_HOT_ARTLIST', data.result)
+        commit('GET_HOT_ARTLIST', data.result);
         commit('UPDATE_HOT_ARTLIST', false);
       }
     } catch (err) {
       commit('GET_HOT_ARTLIST', null);
+    }
+  },
+
+  // 获取文章归档接口
+  async fetchArtArch({ commit }) {
+    try {
+      commit('UPDATE_ART_ARCH', true);
+      const data = await this.$axios.$get('/art/fetchartarch');
+      if (data.code === 1) {
+        commit('GET_ART_ARCH', data);
+        commit('UPDATE_ART_ARCH', false);
+      }
+    } catch (err) {
+      commit('GET_ART_ARCH', null);
     }
   }
 }
