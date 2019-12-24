@@ -109,7 +109,8 @@ a:hover {
 }
 
 .section,
-.art-wrap,
+.art-main,
+.cmt-main,
 .hot-wrap,
 .tag-wrap,
 .tags-wrap,
@@ -158,13 +159,26 @@ a:hover {
     color: rgba(0, 0, 0, 0.7);
   }
 
+  &.is-grey {
+    background-color: #9e9e9e;
+    color: rgba(0, 0, 0, 0.7);
+  }
+
   &.is-light:hover {
+    cursor: pointer;
     background-color: #eeeeee;
     border-color: transparent;
     color: rgba(0, 0, 0, 0.7);
   }
 
+  &.is-grey:hover {
+    cursor: pointer;
+    background-color: #757575;
+    color: rgba(0, 0, 0, 0.7);
+  }
+
   &.is-light:focus {
+    cursor: pointer;
     border-color: transparent;
     color: rgba(0, 0, 0, 0.7);
   }

@@ -125,7 +125,7 @@ export default {
         ul ul {
           list-style-type: none;
           margin-left: 2rem;
-          margin-top: 0.5rem;
+          margin-top: 0.714rem;
         }
 
         ul ul ul {
@@ -138,6 +138,7 @@ export default {
               &-date {
                 display: inline-block;
                 font-size: 0.714rem;
+                color: $secondary-text-color;
               }
               &-link {
                 display: inline-block;

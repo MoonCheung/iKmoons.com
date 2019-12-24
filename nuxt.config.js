@@ -80,8 +80,22 @@ module.exports = {
     '@nuxtjs/style-resources',
     '@nuxtjs/component-cache',
     '@nuxtjs/svg-sprite',
-    '@nuxtjs/markdownit'
+    '@nuxtjs/markdownit',
+    '@nuxtjs/toast',
   ],
+  /**
+   * Touch Toast in response
+   */
+  toast: {
+    position: "top-right",
+    duration: 1000,
+    action: {
+      text: '关闭',
+      onClick: (e, toastObject) => {
+        toastObject.goAway(0);
+      }
+    },
+  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options

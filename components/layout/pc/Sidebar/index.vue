@@ -29,7 +29,7 @@ export default {
       tagList: state => state.tags.list.tagList
     }),
     noChildPage () {
-      return ['archive', 'article-id', 'catg-id'].includes(this.$route.name);
+      return ['archive', 'article-id', 'catg-name', 'tags-name'].includes(this.$route.name);
     }
   }
 }

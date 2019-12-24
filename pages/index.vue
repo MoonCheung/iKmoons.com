@@ -44,7 +44,7 @@
             <div class="media-level">
               <div class="level-left">
                 <i class="left-icon">
-                  <svg-icon name="catg-samll" />
+                  <svg-icon name="catg-small" />
                 </i>
                 <span>{{item.catg}}</span>
                 <span>{{item.pv}}&nbsp;次阅读</span>

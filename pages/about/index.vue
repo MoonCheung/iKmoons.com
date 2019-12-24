@@ -15,7 +15,8 @@
           <ul class="info-list">
             <li>
               <i class="info-icon">
-                <svg-icon name="me" />
+                <svg-icon class="me"
+                          name="me" />
               </i>
               <span class="info-desc">90后，热衷于新技术的学习，较喜欢折腾和阅读，轻微强迫症，对代码有一些洁癖👋</span>
             </li>
@@ -164,6 +165,10 @@ export default {
                   .icon {
                     width: 1.25em;
                     height: 1.25em;
+                  }
+
+                  .me {
+                    color: #3298dc;
                   }
                 }
 

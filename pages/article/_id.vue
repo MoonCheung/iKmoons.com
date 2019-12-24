@@ -5,7 +5,7 @@
         <h1 class="head-title">{{artDeil.title}}</h1>
         <div class="head-level">
           <i class="level-icon">
-            <svg-icon name="catg-samll" />
+            <svg-icon name="catg-small" />
           </i>
           <span>{{artDeil.catg}}</span>
           <span>{{artDeil.pv}}&nbsp;次阅读</span>
@@ -37,15 +37,20 @@
         </div>
       </div>
     </div>
+    <v-comment></v-comment>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
 import { formatDate } from '@/utils/index'
+import VComment from '@/components/common/comment'
 
 export default {
   name: 'ArtDeil',
+  components: {
+    VComment
+  },
   fetch ({ store, params }) {
     return Promise.all([
       store.dispatch('articles/getArtDeil', params)
@@ -67,9 +72,9 @@ export default {
   &-wrap {
     width: 760px;
     min-width: 760px;
-    padding: 0.857rem;
   }
   &-main {
+    padding: 0.857rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

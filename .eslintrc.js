@@ -42,6 +42,9 @@ module.exports = {
     'no-console': 'off',
     'no-undef': 'off',
     "eqeqeq": "off",
+    "no-extra-boolean-cast": "off",
+    "no-useless-escape": "off",
+    "unicorn/prefer-text-content": "off",
     // nuxt 相关规则
     'nuxt/no-cjs-in-config': 'off',
     // vue 相关规则
