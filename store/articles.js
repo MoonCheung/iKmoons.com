@@ -4,7 +4,7 @@
  * @Github: https://github.com/MoonCheung
  * @Date: 2019-12-11 14:50:20
  * @LastEditors: MoonCheung
- * @LastEditTime: 2019-12-22 21:54:50
+ * @LastEditTime: 2020-01-08 16:30:02
  */
 
 export const state = () => {
@@ -43,6 +43,14 @@ export const getters = {
   },
   artDeil: (state) => {
     return state.deil.artDeil;
+  },
+  artDeilLen: (state) => {
+    const cmtLen = state.deil.artDeil.cmt_count
+    let len = 0;
+    state.deil.artDeil.comments.map(item => {
+      len += item.reply_count;
+    })
+    return len + cmtLen;
   }
 }
 
@@ -103,6 +111,26 @@ export const mutations = {
   },
   UPDATE_ART_ARCH(state, actions) {
     state.arch.fetching = actions;
+  },
+
+  // 添加评论列表
+  ADD_COMMENT_LIST(state, data) {
+    state.deil.artDeil.comments.unshift(data);
+  },
+  UPDATE_ADD_COMMENT(state, actions) {
+    state.deil.fetching = actions;
+  },
+
+  // 添加回复评论列表
+  ADD_REPLY_COMMENT(state, data) {
+    state.deil.artDeil.comments.map(item => {
+      if (item.id === data.parentId) {
+        item.replys.push(data);
+      }
+    })
+  },
+  UPDATE_ADD_REPLY(state, actions) {
+    state.deil.fetching = actions;
   }
 }
 
@@ -184,6 +212,37 @@ export const actions = {
       }
     } catch (err) {
       commit('GET_ART_ARCH', null);
+    }
+  },
+
+  // 添加评论列表
+  async submitComment({ commit }, param) {
+    try {
+      if (param.replyId === '' && param.subReplyId === '') {
+        commit('UPDATE_ADD_COMMENT', true);
+        const data = await this.$axios.$post('/cmt/fetchaddcmt', param);
+        if (data.code === 1) {
+          commit('ADD_COMMENT_LIST', data.result);
+          commit('UPDATE_ADD_COMMENT', false);
+        }
+      } else if (param.replyId !== '' && param.subReplyId === '') {
+        commit('UPDATE_ADD_REPLY', true);
+        const replyData = await this.$axios.$post('/cmt/addreplycmt', param);
+        if (replyData.code === 1) {
+          commit('ADD_REPLY_COMMENT', replyData.result);
+          commit('UPDATE_ADD_REPLY', false);
+        }
+      } else {
+        commit('UPDATE_ADD_REPLY', true);
+        const subReplyData = await this.$axios.$post('/cmt/addsubreply', param);
+        if (subReplyData.code === 1) {
+          commit('ADD_REPLY_COMMENT', subReplyData.result);
+          commit('UPDATE_ADD_REPLY', false);
+        }
+      }
+    } catch (err) {
+      commit('ADD_COMMENT_LIST', null);
+      commit('ADD_REPLY_COMMENT', null);
     }
   }
 }
