@@ -1,6 +1,22 @@
 <template>
   <div class="art-wrap">
-    <div class="art-main">
+    <div class="art-fixed">
+      <div class="fixed-widget"
+           badge="5"
+           @click.stop.prevent="likeArtPage(artDeil.id)">
+        <i class="like-icon">
+          <svg-icon name="like" />
+        </i>
+      </div>
+      <div class="fixed-widget"
+           :badge="artDeilLen">
+        <i class="comment-icon">
+          <svg-icon name="comment" />
+        </i>
+      </div>
+    </div>
+    <div ref="artMain"
+         class="art-main">
       <div class="art-head">
         <h1 class="head-title">{{artDeil.title}}</h1>
         <div class="head-level">
@@ -10,14 +26,15 @@
           <span>{{artDeil.catg}}</span>
           <span>{{artDeil.pv}}&nbsp;次阅读</span>
           <span>{{artDeil.like}}&nbsp;人喜欢</span>
-          <span>{{artDeil.comment}}&nbsp;评论</span>
+          <span>{{artDeilLen}}&nbsp;评论</span>
         </div>
       </div>
       <div class="art-body">
         <img class="body-img"
              :src="artDeil.banner == ''? 'https://dummyimage.com/740x400/68a382/fff':artDeil.banner"
              art="article banner" />
-        <div v-html="artDeil.content"></div>
+        <!-- markdown-it解析 -->
+        <div v-html="$md.render(artDeil.content)"></div>
       </div>
       <div class="art-foot">
         <div class="foot-one">发布时间: <span>{{getFormatDate}}</span></div>
@@ -37,7 +54,8 @@
         </div>
       </div>
     </div>
-    <v-comment></v-comment>
+    <v-comment :list="artDeil.comments"
+               :listLen="artDeilLen"></v-comment>
   </div>
 </template>
 
@@ -48,20 +66,30 @@ import VComment from '@/components/common/comment'
 
 export default {
   name: 'ArtDeil',
-  components: {
-    VComment
-  },
   fetch ({ store, params }) {
     return Promise.all([
       store.dispatch('articles/getArtDeil', params)
     ])
   },
+  components: {
+    VComment
+  },
+  data () {
+    return {}
+  },
   computed: {
     ...mapGetters({
-      artDeil: 'articles/artDeil'
+      artDeil: 'articles/artDeil',
+      artDeilLen: 'articles/artDeilLen'
     }),
     getFormatDate () {
       return formatDate(this.artDeil.cdate, "yyyy年MM月dd日");
+    }
+  },
+  methods: {
+    // 点赞页面方法
+    likeArtPage (e) {
+      console.log('cat e:', e);
     }
   }
 }
@@ -73,6 +101,61 @@ export default {
     width: 760px;
     min-width: 760px;
   }
+
+  &-fixed {
+    position: fixed;
+    top: 12.4em;
+    margin-left: -4.25em;
+
+    .fixed {
+      &-widget {
+        position: relative;
+        border-radius: 50%;
+        width: 2.65em;
+        height: 2.65em;
+        cursor: pointer;
+        text-align: center;
+        color: $secondary-text-color;
+        background-color: var(--white-bis);
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.04);
+
+        .like-icon,
+        .comment-icon {
+          display: inline-block;
+          height: 2.65em;
+          line-height: 3.2em;
+
+          & > .icon {
+            width: 1.25em;
+            height: 1.25em;
+            color: $accent-color;
+          }
+        }
+      }
+      &-widget:not(:last-of-type) {
+        margin-bottom: 0.571rem;
+      }
+
+      &-widget::after {
+        content: attr(badge);
+        position: absolute;
+        top: 0;
+        left: 75%;
+        text-align: center;
+        line-height: 1;
+        border-radius: 0.7rem;
+        white-space: nowrap;
+        transform: scale(0.75);
+        transform-origin: left top;
+        padding-top: calc(0.25em - 1px);
+        padding-left: calc(0.5em - 1px);
+        padding-right: calc(0.5em - 1px);
+        padding-bottom: calc(0.25em - 1px);
+        background-color: var(--grey-lighter);
+      }
+    }
+  }
+
   &-main {
     padding: 0.857rem;
     display: flex;

@@ -49,7 +49,7 @@
                 <span>{{item.catg}}</span>
                 <span>{{item.pv}}&nbsp;次阅读</span>
                 <span>{{item.like}}&nbsp;人喜欢</span>
-                <span>{{item.comment}}&nbsp;评论</span>
+                <span>{{item | filterComments }}&nbsp;评论</span>
               </div>
               <div class="level-right">
                 <i class="right-icon">
@@ -92,6 +92,7 @@ export default {
       title: "首页"
     }
   },
+  // 计算属性
   computed: {
     ...mapState({
       catgList: state => state.catg.list.catgList
@@ -105,6 +106,19 @@ export default {
       return this.loadMore == false ? "is-light" : "is-loading";
     }
   },
+  // 过滤器
+  filters: {
+    filterComments (item) {
+      const commentCount = item.cmt_count;
+      let replyCount = 0;
+      item.comments.map(elem => {
+        replyCount += elem.reply_count;
+      })
+      const len = commentCount + replyCount;
+      return Number.isNaN(len) ? 0 : len;
+    }
+  },
+  // 该方法被混入Vue实例当中
   methods: {
     fetchMoreArt () {
       this.$store.dispatch('articles/fetchMoreArt');
