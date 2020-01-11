@@ -144,11 +144,13 @@
                v-html="$md.render(item.from_content)"></div>
           <nav class="level">
             <div class="level-left">
-              <a class="level-item">
+              <a class="level-item"
+                 :class="[isLikedComment(item.id,'comment')?'isliked':'']"
+                 @click.stop="likeArtComment(item.id,'comment')">
                 <i class="like-icon">
                   <svg-icon name="like" />
                 </i>
-                <span>{{item.like}}</span>
+                <span class="like-text">{{item.like}}</span>
               </a>
               <a class="level-item"
                  @click.stop="onReplyComment(item)">
@@ -196,11 +198,13 @@
                      v-html="$md.render(subItem.from_content)"></div>
                 <nav class="level">
                   <div class="level-left">
-                    <a class="level-item">
+                    <a class="level-item"
+                       :class="[isLikedComment(subItem.id, 'reply')?'isliked':'']"
+                       @click.stop="likeArtComment(subItem.id,'reply')">
                       <i class="like-icon">
                         <svg-icon name="like" />
                       </i>
-                      <span>{{subItem.like}}</span>
+                      <span class="like-text">{{subItem.like}}</span>
                     </a>
                     <a class="level-item"
                        @click.stop="onSubReplyComment(item.id, subItem)">
@@ -226,6 +230,7 @@
 <script>
 import CommentUa from './ua';
 import { DateBefore } from '@/utils/index';
+import { localLikeHistory } from '@/service/storage';
 
 export default {
   name: 'ArtCmt',
@@ -274,9 +279,26 @@ export default {
       return param => {
         return DateBefore(param);
       }
+    },
+    isLikedComment () {
+      return function (id, type) {
+        if (type === 'comment') {
+          return this.$parent.$data.likeHistory.comment.includes(id);
+        } else if (type === 'reply') {
+          return this.$parent.$data.likeHistory.reply.includes(id);
+        }
+      }
     }
   },
+  activated () {
+    this.initUserLikeCmt();
+  },
   methods: {
+    // 初始化用户点赞评论历史
+    initUserLikeCmt () {
+      const likeHistorys = localLikeHistory.get();
+      !likeHistorys ? localLikeHistory.set(this.$parent.$data.likeHistory) : (this.$parent.$data.likeHistory = likeHistorys)
+    },
     // 编辑器相关
     changeCommentCont () {
       const html = this.$refs.markdown.innerHTML;
@@ -390,6 +412,15 @@ export default {
         top: offsetPosition,
         behavior: "smooth"
       })
+    },
+    // 点赞评论方法
+    likeArtComment (elem, type) {
+      const likedComment = this.isLikedComment(elem, type);
+      if (likedComment) {
+        this.$toast.info('你已点赞过!');
+        return false;
+      }
+      this.$parent.$emit('likeArtComment', [elem, type]);
     }
   }
 }
@@ -719,6 +750,19 @@ export default {
                     }
                   }
                 }
+
+                // 已点赞样式
+                .isliked {
+                  .like-icon {
+                    & > .icon {
+                      color: var(--green);
+                    }
+                  }
+                  .like-text {
+                    color: var(--green);
+                  }
+                }
+
                 .level-item:not(:last-of-type) {
                   margin-right: 0.571rem;
                 }

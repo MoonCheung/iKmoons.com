@@ -1,20 +1,8 @@
 <template>
   <div class="art-wrap">
-    <div class="art-fixed">
-      <div class="fixed-widget"
-           badge="5"
-           @click.stop.prevent="likeArtPage(artDeil.id)">
-        <i class="like-icon">
-          <svg-icon name="like" />
-        </i>
-      </div>
-      <div class="fixed-widget"
-           :badge="artDeilLen">
-        <i class="comment-icon">
-          <svg-icon name="comment" />
-        </i>
-      </div>
-    </div>
+    <v-like :item="artDeil"
+            :itemLen="artDeilLen"
+            :isLike="isLikedArt"></v-like>
     <div ref="artMain"
          class="art-main">
       <div class="art-head">
@@ -62,7 +50,9 @@
 <script>
 import { mapGetters } from 'vuex';
 import { formatDate } from '@/utils/index'
+import VLike from '@/components/common/like'
 import VComment from '@/components/common/comment'
+import { localLikeHistory } from '@/service/storage'
 
 export default {
   name: 'ArtDeil',
@@ -72,10 +62,18 @@ export default {
     ])
   },
   components: {
-    VComment
+    VComment,
+    VLike
   },
   data () {
-    return {}
+    return {
+      // 用户点赞历史
+      likeHistory: {
+        article: [],
+        comment: [],
+        reply: []
+      }
+    }
   },
   computed: {
     ...mapGetters({
@@ -84,12 +82,46 @@ export default {
     }),
     getFormatDate () {
       return formatDate(this.artDeil.cdate, "yyyy年MM月dd日");
+    },
+    isLikedArt () {
+      return this.likeHistory.article.includes(this.artDeil.id)
     }
   },
+  activated () {
+    this.initUserLikeHistory();
+  },
+  created () {
+    this.$on('likeArtPage', function (elem) {
+      if (this.isLikedArt) {
+        this.$toast.info('你已点赞过!');
+        return false;
+      }
+      this.$store.dispatch('articles/fetchLikeArt', elem).then(res => {
+        this.likeHistory.article.push(res.id);
+        localLikeHistory.set(this.likeHistory);
+      });
+    })
+    this.$on('likeArtComment', function (elem) {
+      const param = {
+        id: elem[0],
+        type: elem[1]
+      }
+      this.$store.dispatch('articles/fetchLikeComment', param).then(res => {
+        if (elem[1] === 'comment') {
+          this.likeHistory.comment.push(res.id);
+          localLikeHistory.set(this.likeHistory);
+        } else if (elem[1] === 'reply') {
+          this.likeHistory.reply.push(res.id);
+          localLikeHistory.set(this.likeHistory);
+        }
+      });
+    })
+  },
   methods: {
-    // 点赞页面方法
-    likeArtPage (e) {
-      console.log('cat e:', e);
+    // 初始化用户点赞历史
+    initUserLikeHistory () {
+      const likeHistorys = localLikeHistory.get();
+      !likeHistorys ? localLikeHistory.set(this.likeHistory) : (this.likeHistory = likeHistorys)
     }
   }
 }
@@ -100,60 +132,6 @@ export default {
   &-wrap {
     width: 760px;
     min-width: 760px;
-  }
-
-  &-fixed {
-    position: fixed;
-    top: 12.4em;
-    margin-left: -4.25em;
-
-    .fixed {
-      &-widget {
-        position: relative;
-        border-radius: 50%;
-        width: 2.65em;
-        height: 2.65em;
-        cursor: pointer;
-        text-align: center;
-        color: $secondary-text-color;
-        background-color: var(--white-bis);
-        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.04);
-
-        .like-icon,
-        .comment-icon {
-          display: inline-block;
-          height: 2.65em;
-          line-height: 3.2em;
-
-          & > .icon {
-            width: 1.25em;
-            height: 1.25em;
-            color: $accent-color;
-          }
-        }
-      }
-      &-widget:not(:last-of-type) {
-        margin-bottom: 0.571rem;
-      }
-
-      &-widget::after {
-        content: attr(badge);
-        position: absolute;
-        top: 0;
-        left: 75%;
-        text-align: center;
-        line-height: 1;
-        border-radius: 0.7rem;
-        white-space: nowrap;
-        transform: scale(0.75);
-        transform-origin: left top;
-        padding-top: calc(0.25em - 1px);
-        padding-left: calc(0.5em - 1px);
-        padding-right: calc(0.5em - 1px);
-        padding-bottom: calc(0.25em - 1px);
-        background-color: var(--grey-lighter);
-      }
-    }
   }
 
   &-main {

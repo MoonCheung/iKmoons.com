@@ -4,7 +4,7 @@
  * @Github: https://github.com/MoonCheung
  * @Date: 2019-12-11 14:50:20
  * @LastEditors: MoonCheung
- * @LastEditTime: 2020-01-08 16:30:02
+ * @LastEditTime: 2020-01-11 23:34:49
  */
 
 export const state = () => {
@@ -92,6 +92,42 @@ export const mutations = {
   GET_ART_DEIL(state, data) {
     state.deil.artDeil = data;
   },
+  // 添加评论列表
+  ADD_COMMENT_LIST(state, data) {
+    state.deil.artDeil.comments.unshift(data);
+  },
+  // 添加回复评论列表
+  ADD_REPLY_COMMENT(state, data) {
+    state.deil.artDeil.comments.map(item => {
+      if (item.id === data.parentId) {
+        item.replys.push(data);
+      }
+    })
+  },
+  // 更新点赞文章详情
+  ADD_LIKE_ART_PAGE(state, { like }) {
+    state.deil.artDeil.like = like
+  },
+  // 更新点赞评价
+  ADD_LIKE_COMMENT(state, data) {
+    state.deil.artDeil.comments.map(elem => {
+      if (elem.id === data.id) {
+        elem.like = data.like;
+      }
+    })
+  },
+  // 更新点赞被评价回复
+  ADD_LIKE_REPLY(state, data) {
+    state.deil.artDeil.comments.map(elem => {
+      if (elem.id === data.comment_id) {
+        elem.replys.map(subElem => {
+          if (subElem.id === data.id) {
+            subElem.like = data.like;
+          }
+        })
+      }
+    })
+  },
   UPDATE_ART_DEIL(state, actions) {
     state.deil.fetching = actions;
   },
@@ -111,26 +147,6 @@ export const mutations = {
   },
   UPDATE_ART_ARCH(state, actions) {
     state.arch.fetching = actions;
-  },
-
-  // 添加评论列表
-  ADD_COMMENT_LIST(state, data) {
-    state.deil.artDeil.comments.unshift(data);
-  },
-  UPDATE_ADD_COMMENT(state, actions) {
-    state.deil.fetching = actions;
-  },
-
-  // 添加回复评论列表
-  ADD_REPLY_COMMENT(state, data) {
-    state.deil.artDeil.comments.map(item => {
-      if (item.id === data.parentId) {
-        item.replys.push(data);
-      }
-    })
-  },
-  UPDATE_ADD_REPLY(state, actions) {
-    state.deil.fetching = actions;
   }
 }
 
@@ -219,30 +235,80 @@ export const actions = {
   async submitComment({ commit }, param) {
     try {
       if (param.replyId === '' && param.subReplyId === '') {
-        commit('UPDATE_ADD_COMMENT', true);
+        commit('UPDATE_ART_DEIL', true);
         const data = await this.$axios.$post('/cmt/fetchaddcmt', param);
         if (data.code === 1) {
           commit('ADD_COMMENT_LIST', data.result);
-          commit('UPDATE_ADD_COMMENT', false);
+          commit('UPDATE_ART_DEIL', false);
         }
       } else if (param.replyId !== '' && param.subReplyId === '') {
-        commit('UPDATE_ADD_REPLY', true);
+        commit('UPDATE_ART_DEIL', true);
         const replyData = await this.$axios.$post('/cmt/addreplycmt', param);
         if (replyData.code === 1) {
           commit('ADD_REPLY_COMMENT', replyData.result);
-          commit('UPDATE_ADD_REPLY', false);
+          commit('UPDATE_ART_DEIL', false);
         }
       } else {
-        commit('UPDATE_ADD_REPLY', true);
+        commit('UPDATE_ART_DEIL', true);
         const subReplyData = await this.$axios.$post('/cmt/addsubreply', param);
         if (subReplyData.code === 1) {
           commit('ADD_REPLY_COMMENT', subReplyData.result);
-          commit('UPDATE_ADD_REPLY', false);
+          commit('UPDATE_ART_DEIL', false);
         }
       }
     } catch (err) {
       commit('ADD_COMMENT_LIST', null);
       commit('ADD_REPLY_COMMENT', null);
+    }
+  },
+
+  // 更新点赞文章API
+  async fetchLikeArt({ commit }, id) {
+    try {
+      commit('UPDATE_ART_DEIL', true);
+      return await this.$axios.$patch(`/art/updlikeart/${id}`).then(data => {
+        return new Promise(resolve => {
+          if (data.code === 1) {
+            commit('ADD_LIKE_ART_PAGE', data.result);
+            commit('UPDATE_ART_DEIL', false);
+            resolve(data.result);
+          }
+        })
+      });
+    } catch (err) {
+      commit('ADD_LIKE_ART_PAGE', null);
+    }
+  },
+
+  // 更新点赞评论API
+  async fetchLikeComment({ commit }, param) {
+    try {
+      if (param.type === 'comment') {
+        commit('UPDATE_ART_DEIL', true);
+        return await this.$axios.$patch(`/cmt/updlikecmt/${param.type}/${param.id}`).then(data => {
+          return new Promise(resolve => {
+            if (data.code === 1) {
+              commit('ADD_LIKE_COMMENT', data.result);
+              commit('UPDATE_ART_DEIL', false);
+              resolve(data.result)
+            }
+          })
+        });
+      } else if (param.type === 'reply') {
+        commit('UPDATE_ART_DEIL', true);
+        return await this.$axios.$patch(`/cmt/updlikecmt/${param.type}/${param.id}`).then(data => {
+          return new Promise(resolve => {
+            if (data.code === 1) {
+              commit('ADD_LIKE_REPLY', data.result);
+              commit('UPDATE_ART_DEIL', false);
+              resolve(data.result)
+            }
+          })
+        });
+      }
+    } catch (err) {
+      commit('ADD_LIKE_COMMENT', null);
+      commit('ADD_LIKE_REPLY', null);
     }
   }
 }
