@@ -87,9 +87,10 @@ export default {
       return this.likeHistory.article.includes(this.artDeil.id)
     }
   },
-  activated () {
-    this.initUserLikeHistory();
-  },
+  // TODO：有存在Bug待处理
+  // activated () {
+  //   this.initUserLikeHistory();
+  // },
   created () {
     this.$on('likeArtPage', function (elem) {
       if (this.isLikedArt) {
@@ -116,6 +117,9 @@ export default {
         }
       });
     })
+  },
+  mounted () {
+    this.initUserLikeHistory();
   },
   methods: {
     // 初始化用户点赞历史

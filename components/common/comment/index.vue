@@ -111,7 +111,8 @@
     <div class="cmt-list">
       <div class="list-head">
         <div class="head-left">共有&nbsp;{{listLen}}&nbsp;条评论</div>
-        <div class="head-right">最新|最热</div>
+        <!-- TODO：暂时开发评论最新和最热 -->
+        <!-- <div class="head-right">最新|最热</div> -->
       </div>
       <div v-if="list.length === 0"
            class="list-noMedia">🙂暂无评论</div>
@@ -290,7 +291,11 @@ export default {
       }
     }
   },
-  activated () {
+  // TODO：有存在Bug待处理
+  // activated () {
+  //   this.initUserLikeCmt();
+  // },
+  mounted () {
     this.initUserLikeCmt();
   },
   methods: {
@@ -480,7 +485,7 @@ export default {
             margin-right: 0.714rem;
 
             &.has-icons-left {
-              .input {
+              & > .input {
                 width: 100%;
                 box-shadow: none;
                 font-size: 1rem;
@@ -504,7 +509,7 @@ export default {
                 }
               }
 
-              .icons {
+              & > .icons {
                 position: absolute;
                 left: 0;
                 width: 2em;
