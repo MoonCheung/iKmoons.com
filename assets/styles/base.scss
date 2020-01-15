@@ -4,6 +4,10 @@ html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
 }
 
 * {
@@ -35,6 +39,7 @@ a:hover {
   font-weight: $weight-semibold;
 }
 
+// 导航栏
 .navbar {
   background-color: var(--white);
   position: fixed;
@@ -59,49 +64,6 @@ a:hover {
   margin-bottom: 1rem;
 }
 
-.hero {
-  display: flex;
-  height: 100vh;
-  min-height: 100vh;
-  align-items: stretch;
-  flex-direction: column;
-  justify-content: space-between;
-
-  .hero-head,
-  .hero-foot {
-    flex-grow: 0;
-    flex-shrink: 0;
-  }
-
-  .hero-body {
-    flex-grow: 1;
-    flex-shrink: 0;
-
-    &>.container {
-      display: flex;
-      width: $width-size;
-      justify-content: flex-start;
-
-      .about {
-        &+.aside {
-          display: none;
-        }
-      }
-    }
-  }
-
-  .particles-js-canvas-el {
-    background-color: var(--grey-lightest);
-    display: inline-flex;
-    position: fixed;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -1;
-  }
-}
-
 // svg 样式
 .icon {
   width: $svg-width;
@@ -120,128 +82,36 @@ a:hover {
   color: $secondary-text-color;
 }
 
-.footer {
+// 页脚栏
+.footer,
+.mobile-foot {
   background-color: var(--white-bis);
 
   &>.container {
     display: flex;
     padding: 1.5rem;
     align-items: center;
+    flex-flow: column wrap;
     justify-content: center;
   }
 }
 
-// 按钮样式
-.btn {
-  position: relative;
+// markdown-it样式表
+.hljs {
   margin: 0.286rem 0;
-  padding: 0.286rem;
-
-  &.is-small {
-    font-size: 0.75rem;
-  }
-
-  &.is-normal {
-    font-size: 1rem;
-  }
-
-  &.is-medium {
-    font-size: 1.25rem;
-  }
-
-  &.is-large {
-    font-size: 1.5rem;
-  }
-
-  &.is-light {
-    background-color: whitesmoke;
-    border-color: transparent;
-    color: rgba(0, 0, 0, 0.7);
-  }
-
-  &.is-grey {
-    background-color: #9e9e9e;
-    color: rgba(0, 0, 0, 0.7);
-  }
-
-  &.is-light:hover {
-    cursor: pointer;
-    background-color: #eeeeee;
-    border-color: transparent;
-    color: rgba(0, 0, 0, 0.7);
-  }
-
-  &.is-grey:hover {
-    cursor: pointer;
-    background-color: #757575;
-    color: rgba(0, 0, 0, 0.7);
-  }
-
-  &.is-light:focus {
-    cursor: pointer;
-    border-color: transparent;
-    color: rgba(0, 0, 0, 0.7);
-  }
-
-  &.is-light:focus:not(:active) {
-    box-shadow: 0 0 0 0.125em rgba(245, 245, 245, 0.25);
-  }
-
-  &.is-light:active {
-    background-color: #e8e8e8;
-    border-color: transparent;
-    color: rgba(0, 0, 0, 0.7);
-  }
-
-  // Loading style
-  &.is-loading {
-    color: transparent;
-    pointer-events: none;
-    border-color: transparent;
-  }
-
-  &.is-loading::before {
-    position: absolute;
-    content: '加载中...';
-    color: $secondary-text-color;
-  }
-
-  &.is-loading::after {
-    position: absolute;
-    left: calc(44.5% - (1em / 2));
-    top: calc(50% - (1em / 2));
-  }
-
-  &.is-loading::after {
-    -webkit-animation: spinAround 600ms infinite linear;
-    animation: spinAround 600ms infinite linear;
-    border: 2px solid var(--grey);
-    border-radius: 290486px;
-    border-right-color: transparent;
-    border-top-color: transparent;
-    content: '';
-    display: block;
-    height: 1em;
-    width: 1em;
-  }
+  border-radius: 0.143rem;
 }
 
-@-webkit-keyframes spinAround {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(359deg);
-  }
-}
-
-@keyframes spinAround {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(359deg);
+// 制作粒子背景样式表
+.hero {
+  .particles-js-canvas-el {
+    background-color: var(--grey-lightest);
+    display: inline-flex;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
   }
 }
