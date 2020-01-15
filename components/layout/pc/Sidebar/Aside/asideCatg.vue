@@ -83,7 +83,7 @@ export default {
             flex-shrink: 0;
 
             & > .icon {
-              color: #9e9e9e;
+              color: $accent-color;
               width: 1.25em;
               height: 1.25em;
             }

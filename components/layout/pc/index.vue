@@ -4,8 +4,10 @@
     <v-navbar class="hero-head" />
     <main class="hero-body">
       <article class="container">
+        <!-- TODO: 切换其他页面时候有存在Bug,待处理 -->
+        <!-- <nuxt keep-alive /> -->
         <nuxt />
-        <v-aside v-show="!noAsidePage" />
+        <v-aside v-if="!noAsidePage" />
       </article>
     </main>
     <v-footer class="hero-foot" />
@@ -151,12 +153,33 @@ export default {
 
 <style lang="scss" scoped>
 .hero {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &-head,
+  &-foot {
+    width: 100%;
+  }
+
   &-body {
+    flex: 1 0 58em;
     margin-top: 3.25rem;
     padding: 1.429rem 0;
-    .container {
+
+    & > .container {
+      display: flex;
       margin: 0 auto;
       position: relative;
+      width: $width-size;
+      justify-content: flex-start;
+
+      .about {
+        & + .aside {
+          display: none;
+        }
+      }
     }
   }
 }

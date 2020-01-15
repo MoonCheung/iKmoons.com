@@ -20,25 +20,29 @@
                      class="navbar-item">关于</nuxt-link>
         </div>
       </div>
+      <!-- <v-search></v-search> -->
     </div>
   </nav>
 </template>
 
 <script>
+// import VSearch from '@/components/common/search';
+
 export default {
-  name: 'VNavbar'
+  name: 'VNavbar',
+  components: {
+    // VSearch
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 .navbar {
-  .container {
+  & > .container {
     margin: 0 auto;
     position: relative;
   }
   &-brand {
-    flex-grow: 0;
-    flex-shrink: 0;
     overflow: hidden;
     padding: 0 0.571rem;
 
@@ -47,8 +51,7 @@ export default {
     }
   }
   &-menu {
-    flex-grow: 1;
-    flex-shrink: 0;
+    flex: 1 0 0;
 
     .navbar-start {
       display: flex;

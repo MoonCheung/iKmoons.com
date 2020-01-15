@@ -1,8 +1,9 @@
 <template>
-  <div class="aside">
+  <div class="aside"
+       v-if="!isMobile">
     <aside-hot :list="hotArtList" />
     <affix>
-      <aside-catg v-show="noChildPage" />
+      <aside-catg v-if="noChildPage" />
       <aside-tag :list="tagList" />
     </affix>
   </div>
@@ -26,7 +27,8 @@ export default {
   computed: {
     ...mapState({
       hotArtList: state => state.articles.hot.hotArtList,
-      tagList: state => state.tags.list.tagList
+      tagList: state => state.tags.list.tagList,
+      isMobile: state => state.global.isMobile
     }),
     noChildPage () {
       return ['archive', 'article-id', 'catg-name', 'tags-name'].includes(this.$route.name);
@@ -37,8 +39,8 @@ export default {
 
 <style lang="scss" scoped>
 .aside {
-  width: 304px;
-  min-width: 304px;
-  margin-left: 1.143rem;
+  width: $side-width-size;
+  min-width: $side-width-size;
+  margin-left: $spacing-evenSize * 8;
 }
 </style>

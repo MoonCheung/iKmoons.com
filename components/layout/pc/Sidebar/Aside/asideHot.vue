@@ -52,6 +52,7 @@ export default {
         flex-grow: 0;
         flex-shrink: 0;
         .icon {
+          color: $accent-color;
           width: 1.25em;
           height: 1.25em;
         }
