@@ -1,5 +1,5 @@
 <template>
-  <div class="archive-wrap">
+  <div :class="[isMobile? 'mobileArch-wrap' : 'archive-wrap']">
     <div class="archive-main">
       <header class="archive-head">
         <i class="head-icon">
@@ -52,7 +52,8 @@ export default {
   computed: {
     ...mapState({
       artArch: state => state.articles.arch.artList,
-      archCount: state => state.articles.arch.count
+      archCount: state => state.articles.arch.count,
+      isMobile: state => state.global.isMobile
     })
   }
 }
@@ -61,8 +62,8 @@ export default {
 <style lang="scss" scoped>
 .archive {
   &-wrap {
-    width: 760px;
-    min-width: 760px;
+    width: $part-width-size;
+    min-width: $part-width-size;
   }
   &-main {
     display: flex;
@@ -149,6 +150,16 @@ export default {
         }
       }
     }
+  }
+}
+
+// 移动端样式
+.mobileArch {
+  &-wrap {
+    width: auto;
+    min-width: auto;
+    color: $secondary-text-color;
+    background-color: var(--white-bis);
   }
 }
 </style>

@@ -1,12 +1,12 @@
 <template>
-  <div class="about-wrap">
+  <div :class="[isMobile? 'mobileAbout-wrap':'about-wrap']">
     <div class="about-main">
       <div class="about-info">
         <header class="info-head">
           <img class="info-image"
                src="https://dummyimage.com/100x100/00aeff/fff"
                alt="head portrait" />
-          <p class="info-name">MoonCheung</p>
+          <p class="info-name">{{about.name}}</p>
         </header>
         <div class="info-middleLine">
           <h2 class="middleLine-text">关于我</h2>
@@ -18,31 +18,35 @@
                 <svg-icon class="me"
                           name="me" />
               </i>
-              <span class="info-desc">90后，热衷于新技术的学习，较喜欢折腾和阅读，轻微强迫症，对代码有一些洁癖👋</span>
+              <span class="info-desc">{{about.desc}}</span>
             </li>
             <li>
               <i class="info-icon">
                 <svg-icon name="love" />
               </i>
-              <span class="info-desc">日漫，旅行，登山，看书，下厨</span>
+              <span v-for="(item,index) in about.hobby"
+                    :key="index">{{item.name}}</span>
             </li>
             <li>
               <i class="info-icon">
                 <svg-icon name="maintain" />
               </i>
-              <span class="info-desc">Nodejs，Vue，React，小程序...</span>
+              <span v-for="(item,index) in about.skill"
+                    :key="index">{{item.name}}</span>
             </li>
             <li>
               <i class="info-icon">
-                <svg-icon name="tagGreen" />
+                <svg-icon name="tag" />
               </i>
-              <span class="info-desc">技术爱好者，日漫爱好者</span>
+              <span v-for="(item,index) in about.tags"
+                    :key="index">{{item.name}}</span>
             </li>
           </ul>
         </div>
       </div>
       <div class="about-chart">
-        <img src="http://ghchart.rshah.org/MoonCheung"
+        <img class="chart-image"
+             src="http://ghchart.rshah.org/MoonCheung"
              alt="My github chart" />
       </div>
     </div>
@@ -81,8 +85,21 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+import { constant } from '@/config/app.config'
+
 export default {
   name: 'About',
+  data () {
+    return {
+      about: constant.about
+    }
+  },
+  computed: {
+    ...mapState({
+      isMobile: state => state.global.isMobile
+    })
+  }
 }
 </script>
 
@@ -121,107 +138,160 @@ export default {
       width: 100%;
       background-color: $border-frame;
     }
+  }
 
-    .about-main {
-      flex: 1 0;
-      display: flex;
-      flex-direction: column;
+  &-main {
+    flex: 1 0;
+    display: flex;
+    flex-direction: column;
 
-      .about-info {
-        background-color: var(--white-bis);
-        padding: 1.429rem 1.143rem 0 1.143rem;
-        margin-bottom: 1rem;
+    .about-info {
+      background-color: var(--white-bis);
+      padding: 1.429rem 1.143rem 0 1.143rem;
+      margin-bottom: 1rem;
 
-        .info {
-          &-head {
-            text-align: center;
+      .info {
+        &-head {
+          text-align: center;
 
-            .info-image {
-              border-radius: 50%;
-              border: 0.286rem solid $border-frame;
-            }
-            .info-name {
-              margin: 0.714rem 0;
-              font-weight: $weight-bold;
-            }
+          .info-image {
+            border-radius: 50%;
+            border: 0.286rem solid $border-frame;
           }
+          .info-name {
+            margin: 0.714rem 0;
+            font-weight: $weight-bold;
+          }
+        }
 
-          &-wrap {
-            .info-list {
-              list-style: none;
-              & > li {
-                margin: 0.857rem 0;
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: flex-start;
+        &-wrap {
+          .info-list {
+            list-style: none;
+            & > li {
+              margin: 0.857rem 0;
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              justify-content: flex-start;
 
-                .info-icon {
-                  flex-grow: 0;
-                  flex-shrink: 0;
-                  display: inline-block;
-                  margin-right: 0.714rem;
+              .info-icon {
+                align-self: center;
+                display: inline-flex;
+                margin-right: 0.714rem;
 
-                  .icon {
-                    width: 1.25em;
-                    height: 1.25em;
-                  }
-
-                  .me {
-                    color: #3298dc;
-                  }
+                .icon {
+                  width: 1.25em;
+                  height: 1.25em;
+                  color: var(--green);
                 }
 
-                .info-desc {
-                  flex-grow: 1;
-                  flex-shrink: 0;
-                  font-weight: $weight-normal;
+                .me {
+                  color: var(--cyan);
+                }
+              }
+
+              .info-desc {
+                flex: 1 0 0;
+                font-weight: $weight-normal;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .about-chart {
+      background-color: var(--white-bis);
+      padding: 1.429rem 1.143rem;
+
+      & > .chart-image {
+        width: 100%;
+      }
+    }
+  }
+
+  &-aside {
+    flex: 0 0 320px;
+    margin-left: 1.143rem;
+
+    .about-con {
+      background-color: var(--white-bis);
+      padding: 1.429rem 1.143rem 1.143rem 1.143rem;
+
+      .con {
+        &-wrap {
+          .con-list {
+            padding-top: 0.571rem;
+            list-style: none;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+
+            .con-item {
+              margin: 0 0.714rem;
+
+              .con-link {
+                display: inline-flex;
+                .icon {
+                  width: 1.5em;
+                  height: 1.5em;
                 }
               }
             }
           }
         }
       }
+    }
+  }
+}
 
+// 移动端样式
+.mobileAbout {
+  &-wrap {
+    color: $secondary-text-color;
+    display: flex;
+    padding: 0 $spacing-evenSize * 6;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    // TODO: 有重复
+    // 两边横线中间文字效果
+    .info-middleLine,
+    .con-middleLine {
+      text-align: center;
+      margin: 0.714rem 0;
+
+      .middleLine-text,
+      .middleLine-head {
+        display: inline-block;
+        position: relative;
+        background: var(--white-bis);
+        padding: 0 1.286rem;
+      }
+    }
+    .info-middleLine:before,
+    .con-middleLine:before {
+      content: "";
+      display: block;
+      position: relative;
+      left: 0;
+      top: 0.643rem; /*这个是用来调节线高*/
+      height: 1px;
+      width: 100%;
+      background-color: $border-frame;
+    }
+
+    .about-main {
       .about-chart {
-        background-color: var(--white-bis);
-        padding: 1.429rem 1.143rem;
+        padding: $spacing-evenSize * 4;
+        margin-bottom: 1rem;
       }
     }
 
     .about-aside {
-      flex: 0 0 320px;
-      margin-left: 1.143rem;
-
-      .about-con {
-        background-color: var(--white-bis);
-        padding: 1.429rem 1.143rem 1.143rem 1.143rem;
-
-        .con {
-          &-wrap {
-            .con-list {
-              padding-top: 0.571rem;
-              list-style: none;
-              display: flex;
-              flex-direction: row;
-              align-items: center;
-              justify-content: center;
-
-              .con-item {
-                margin: 0 0.714rem;
-
-                .con-link {
-                  display: inline-flex;
-                  .icon {
-                    width: 1.5em;
-                    height: 1.5em;
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
+      flex-basis: 0;
+      margin-left: 0;
     }
   }
 }

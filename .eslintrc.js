@@ -39,9 +39,11 @@ module.exports = {
         vueIndentScriptAndStyle: true, // 在vue文件允许缩进
       }
     ],
+    'object-shorthand': 'off',
     'no-console': 'off',
     'no-undef': 'off',
     "eqeqeq": "off",
+    "no-unused-vars": "off",
     "no-extra-boolean-cast": "off",
     "no-useless-escape": "off",
     "unicorn/prefer-text-content": "off",

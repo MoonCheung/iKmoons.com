@@ -1,6 +1,7 @@
 <template>
-  <div class="art-wrap">
-    <v-like :item="artDeil"
+  <div :class="[isMobile? 'mobileArt-wrap':'art-wrap']">
+    <v-like v-if="!isMobile"
+            :item="artDeil"
             :itemLen="artDeilLen"
             :isLike="isLikedArt"></v-like>
     <div ref="artMain"
@@ -48,11 +49,11 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import { formatDate } from '@/utils/index'
-import VLike from '@/components/common/like'
-import VComment from '@/components/common/comment'
-import { localLikeHistory } from '@/service/storage'
+import { mapGetters, mapState } from 'vuex';
+import { formatDate } from '@/utils/index';
+import VLike from '@/components/common/like';
+import VComment from '@/components/common/comment';
+import { localLikeHistory } from '@/service/storage';
 
 export default {
   name: 'ArtDeil',
@@ -76,6 +77,9 @@ export default {
     }
   },
   computed: {
+    ...mapState({
+      isMobile: state => state.global.isMobile,
+    }),
     ...mapGetters({
       artDeil: 'articles/artDeil',
       artDeilLen: 'articles/artDeilLen'
@@ -134,8 +138,8 @@ export default {
 <style lang="scss" scoped>
 .art {
   &-wrap {
-    width: 760px;
-    min-width: 760px;
+    width: $part-width-size;
+    min-width: $part-width-size;
   }
 
   &-main {
@@ -189,12 +193,16 @@ export default {
       border-bottom: 0.071rem dashed $border-frame;
 
       .body-img {
-        width: 730px;
+        width: 100%;
+        margin-bottom: $spacing-evenSize * 4;
         border: 0.429rem solid $border-frame;
       }
     }
 
     .art-foot {
+      display: flex;
+      flex-flow: column wrap;
+      justify-content: space-between;
       padding: 0.6rem;
       margin-top: 0.857rem;
       background-color: var(--grey-lighter);
@@ -203,7 +211,7 @@ export default {
       .foot-one,
       .foot-two,
       .foot-three {
-        height: 22px;
+        flex: 0 0 22px;
         line-height: 22px;
         font-weight: $weight-normal;
       }
@@ -217,6 +225,14 @@ export default {
         }
       }
     }
+  }
+}
+
+// 移动端文章
+.mobileArt {
+  &-wrap {
+    width: auto;
+    min-width: auto;
   }
 }
 </style>

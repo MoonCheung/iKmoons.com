@@ -6,7 +6,7 @@
             :data-id="replyId"
             :data-uid="subReplyId"
             v-model="form">
-        <div class="field-head">
+        <div :class="[isMobile? 'mobile-head':'field-head']">
           <div class="control has-icons-left">
             <input class="input"
                    type="text"
@@ -58,7 +58,7 @@
                  @focus="changeCommentCont($event)">
             </div>
             <div class="markdown-tools">
-              <span class="emoji"
+              <span :class="[isMobile?'mobile-emoji' : 'emoji']"
                     title="emoji"
                     @click.stop.prevent="isActive = !isActive">
                 <i class="emoji-icon">
@@ -137,7 +137,8 @@
                 <span v-if="item.from_locate.country && item.from_locate.city">&nbsp;-&nbsp;</span>
                 <span>{{item.from_locate.city}}</span>
               </small>
-              <comment-ua class="ua"
+              <comment-ua v-if="!isMobile"
+                          class="ua"
                           :ua="item.from_ua"></comment-ua>
             </span>
           </span>
@@ -188,7 +189,8 @@
                       <span v-if="subItem.from_locate.country && subItem.from_locate.city">&nbsp;-&nbsp;</span>
                       <span>{{subItem.from_locate.city}}</span>
                     </small>
-                    <comment-ua class="ua"
+                    <comment-ua v-if="!isMobile"
+                                class="ua"
                                 :ua="subItem.from_ua"></comment-ua>
                   </span>
                 </span>
@@ -229,6 +231,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import CommentUa from './ua';
 import { DateBefore } from '@/utils/index';
 import { localLikeHistory } from '@/service/storage';
@@ -276,6 +279,9 @@ export default {
     }
   },
   computed: {
+    ...mapState({
+      isMobile: state => state.global.isMobile
+    }),
     getCmdDate () {
       return param => {
         return DateBefore(param);
@@ -532,6 +538,23 @@ export default {
             margin-right: 0;
           }
 
+          // 移动端样式
+          .mobile-head {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin-bottom: 0.714rem;
+
+            & .control {
+              margin-right: 0;
+              margin-bottom: 0.714rem;
+
+              &:last-of-type {
+                margin-bottom: 0;
+              }
+            }
+          }
+
           .markdown {
             flex: 1 0 0;
             font-size: 1rem;
@@ -572,7 +595,6 @@ export default {
               .image,
               .link,
               .code {
-                flex: 0 0 0;
                 display: inline-flex;
                 height: 2em;
                 padding: 0 0.714rem;
@@ -600,8 +622,7 @@ export default {
                     height: 8em;
                     width: 28em;
                     list-style: none;
-                    flex-wrap: wrap;
-                    flex-direction: row;
+                    flex-flow: row wrap;
                     justify-content: flex-start;
                     overflow-y: auto;
                     overflow-x: hidden;
@@ -617,7 +638,29 @@ export default {
                 }
               }
 
+              // 移动端表情emoji
+              .mobile-emoji {
+                position: relative;
+                display: inline-flex;
+                height: 2em;
+                padding: 0 0.714rem;
+                align-items: center;
+
+                .emoji {
+                  &-icon {
+                    font-size: 0.5rem;
+                  }
+
+                  &-box {
+                    .emoji-list {
+                      width: 21em;
+                    }
+                  }
+                }
+              }
+
               .emoji:hover,
+              .mobile-emoji:hover,
               .image:hover,
               .link:hover,
               .code:hover {
@@ -685,6 +728,7 @@ export default {
           }
 
           .media-content {
+            width: 17em;
             border-bottom: 0.071rem dashed #dcdfe6;
           }
 
@@ -776,6 +820,7 @@ export default {
                 display: inline-block;
               }
             }
+
             // 评论者列表
             .sub-comment-list {
               margin: 0.429rem 0;

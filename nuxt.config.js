@@ -1,7 +1,10 @@
+import path from 'path';
 import apiMap from './config/api.config';
 import { isDevMode } from './config/env.config';
 
 module.exports = {
+  // srcDir: path.resolve(__dirname),
+  // rootDir: path.resolve(__dirname, '..'),
   mode: 'universal',
   /**
    * Dev property configuration
@@ -21,6 +24,8 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1,maximum-scale=1.0,user-scalable=no' },
+      { name: "MobileOptimized", content: "320" },
+      { name: "HandheldFriendly", content: "true" },
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
@@ -38,8 +43,15 @@ module.exports = {
    */
   css: [
     'normalize.css/normalize.css',
+    'highlight.js/styles/monokai-sublime.css',
     '@/assets/styles/index'
   ],
+  /**
+   * route configuration
+   */
+  router: {
+    linkExactActiveClass: 'navbar-active'
+  },
   /**
    * Preprocessor configuration
    */
@@ -60,6 +72,8 @@ module.exports = {
    */
   plugins: [
     { src: '@/plugins/axios' },
+    { src: '@/plugins/markdown' },
+    { src: '@/plugins/highlight' },
     { src: '@/plugins/particles', ssr: false }
   ],
   /*
@@ -76,19 +90,17 @@ module.exports = {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
-    '@nuxtjs/device',
     '@nuxtjs/style-resources',
     '@nuxtjs/component-cache',
     '@nuxtjs/svg-sprite',
-    '@nuxtjs/markdownit',
-    '@nuxtjs/toast',
+    '@nuxtjs/toast'
   ],
   /**
    * Touch Toast in response
    */
   toast: {
     position: "top-right",
-    duration: 1000,
+    duration: 3000,
     action: {
       text: '关闭',
       onClick: (e, toastObject) => {
@@ -111,12 +123,6 @@ module.exports = {
    */
   proxy: {
     '/api': apiMap.BASE_URL
-  },
-  /**
-   * markdown config
-   */
-  markdownit: {
-    injected: true
   },
   /*
    ** Build configuration
