@@ -24,22 +24,28 @@
               <i class="info-icon">
                 <svg-icon name="love" />
               </i>
-              <span v-for="(item,index) in about.hobby"
-                    :key="index">{{item.name}}</span>
+              <span class="info-desc">
+                <span v-for="(item,index) in about.hobby"
+                      :key="index">{{item.name}}</span>
+              </span>
             </li>
             <li>
               <i class="info-icon">
                 <svg-icon name="maintain" />
               </i>
-              <span v-for="(item,index) in about.skill"
-                    :key="index">{{item.name}}</span>
+              <span class="info-desc">
+                <span v-for="(item,index) in about.skill"
+                      :key="index">{{item.name}}</span>
+              </span>
             </li>
             <li>
               <i class="info-icon">
                 <svg-icon name="tag" />
               </i>
-              <span v-for="(item,index) in about.tags"
-                    :key="index">{{item.name}}</span>
+              <span class="info-desc">
+                <span v-for="(item,index) in about.tags"
+                      :key="index">{{item.name}}</span>
+              </span>
             </li>
           </ul>
         </div>
@@ -192,6 +198,7 @@ export default {
 
               .info-desc {
                 flex: 1 0 0;
+                user-select: none;
                 font-weight: $weight-normal;
               }
             }
