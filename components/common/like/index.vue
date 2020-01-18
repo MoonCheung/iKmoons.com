@@ -9,7 +9,9 @@
       </i>
     </div>
     <div class="fixed-widget"
-         :badge="itemLen">
+         :badge="itemLen"
+         v-show="isWidget"
+         @click.stop="scrollToComment">
       <i class="comment-icon">
         <svg-icon name="comment" />
       </i>
@@ -34,10 +36,38 @@ export default {
       default: false
     }
   },
+  data () {
+    return {
+      isWidget: true
+    }
+  },
   methods: {
     // 点赞页面方法
     likeArtPage (e) {
       this.$parent.$emit('likeArtPage', e);
+    },
+    // 利用滚动到评论方法
+    scrollToComment () {
+      const artMain = this.$parent.$refs.artMain;
+      const height = artMain.offsetHeight
+      const headerOffset = 45;
+      const getClientRect = artMain.getBoundingClientRect().bottom;
+      const offsetPosition = parseInt(getClientRect) - headerOffset;
+
+      if (getClientRect < height) {
+        const newHeight = height - getClientRect;
+        const offsetRectPosition = newHeight + getClientRect + 20;
+
+        window.scrollTo({
+          top: offsetRectPosition,
+          behavior: "smooth"
+        });
+      } else {
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        });
+      }
     }
   }
 }
