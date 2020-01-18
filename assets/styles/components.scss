@@ -68,28 +68,23 @@
   }
 
   &.is-loading::before {
-    position: absolute;
-    content: '加载中...';
-    color: $secondary-text-color;
-  }
-
-  &.is-loading::after {
-    position: absolute;
-    left: calc(44.5% - (1em / 2));
-    top: calc(50% - (1em / 2));
-  }
-
-  &.is-loading::after {
     -webkit-animation: spinAround 600ms infinite linear;
     animation: spinAround 600ms infinite linear;
     border: 2px solid var(--grey);
-    border-radius: 290486px;
+    border-radius: 50%;
     border-right-color: transparent;
     border-top-color: transparent;
     content: '';
-    display: block;
-    height: 1em;
+    display: inline-block;
     width: 1em;
+    height: 1em;
+  }
+
+  &.is-loading::after {
+    position: absolute;
+    content: '加载中...';
+    color: $secondary-text-color;
+    left: calc(50% - (1em / 2));
   }
 }
 
@@ -99,7 +94,7 @@
   }
 
   to {
-    transform: rotate(359deg);
+    transform: rotate(360deg);
   }
 }
 
@@ -109,6 +104,6 @@
   }
 
   to {
-    transform: rotate(359deg);
+    transform: rotate(360deg);
   }
 }

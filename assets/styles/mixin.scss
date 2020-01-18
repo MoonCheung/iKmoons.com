@@ -1,0 +1,19 @@
+// 在@mixin混合指令声明一个函数名: horizontal-list，如有重复的代码片段都可考虑使用混合器复用
+// @mixin horizontal-list($marginVal: 5px) {
+//   li {
+//     float: left;
+//     margin-right: $marginVal;
+//   }
+// }
+
+// 混合器作用域内的属性都是return的值，除此之外，还可以为函数传参数
+// #header ul.nav {
+//   @include horizontal-list($marginVal: 1px);
+//   float: right;
+// }
+
+// 也可以设置混合器的默认值
+// #footer ul.nav {
+//   @include horizontal-list();
+//   margin-top: 1em;
+// }
