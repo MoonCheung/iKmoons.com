@@ -4,7 +4,7 @@
  * @Github: https://github.com/MoonCheung
  * @Date: 2019-12-11 14:50:20
  * @LastEditors: MoonCheung
- * @LastEditTime: 2020-01-11 23:34:49
+ * @LastEditTime: 2020-01-18 15:27:35
  */
 
 export const state = () => {
@@ -45,12 +45,17 @@ export const getters = {
     return state.deil.artDeil;
   },
   artDeilLen: (state) => {
-    const cmtLen = state.deil.artDeil.cmt_count
-    let len = 0;
+    const cmtCount = state.deil.artDeil.cmt_count;
+    let count = 0;
     state.deil.artDeil.comments.map(item => {
-      len += item.reply_count;
+      if (item.reply_count === undefined && item.reply_count === 0) {
+        count = 0;
+      } else {
+        count += item.reply_count;
+      }
     })
-    return len + cmtLen;
+    const len = count + cmtCount;
+    return len;
   }
 }
 
@@ -94,12 +99,14 @@ export const mutations = {
   },
   // 添加评论列表
   ADD_COMMENT_LIST(state, data) {
+    state.deil.artDeil.cmt_count++;
     state.deil.artDeil.comments.unshift(data);
   },
   // 添加回复评论列表
   ADD_REPLY_COMMENT(state, data) {
     state.deil.artDeil.comments.map(item => {
       if (item.id === data.parentId) {
+        item.reply_count++;
         item.replys.push(data);
       }
     })
