@@ -49,7 +49,7 @@ export default {
     // 利用滚动到评论方法
     scrollToComment () {
       const artMain = this.$parent.$refs.artMain;
-      const height = artMain.offsetHeight
+      const height = artMain.offsetHeight;
       const headerOffset = 45;
       const getClientRect = artMain.getBoundingClientRect().bottom;
       const offsetPosition = parseInt(getClientRect) - headerOffset;
