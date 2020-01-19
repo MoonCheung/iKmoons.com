@@ -92,6 +92,12 @@ export default {
       store.dispatch('tags/fetchApptTags', params)
     ])
   },
+  head () {
+    const { $route } = this;
+    return {
+      title: $route.params.name
+    }
+  },
   mixins: [mixin],
   computed: {
     ...mapState({

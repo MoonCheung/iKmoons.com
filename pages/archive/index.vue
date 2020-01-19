@@ -49,6 +49,11 @@ export default {
       store.dispatch('articles/fetchArtArch')
     ])
   },
+  head () {
+    return {
+      title: "归档"
+    }
+  },
   computed: {
     ...mapState({
       artArch: state => state.articles.arch.artList,

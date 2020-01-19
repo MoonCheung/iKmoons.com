@@ -66,6 +66,12 @@ export default {
     VComment,
     VLike
   },
+  head () {
+    const { artDeil } = this;
+    return {
+      title: artDeil.title
+    }
+  },
   data () {
     return {
       // 用户点赞历史

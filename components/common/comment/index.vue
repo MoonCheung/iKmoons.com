@@ -390,6 +390,13 @@ export default {
         content: this.cmtContText
       }
       this.$store.dispatch('articles/submitComment', param);
+      this.clearCommentCont();
+    },
+    // 清除评论方法
+    clearCommentCont () {
+      this.cmtContHtml = "";
+      this.$refs.markdown.innerHTML = this.cmtContHtml;
+      this.changeCommentCont();
     },
     // 回复评价方法
     onReplyComment (e) {

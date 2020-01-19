@@ -101,6 +101,11 @@ export default {
       about: constant.about
     }
   },
+  head () {
+    return {
+      title: "关于"
+    }
+  },
   computed: {
     ...mapState({
       isMobile: state => state.global.isMobile

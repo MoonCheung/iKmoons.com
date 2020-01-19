@@ -1,5 +1,6 @@
 import path from 'path';
 import apiMap from './config/api.config';
+import { constant } from './config/app.config';
 import { isDevMode } from './config/env.config';
 
 module.exports = {
@@ -20,13 +21,24 @@ module.exports = {
    ** Headers of the page
    */
   head: {
-    title: process.env.npm_package_name || '',
+    title: `${constant.meta.title} | ${constant.meta.desc}`,
+    titleTemplate: `%s | ${constant.meta.site}`,
+    htmlAttrs: {
+      xmlns: 'http://www.w3.org/1999/xhtml',
+      lang: 'zh'
+    },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1,maximum-scale=1.0,user-scalable=no' },
       { name: "MobileOptimized", content: "320" },
       { name: "HandheldFriendly", content: "true" },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      { name: 'apple-mobile-web-app-title', content: `${constant.meta.title} | ${constant.meta.desc}` },
+      { name: 'apple-mobile-web-app-capable', content: 'yes' },
+      { name: 'apple-mobile-web-app-status-bar-style', content: 'white' },
+      { name: 'author', content: constant.meta.email },
+      { name: 'X-UA-Compatible', content: "IE=edge,chrome=1" },
+      { hid: 'keywords', name: 'keywords', content: constant.meta.keys },
+      { hid: 'description', name: 'description', content: constant.meta.desc }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }

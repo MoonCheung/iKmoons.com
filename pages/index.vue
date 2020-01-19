@@ -112,11 +112,6 @@ export default {
       store.dispatch('articles/fetchAllArt')
     ])
   },
-  head () {
-    return {
-      title: "首页"
-    }
-  },
   mixins: [mixin],
   // 计算属性
   computed: {
