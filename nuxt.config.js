@@ -140,9 +140,34 @@ module.exports = {
    ** Build configuration
    */
   build: {
-    /*
-     ** You can extend webpack config here
-     */
+    extractCSS: true,
+    // publicPath: '',
+    // 性能优化配置
+    optimization: {
+      splitChunks: {
+        name: true,
+        chunks: 'all',
+        minSize: 360000,
+        cacheGroups: {
+          libs: {
+            name: 'chunk-libs',
+            test: /highlight|markdown-it|particles|ua-parser-js/,
+            priority: 10,
+            chunks: 'initial'
+          },
+          vendors: {
+            test: /[\\/]node_modules[\\/]/,
+            priority: -10
+          },
+          default: {
+            minChunks: 2,
+            priority: -20,
+            reuseExistingChunk: true
+          }
+        }
+      },
+    },
+    // extend webpack config
     extend(config, ctx) {}
   }
 }
