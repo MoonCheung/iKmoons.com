@@ -9,12 +9,8 @@
             <nuxt-link class="card-link"
                        :to="`/catg/${item.categoryname}`"
                        no-prefetch>
-              <!-- TODO: 等备案出来再次需改回来 -->
-              <!-- <img class="card-img"
-                   :src="item.link"
-                   alt="item.name" /> -->
               <img class="card-img"
-                   src="https://dummyimage.com/220x140/7a657a/fff"
+                   :src="item.link"
                    alt="item.name" />
               <div class="card-item">
                 <i class="card-icon">
@@ -35,10 +31,7 @@
           <div v-if="!isMobile"
                class="media-left">
             <figure class="image">
-              <!-- TODO: 等备案出来再次需改回来 -->
-              <!-- <img :src="item.banner == ''? 'https://dummyimage.com/220x140/7a657a/fff':item.banner"
-                   alt="Placeholder image"> -->
-              <img src='https://dummyimage.com/220x140/7a657a/fff'
+              <img :src="item.banner == ''? 'https://dummyimage.com/220x140/7a657a/fff':item.banner"
                    alt="Placeholder image">
             </figure>
           </div>

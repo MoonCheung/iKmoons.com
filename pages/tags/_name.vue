@@ -16,10 +16,7 @@
             <div v-if="!isMobile"
                  class="media-left">
               <figure class="image">
-                <!-- TODO: 等备案出来再次需改回来 -->
-                <!-- <img :src="item.banner == ''? 'https://dummyimage.com/220x140/7a657a/fff':item.banner"
-                     alt="Placeholder image"> -->
-                <img src='https://dummyimage.com/220x140/7a657a/fff'
+                <img :src="item.banner == ''? 'https://dummyimage.com/220x140/7a657a/fff':item.banner"
                      alt="Placeholder image">
               </figure>
             </div>
