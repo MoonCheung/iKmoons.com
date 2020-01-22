@@ -4,7 +4,7 @@
  * @Github: https://github.com/MoonCheung
  * @Date: 2019-12-16 23:20:20
  * @LastEditors: MoonCheung
- * @LastEditTime: 2019-12-21 14:02:37
+ * @LastEditTime: 2020-01-22 17:32:30
  */
 
 
@@ -88,11 +88,12 @@ export const actions = {
   async fetchTagList({ commit }) {
     try {
       commit('UPDATE_TAG_DATA', true);
-      const data = await this.$axios.$get('/tag/fetchalltag');
-      if (data.code === 1) {
-        commit('GET_TAG_LIST', data.result);
-        commit('UPDATE_TAG_DATA', false);
-      }
+      await this.$axios.$get('/tag/fetchalltag').then(data => {
+        if (data.code === 1) {
+          commit('GET_TAG_LIST', data.result);
+          commit('UPDATE_TAG_DATA', false);
+        }
+      });
     } catch (err) {
       commit('GET_TAG_LIST', null);
     }
@@ -106,11 +107,12 @@ export const actions = {
         tag: params.name,
         page: 0
       }
-      const data = await this.$axios.$post('/tag/fetchappttag', param);
-      if (data.code === 1) {
-        commit('POST_APPT_TAG', data.result);
-        commit('UPDATE_APPT_TAG', false);
-      }
+      await this.$axios.$post('/tag/fetchappttag', param).then(data => {
+        if (data.code === 1) {
+          commit('POST_APPT_TAG', data.result);
+          commit('UPDATE_APPT_TAG', false);
+        }
+      });
     } catch (err) {
       commit('POST_APPT_TAG', null);
     }
@@ -128,11 +130,12 @@ export const actions = {
         tag: params.name,
         page: state.appt.paging
       }
-      const data = await this.$axios.$post('/tag/fetchappttag', param);
-      if (data.code === 1) {
-        commit('POST_MORE_TAGS', data.result);
-        commit('UPDATE_MORE_TAGS', { fetching: false });
-      }
+      await this.$axios.$post('/tag/fetchappttag', param).then(data => {
+        if (data.code === 1) {
+          commit('POST_MORE_TAGS', data.result);
+          commit('UPDATE_MORE_TAGS', { fetching: false });
+        }
+      });
     } catch (err) {
       commit('POST_MORE_TAGS', null);
     }

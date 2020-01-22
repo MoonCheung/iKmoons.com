@@ -4,7 +4,7 @@
  * @Github: https://github.com/MoonCheung
  * @Date: 2019-12-11 14:50:20
  * @LastEditors: MoonCheung
- * @LastEditTime: 2020-01-18 15:27:35
+ * @LastEditTime: 2020-01-22 17:34:23
  */
 
 export const state = () => {
@@ -99,14 +99,14 @@ export const mutations = {
   },
   // 添加评论列表
   ADD_COMMENT_LIST(state, data) {
-    state.deil.artDeil.cmt_count++;
+    ++state.deil.artDeil.cmt_count;
     state.deil.artDeil.comments.unshift(data);
   },
   // 添加回复评论列表
   ADD_REPLY_COMMENT(state, data) {
     state.deil.artDeil.comments.map(item => {
       if (item.id === data.parentId) {
-        item.reply_count++;
+        ++item.reply_count;
         item.replys.push(data);
       }
     })
@@ -162,11 +162,12 @@ export const actions = {
   async fetchAllArt({ commit }) {
     try {
       commit('UPDATE_ART_LIST', true);
-      const data = await this.$axios.$post('/art/fetchallart', { page: 0 });
-      if (data.code === 1) {
-        commit('POST_ART_LIST', data.result);
-        commit('UPDATE_ART_LIST', false);
-      }
+      await this.$axios.$post('/art/fetchallart', { page: 0 }).then(data => {
+        if (data.code === 1) {
+          commit('POST_ART_LIST', data.result);
+          commit('UPDATE_ART_LIST', false);
+        }
+      });
     } catch (err) {
       commit('POST_ART_LIST', null);
     }
@@ -183,11 +184,12 @@ export const actions = {
       const param = {
         page: state.list.paging
       }
-      const data = await this.$axios.$post('/art/fetchallart', param);
-      if (data.code === 1) {
-        commit('POST_MORE_ART', data.result);
-        commit('UPDATE_MORE_ART', { fetching: false });
-      }
+      await this.$axios.$post('/art/fetchallart', param).then(data => {
+        if (data.code === 1) {
+          commit('POST_MORE_ART', data.result);
+          commit('UPDATE_MORE_ART', { fetching: false });
+        }
+      });
     } catch (err) {
       commit('POST_MORE_ART', null);
     }
@@ -200,11 +202,12 @@ export const actions = {
       const param = {
         id: query.id
       }
-      const data = await this.$axios.$post('/art/fetchartdeil', param);
-      if (data.code === 1) {
-        commit('GET_ART_DEIL', data.result);
-        commit('UPDATE_ART_DEIL', false);
-      }
+      await this.$axios.$post('/art/fetchartdeil', param).then(data => {
+        if (data.code === 1) {
+          commit('GET_ART_DEIL', data.result);
+          commit('UPDATE_ART_DEIL', false);
+        }
+      });
     } catch (err) {
       commit('GET_ART_DEIL', null);
     }
@@ -214,11 +217,12 @@ export const actions = {
   async fetchHotArt({ commit }) {
     try {
       commit('UPDATE_HOT_ARTLIST', true);
-      const data = await this.$axios.$get('/art/fetchhotart');
-      if (data.code === 1) {
-        commit('GET_HOT_ARTLIST', data.result);
-        commit('UPDATE_HOT_ARTLIST', false);
-      }
+      await this.$axios.$get('/art/fetchhotart').then(data => {
+        if (data.code === 1) {
+          commit('GET_HOT_ARTLIST', data.result);
+          commit('UPDATE_HOT_ARTLIST', false);
+        }
+      });
     } catch (err) {
       commit('GET_HOT_ARTLIST', null);
     }
@@ -228,11 +232,12 @@ export const actions = {
   async fetchArtArch({ commit }) {
     try {
       commit('UPDATE_ART_ARCH', true);
-      const data = await this.$axios.$get('/art/fetchartarch');
-      if (data.code === 1) {
-        commit('GET_ART_ARCH', data);
-        commit('UPDATE_ART_ARCH', false);
-      }
+      await this.$axios.$get('/art/fetchartarch').then(data => {
+        if (data.code === 1) {
+          commit('GET_ART_ARCH', data);
+          commit('UPDATE_ART_ARCH', false);
+        }
+      });
     } catch (err) {
       commit('GET_ART_ARCH', null);
     }
@@ -243,25 +248,28 @@ export const actions = {
     try {
       if (param.replyId === '' && param.subReplyId === '') {
         commit('UPDATE_ART_DEIL', true);
-        const data = await this.$axios.$post('/cmt/fetchaddcmt', param);
-        if (data.code === 1) {
-          commit('ADD_COMMENT_LIST', data.result);
-          commit('UPDATE_ART_DEIL', false);
-        }
+        await this.$axios.$post('/cmt/fetchaddcmt', param).then(data => {
+          if (data.code === 1) {
+            commit('ADD_COMMENT_LIST', data.result);
+            commit('UPDATE_ART_DEIL', false);
+          }
+        });
       } else if (param.replyId !== '' && param.subReplyId === '') {
         commit('UPDATE_ART_DEIL', true);
-        const replyData = await this.$axios.$post('/cmt/addreplycmt', param);
-        if (replyData.code === 1) {
-          commit('ADD_REPLY_COMMENT', replyData.result);
-          commit('UPDATE_ART_DEIL', false);
-        }
+        await this.$axios.$post('/cmt/addreplycmt', param).then(replyData => {
+          if (replyData.code === 1) {
+            commit('ADD_REPLY_COMMENT', replyData.result);
+            commit('UPDATE_ART_DEIL', false);
+          }
+        });
       } else {
         commit('UPDATE_ART_DEIL', true);
-        const subReplyData = await this.$axios.$post('/cmt/addsubreply', param);
-        if (subReplyData.code === 1) {
-          commit('ADD_REPLY_COMMENT', subReplyData.result);
-          commit('UPDATE_ART_DEIL', false);
-        }
+        await this.$axios.$post('/cmt/addsubreply', param).then(subReplyData => {
+          if (subReplyData.code === 1) {
+            commit('ADD_REPLY_COMMENT', subReplyData.result);
+            commit('UPDATE_ART_DEIL', false);
+          }
+        });
       }
     } catch (err) {
       commit('ADD_COMMENT_LIST', null);

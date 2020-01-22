@@ -4,7 +4,7 @@
  * @Github: https://github.com/MoonCheung
  * @Date: 2019-12-18 22:53:11
  * @LastEditors: MoonCheung
- * @LastEditTime: 2019-12-21 21:16:27
+ * @LastEditTime: 2020-01-22 17:29:36
  */
 
 export const state = () => {
@@ -101,11 +101,12 @@ export const actions = {
   async fetchCatgList({ commit }) {
     try {
       commit('UPDATE_CATG_DATA', true);
-      const data = await this.$axios.$get('/catg/fetchallcatg');
-      if (data.code === 1) {
-        commit('GET_CATG_LIST', data.result);
-        commit('UPDATE_CATG_DATA', false);
-      }
+      await this.$axios.$get('/catg/fetchallcatg').then(data => {
+        if (data.code === 1) {
+          commit('GET_CATG_LIST', data.result);
+          commit('UPDATE_CATG_DATA', false);
+        }
+      });
     } catch (err) {
       commit('GET_TAG_LIST', null);
     }
@@ -119,11 +120,12 @@ export const actions = {
         catg: params.name,
         page: 0
       }
-      const data = await this.$axios.$post('/catg/fetchapptcatg', param);
-      if (data.code === 1) {
-        commit('POST_APPT_CATG', data.result);
-        commit('UPDATE_APPT_CATG', false);
-      }
+      await this.$axios.$post('/catg/fetchapptcatg', param).then(data => {
+        if (data.code === 1) {
+          commit('POST_APPT_CATG', data.result);
+          commit('UPDATE_APPT_CATG', false);
+        }
+      });
     } catch (err) {
       commit('POST_APPT_CATG', null);
     }
@@ -141,11 +143,12 @@ export const actions = {
         catg: params.name,
         page: state.appt.paging
       }
-      const data = await this.$axios.$post('/catg/fetchapptcatg', param);
-      if (data.code === 1) {
-        commit('POST_MORE_CATG', data.result);
-        commit('UPDATE_MORE_CATG', { fetching: false });
-      }
+      await this.$axios.$post('/catg/fetchapptcatg', param).then(data => {
+        if (data.code === 1) {
+          commit('POST_MORE_CATG', data.result);
+          commit('UPDATE_MORE_CATG', { fetching: false });
+        }
+      });
     } catch (err) {
       commit('POST_MORE_CATG', null);
     }
