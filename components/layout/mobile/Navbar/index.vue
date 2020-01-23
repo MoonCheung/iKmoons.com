@@ -22,9 +22,9 @@
       <div class="nav-brand">
         <nuxt-link to="/"
                    class="navbar-item">
-          <img src="https://bulma.io/images/bulma-logo.png"
-               width="112"
-               height="28">
+          <img class="logo"
+               src="https://static.ikmoons.com/logo.svg"
+               alt="logo">
         </nuxt-link>
       </div>
       <!-- 搜索图标 -->
@@ -148,6 +148,16 @@ export default {
         flex: 1 0 0;
         align-self: center;
         text-align: center;
+
+        .navbar-item {
+          display: inline-flex;
+          overflow: hidden;
+          padding: 0 0.571rem;
+
+          & > .logo {
+            width: 120px;
+          }
+        }
       }
 
       &-search {

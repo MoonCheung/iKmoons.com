@@ -12,7 +12,7 @@
             :key="index">
         <nuxt-link :to="`/tags/${item.tagname}`">
           <span class="tag-name">{{item.tagname}}</span>
-          [<i class="tag-count">{{item.tagNum.count}}</i>]
+          [<i class="tag-count">{{item.tagNum == undefined ? 0 : item.tagNum.count}}</i>]
         </nuxt-link>
       </span>
     </div>

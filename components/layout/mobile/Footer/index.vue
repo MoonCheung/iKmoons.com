@@ -2,7 +2,7 @@
   <footer class="mobile-foot">
     <div class="container">
       <p class="foot-text">Copyright&nbsp;©&nbsp;{{getYearTime}}&nbsp;<a href="http://www.ikmoons.com"
-           alt="My blog">MoonCheung</a>.保留所有权利</p>
+           alt="My blog">MoonCheung</a>.保留所有权利<br />赣ICP备20001301号</p>
       <p class="foot-text">Powered&nbsp;By&nbsp;<a href="https://zh.nuxtjs.org/"
            target="_blank"
            alt="Nuxt. Js's official website">Nuxt.js</a>，Designed&nbsp;By&nbsp;<a href="http://www.ikmoons.com"

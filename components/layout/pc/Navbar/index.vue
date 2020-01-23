@@ -5,9 +5,9 @@
       <div class="navbar-brand">
         <nuxt-link to="/"
                    class="navbar-item">
-          <img src="https://bulma.io/images/bulma-logo.png"
-               width="112"
-               height="28">
+          <img class="logo"
+               src="https://static.ikmoons.com/logo.svg"
+               alt="logo" />
         </nuxt-link>
       </div>
       <div class="navbar-menu">
@@ -52,6 +52,9 @@ export default {
 
     .navbar-item {
       display: inline-block;
+      & > .logo {
+        width: 120px;
+      }
     }
   }
   &-menu {

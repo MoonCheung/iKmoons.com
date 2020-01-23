@@ -17,7 +17,7 @@
           </div>
           <div class="catg-right">
             <span class="catg-name">{{item.categoryname}}</span>
-            <span class="catg-count">共&nbsp;{{item.catgNum.count}}&nbsp;篇文章</span>
+            <span class="catg-count">共&nbsp;{{item.catgNum === undefined? 0 : item.catgNum.count}}&nbsp;篇文章</span>
           </div>
         </nuxt-link>
       </div>
