@@ -6,9 +6,18 @@
           <svg-icon name="tag" />
         </i>
         <div class="head-name">{{$route.params.name}}</div>
-        <div class="head-count">共搜索到&nbsp;{{apptTags.tagNum.count}}&nbsp;篇文章</div>
+        <div class="head-count">共搜索到&nbsp;{{apptTags.tagNum === undefined ? 0 : apptTags.tagNum.count}}&nbsp;篇文章</div>
       </header>
-      <article class="tags-list">
+      <article class="tags-list"
+               v-if="apptTags.tagNum === undefined">
+        <div class="container">
+          <div class="list-noMedia">
+            没有相关标签的文章🙂
+          </div>
+        </div>
+      </article>
+      <article v-else
+               class="tags-list">
         <div class="container">
           <div class="media"
                v-for="(item,index) in apptTagList"
@@ -170,6 +179,11 @@ export default {
         flex-direction: column;
         align-content: center;
         justify-content: flex-start;
+
+        .list-noMedia {
+          padding: 2em;
+          margin: 0 auto;
+        }
       }
 
       .media:first-of-type {

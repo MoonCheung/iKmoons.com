@@ -18,12 +18,14 @@
           <span>{{artDeilLen}}&nbsp;评论</span>
         </div>
       </div>
-      <div class="art-body">
+      <div ref="artBody"
+           class="art-body">
         <img class="body-img"
              :src="artDeil.banner == ''? 'https://dummyimage.com/740x400/68a382/fff':artDeil.banner"
              art="article banner" />
         <!-- markdown-it解析 -->
-        <div v-html="$md.render(artDeil.content)"></div>
+        <div class="markdown-body"
+             v-html="$md.render(artDeil.content)"></div>
       </div>
       <div class="art-foot">
         <div class="foot-one">发布时间: <span>{{getFormatDate}}</span></div>
@@ -95,7 +97,7 @@ export default {
     },
     isLikedArt () {
       return this.likeHistory.article.includes(this.artDeil.id)
-    }
+    },
   },
   // TODO：有存在Bug待处理
   // activated () {
@@ -130,12 +132,19 @@ export default {
   },
   mounted () {
     this.initUserLikeHistory();
+    this.dynamicMarkdownWidth();
   },
   methods: {
     // 初始化用户点赞历史
     initUserLikeHistory () {
       const likeHistorys = localLikeHistory.get();
       !likeHistorys ? localLikeHistory.set(this.likeHistory) : (this.likeHistory = likeHistorys)
+    },
+    // 动态markdown元素宽度
+    dynamicMarkdownWidth () {
+      const artBody = this.$refs.artBody;
+      const markBody = artBody.lastChild;
+      markBody.style.width = `${artBody.clientWidth}px`;
     }
   }
 }
@@ -202,6 +211,27 @@ export default {
         width: 100%;
         margin-bottom: $spacing-evenSize * 4;
         border: 0.429rem solid $border-frame;
+      }
+
+      & > .markdown-body {
+        /deep/ p {
+          & > img {
+            width: 100%;
+            border: 0.429rem solid #dcdfe6;
+          }
+        }
+
+        /deep/ ul,
+        /deep/ ol {
+          padding: 0 2em;
+        }
+
+        /deep/ & > .ql-syntax {
+          padding: 0.5em;
+          color: var(--white);
+          border-radius: 0.143rem;
+          background-color: #23241f;
+        }
       }
     }
 

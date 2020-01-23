@@ -6,9 +6,18 @@
           <svg-icon :name="apptCatg.name" />
         </i>
         <div class="head-name">{{$route.params.name}}</div>
-        <div class="head-count">共搜索到&nbsp;{{apptCatg.catgNum.count}}&nbsp;篇文章</div>
+        <div class="head-count">共搜索到&nbsp;{{ apptCatg.catgNum === undefined ? 0 : apptCatg.catgNum.count}}&nbsp;篇文章</div>
       </header>
-      <article class="catg-list">
+      <article class="catg-list"
+               v-if="apptCatg.catgNum === undefined">
+        <div class="container">
+          <div class="list-noMedia">
+            没有相关分类的文章🙂
+          </div>
+        </div>
+      </article>
+      <article v-else
+               class="catg-list">
         <div class="container">
           <div class="media"
                v-for="(item,index) in apptCatgList"
@@ -170,6 +179,11 @@ export default {
         flex-direction: column;
         align-content: center;
         justify-content: flex-start;
+
+        .list-noMedia {
+          padding: 2em;
+          margin: 0 auto;
+        }
       }
 
       .media:first-of-type {

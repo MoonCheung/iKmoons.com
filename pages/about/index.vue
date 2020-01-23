@@ -4,7 +4,7 @@
       <div class="about-info">
         <header class="info-head">
           <img class="info-image"
-               src="https://dummyimage.com/100x100/00aeff/fff"
+               src="https://static.ikmoons.com/头像.png"
                alt="head portrait" />
           <p class="info-name">{{about.name}}</p>
         </header>
@@ -166,6 +166,7 @@ export default {
           text-align: center;
 
           .info-image {
+            width: 18%;
             border-radius: 50%;
             border: 0.286rem solid $border-frame;
           }
