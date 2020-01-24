@@ -4,9 +4,13 @@ import { constant } from './config/app.config';
 import { isDevMode } from './config/env.config';
 
 module.exports = {
+  mode: 'universal',
+  server: {
+    host: '127.0.0.1',
+    port: 3031,
+  },
   // srcDir: path.resolve(__dirname),
   // rootDir: path.resolve(__dirname, '..'),
-  mode: 'universal',
   /**
    * Dev property configuration
    */
@@ -15,13 +19,13 @@ module.exports = {
    * Environment configuration
    */
   env: {
-    BASE: apiMap.BASE_URL
+    BASE: apiMap.BASE_URL + apiMap.PREFIX
   },
   /*
    ** Headers of the page
    */
   head: {
-    title: `${constant.meta.title} | ${constant.meta.desc}`,
+    title: `${constant.meta.title} - ${constant.meta.desc}`,
     titleTemplate: `%s | ${constant.meta.site}`,
     htmlAttrs: {
       xmlns: 'http://www.w3.org/1999/xhtml',
@@ -125,23 +129,14 @@ module.exports = {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    proxy: true,
-    prefix: apiMap.PREFIX,
-    credentials: true,
     baseURL: apiMap.BASE_URL + apiMap.PREFIX
-  },
-  /**
-   * Development environment configuration
-   */
-  proxy: {
-    '/api': apiMap.BASE_URL
   },
   /*
    ** Build configuration
    */
   build: {
     extractCSS: true,
-    // publicPath: '',
+    // publicPath: `${apiMap.CDN}/_nuxt/`,
     // 性能优化配置
     optimization: {
       splitChunks: {
