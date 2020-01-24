@@ -4,7 +4,7 @@
  * @Github: https://github.com/MoonCheung
  * @Date: 2020-01-17 13:49:31
  * @LastEditors: MoonCheung
- * @LastEditTime: 2020-01-19 16:28:38
+ * @LastEditTime: 2020-01-21 15:32:04
  */
 
 export const constant = {

@@ -4,7 +4,7 @@
  * @Github: https://github.com/MoonCheung
  * @Date: 2019-12-09 22:23:09
  * @LastEditors: MoonCheung
- * @LastEditTime: 2020-01-13 23:43:30
+ * @LastEditTime: 2020-01-22 20:32:35
  */
 
 import { NODE_ENV } from './env.config';
@@ -16,6 +16,7 @@ const apiMap = {
   },
   production: {
     PREFIX: '/api',
+    CDN: 'http://cdn.ikmoons.com',
     BASE_URL: 'https://api.ikmoons.com'
   }
 }

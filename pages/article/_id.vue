@@ -228,6 +228,7 @@ export default {
 
         /deep/ & > .ql-syntax {
           padding: 0.5em;
+          overflow-x: scroll;
           color: var(--white);
           border-radius: 0.143rem;
           background-color: #23241f;

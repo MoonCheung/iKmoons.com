@@ -525,6 +525,7 @@ export default {
               & > .icons {
                 position: absolute;
                 left: 0;
+                bottom: 0;
                 width: 2em;
                 height: 2.5em;
                 pointer-events: none;
@@ -536,7 +537,8 @@ export default {
                 .email,
                 .globe {
                   color: $form-icon-color;
-                  font-size: 0.5rem;
+                  width: 1.05em;
+                  height: 1.05em;
                 }
               }
             }
@@ -611,7 +613,12 @@ export default {
                 .image-icon,
                 .link-icon,
                 .code-icon {
-                  font-size: 0.5rem;
+                  font-size: 0.8em;
+
+                  & > .icon {
+                    width: 1.25em;
+                    height: 1.25em;
+                  }
                 }
               }
 
@@ -655,7 +662,12 @@ export default {
 
                 .emoji {
                   &-icon {
-                    font-size: 0.5rem;
+                    font-size: 0.8em;
+
+                    & > .icon {
+                      width: 1.25em;
+                      height: 1.25em;
+                    }
                   }
 
                   &-box {

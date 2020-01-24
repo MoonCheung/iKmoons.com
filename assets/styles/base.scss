@@ -48,7 +48,7 @@ a:hover {
   right: 0;
   z-index: 1;
 
-  &>.container {
+  & > .container {
     display: flex;
     width: $width-size;
     align-items: center;
@@ -87,7 +87,7 @@ a:hover {
 .mobile-foot {
   background-color: var(--white-bis);
 
-  &>.container {
+  & > .container {
     display: flex;
     padding: 1.5rem;
     align-items: center;
