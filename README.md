@@ -13,7 +13,7 @@
 - Vue Admin: [vue-backstage](https://github.com/MoonCheung/vue-backstage) based on vue background construction development
 - Node server: [node-server](https://github.com/MoonCheung/node-server) is developed based on the node build
 
-## 更新记录: [CHANGELOG.md](./CHANGELOG.md)
+### 更新记录: [CHANGELOG.md](./CHANGELOG.md)
 
 ## 截图(暂定)
 
