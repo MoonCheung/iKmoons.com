@@ -46,6 +46,8 @@ export default {
 <style lang="scss" scoped>
 .hero {
   display: flex;
+  height: 100vh;
+  min-height: 100vh;
   align-items: center;
   flex-direction: column;
   justify-content: space-between;
@@ -56,7 +58,7 @@ export default {
   }
 
   &-body {
-    flex: 1 0 58em;
+    flex: 1 0;
     margin-top: 3.25rem;
     padding: 1.429rem 0;
 
