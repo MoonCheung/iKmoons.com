@@ -58,15 +58,31 @@ export default {
         const newHeight = height - getClientRect;
         const offsetRectPosition = newHeight + getClientRect + 20;
 
-        window.scrollTo({
-          top: offsetRectPosition,
-          behavior: "smooth"
-        });
+        try {
+          window.scrollTo({
+            top: offsetRectPosition,
+            behavior: "smooth"
+          });
+        } catch (err) {
+          if (err instanceof TypeError) {
+            window.scroll(0, offsetRectPosition)
+          } else {
+            throw err
+          }
+        }
       } else {
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth"
-        });
+        try {
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
+          });
+        } catch (err) {
+          if (err instanceof TypeError) {
+            window.scroll(0, offsetPosition)
+          } else {
+            throw err
+          }
+        }
       }
     }
   }
