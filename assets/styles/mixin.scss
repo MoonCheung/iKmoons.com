@@ -1,19 +1,30 @@
-// 在@mixin混合指令声明一个函数名: horizontal-list，如有重复的代码片段都可考虑使用混合器复用
-// @mixin horizontal-list($marginVal: 5px) {
-//   li {
-//     float: left;
-//     margin-right: $marginVal;
-//   }
-// }
+// 两边横线中间文字效果
+@mixin middleText() {
 
-// 混合器作用域内的属性都是return的值，除此之外，还可以为函数传参数
-// #header ul.nav {
-//   @include horizontal-list($marginVal: 1px);
-//   float: right;
-// }
+  .info-middleLine,
+  .con-middleLine {
+    text-align: center;
+    margin: 0.714rem 0;
 
-// 也可以设置混合器的默认值
-// #footer ul.nav {
-//   @include horizontal-list();
-//   margin-top: 1em;
-// }
+    .middleLine-text,
+    .middleLine-head {
+      display: inline-block;
+      position: relative;
+      background: var(--white-bis);
+      padding: 0 1.286rem;
+    }
+  }
+
+  .info-middleLine:before,
+  .con-middleLine:before {
+    content: '';
+    display: block;
+    position: relative;
+    left: 0;
+    top: 0.643rem;
+    /*这个是用来调节线高*/
+    height: 1px;
+    width: 100%;
+    background-color: $border-frame;
+  }
+}
