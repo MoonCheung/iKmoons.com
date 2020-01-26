@@ -174,6 +174,8 @@ export default {
     }
 
     .catg-list {
+      flex: 1 0;
+
       & > .container {
         display: flex;
         flex-direction: column;
@@ -216,8 +218,6 @@ export default {
           justify-content: space-between;
 
           .media-link {
-            flex: 1 0 0;
-
             .link-head {
               font-size: 1.143rem;
               padding: 0.429rem 0;
@@ -238,7 +238,6 @@ export default {
           }
 
           .media-level {
-            flex: 0 0 0;
             display: flex;
             flex-direction: row;
             justify-content: space-between;
@@ -246,21 +245,18 @@ export default {
 
             .level-left {
               flex: 1 0 0;
-              font-size: 0.857rem;
-              display: flex;
-              flex-direction: row;
-              align-items: center;
+              @extend .level-right;
 
               .left-icon {
                 display: inline-flex;
-                align-self: flex-start;
+
                 & > .icon {
                   width: 1em;
                   height: 1em;
                 }
               }
               .left-icon ~ span {
-                display: inline-flex;
+                @extend .left-icon;
                 margin-left: 0.286rem;
               }
             }
@@ -271,7 +267,7 @@ export default {
               font-size: 0.857rem;
 
               .right-icon {
-                display: inline-flex;
+                @extend .right-time;
                 margin-right: 0.286rem;
 
                 & > .icon {

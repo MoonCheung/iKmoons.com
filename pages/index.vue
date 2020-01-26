@@ -249,21 +249,18 @@ export default {
 
           .level-left {
             flex: 1 0 0;
-            font-size: 0.857rem;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
+            @extend .level-right;
 
             .left-icon {
               display: inline-flex;
-              align-self: flex-start;
+
               & > .icon {
                 width: 1em;
                 height: 1em;
               }
             }
             .left-icon ~ span {
-              display: inline-flex;
+              @extend .left-icon;
               margin-left: 0.286rem;
             }
           }
@@ -274,7 +271,7 @@ export default {
             font-size: 0.857rem;
 
             .right-icon {
-              display: inline-flex;
+              @extend .right-time;
               margin-right: 0.286rem;
 
               & > .icon {
@@ -420,21 +417,18 @@ export default {
 
             .level-left {
               flex: 1 0 0;
-              font-size: 0.857rem;
-              display: flex;
-              flex-direction: row;
-              align-items: center;
+              @extend .level-right;
 
               .left-icon {
                 display: inline-flex;
-                align-self: flex-start;
+
                 & > .icon {
                   width: 1em;
                   height: 1em;
                 }
               }
               .left-icon ~ span {
-                display: inline-flex;
+                @extend .left-icon;
                 margin-left: 0.286rem;
               }
             }
@@ -446,7 +440,7 @@ export default {
               font-size: 0.857rem;
 
               .right-icon {
-                display: inline-flex;
+                @extend .right-time;
                 margin-right: 0.286rem;
 
                 & > .icon {

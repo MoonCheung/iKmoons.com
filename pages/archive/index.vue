@@ -86,7 +86,7 @@ export default {
 
       .head {
         &-icon {
-          .icon {
+          & > .icon {
             width: 2.25em;
             height: 2.25em;
           }
@@ -101,6 +101,8 @@ export default {
     }
 
     .archive-list {
+      flex: 1 0;
+
       .list-content {
         li + li {
           margin-top: 0.571rem;

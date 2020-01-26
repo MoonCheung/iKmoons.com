@@ -160,12 +160,13 @@ export default {
   &-main {
     padding: 0.857rem;
     display: flex;
+    overflow: hidden;
     flex-direction: column;
     justify-content: space-between;
 
     .art-head,
     .art-foot {
-      flex: 0 0 0;
+      flex: 0 0;
     }
 
     .art-head {
@@ -199,7 +200,7 @@ export default {
     }
 
     .art-body {
-      flex: 1 0 0;
+      flex: 1 0;
       display: flex;
       flex-direction: column;
       align-items: center;

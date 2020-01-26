@@ -466,10 +466,10 @@ export default {
             align-items: center;
             border-radius: 0.143rem;
             background-color: $form-bg-color;
+            padding-top: calc(0.5em - 1px);
             padding-bottom: calc(0.5em - 1px);
             padding-left: calc(0.75em - 1px);
             padding-right: calc(0.75em - 1px);
-            padding-top: calc(0.5em - 1px);
             border: 0.071rem solid transparent;
 
             .reply {
@@ -629,7 +629,7 @@ export default {
                   position: absolute;
                   left: 0;
                   bottom: 2em;
-                  background-color: #fafafab3;
+                  background-color: $form-bgBox-color;
 
                   .emoji-list {
                     display: flex;
@@ -730,7 +730,7 @@ export default {
         }
 
         &-media {
-          flex: 1 0 0;
+          flex: 1 0;
           display: flex;
           flex-direction: row;
           justify-content: flex-start;
@@ -753,7 +753,7 @@ export default {
 
           .media-content,
           .item-content {
-            flex: 1 0 0;
+            flex: 1 0;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
@@ -766,7 +766,7 @@ export default {
               justify-content: space-between;
 
               .name {
-                flex: 1 0 0;
+                flex: 1 0;
               }
 
               .right {
@@ -798,7 +798,7 @@ export default {
               justify-content: space-between;
 
               &-left {
-                flex: 1 0 0;
+                flex: 1 0;
                 display: flex;
                 flex-direction: row;
                 justify-content: flex-start;

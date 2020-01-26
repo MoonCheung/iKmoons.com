@@ -22,7 +22,8 @@
             </li>
             <li>
               <i class="info-icon">
-                <svg-icon name="love" />
+                <svg-icon class="hobby"
+                          name="love" />
               </i>
               <span class="info-desc">
                 <span v-for="(item,index) in about.hobby"
@@ -31,7 +32,8 @@
             </li>
             <li>
               <i class="info-icon">
-                <svg-icon name="maintain" />
+                <svg-icon class="tech"
+                          name="maintain" />
               </i>
               <span class="info-desc">
                 <span v-for="(item,index) in about.skill"
@@ -40,7 +42,8 @@
             </li>
             <li>
               <i class="info-icon">
-                <svg-icon name="tag" />
+                <svg-icon class="tag"
+                          name="tag" />
               </i>
               <span class="info-desc">
                 <span v-for="(item,index) in about.tags"
@@ -125,30 +128,7 @@ export default {
     justify-content: flex-start;
 
     // 两边横线中间文字效果
-    .info-middleLine,
-    .con-middleLine {
-      text-align: center;
-      margin: 0.714rem 0;
-
-      .middleLine-text,
-      .middleLine-head {
-        display: inline-block;
-        position: relative;
-        background: var(--white-bis);
-        padding: 0 1.286rem;
-      }
-    }
-    .info-middleLine:before,
-    .con-middleLine:before {
-      content: "";
-      display: block;
-      position: relative;
-      left: 0;
-      top: 0.643rem; /*这个是用来调节线高*/
-      height: 1px;
-      width: 100%;
-      background-color: $border-frame;
-    }
+    @include middleText();
   }
 
   &-main {
@@ -179,6 +159,7 @@ export default {
         &-wrap {
           .info-list {
             list-style: none;
+
             & > li {
               margin: 0.857rem 0;
               display: flex;
@@ -191,14 +172,22 @@ export default {
                 display: inline-flex;
                 margin-right: 0.714rem;
 
-                .icon {
+                & > .icon {
                   width: 1.25em;
                   height: 1.25em;
-                  color: var(--green);
                 }
 
-                .me {
+                & > .me {
                   color: var(--cyan);
+                }
+                & > .hobby {
+                  color: var(--red);
+                }
+                & > .tech {
+                  color: var(--turquoise);
+                }
+                & > .tag {
+                  color: var(--green);
                 }
               }
 
@@ -268,32 +257,8 @@ export default {
     flex-direction: column;
     justify-content: flex-start;
 
-    // TODO: 有重复
     // 两边横线中间文字效果
-    .info-middleLine,
-    .con-middleLine {
-      text-align: center;
-      margin: 0.714rem 0;
-
-      .middleLine-text,
-      .middleLine-head {
-        display: inline-block;
-        position: relative;
-        background: var(--white-bis);
-        padding: 0 1.286rem;
-      }
-    }
-    .info-middleLine:before,
-    .con-middleLine:before {
-      content: "";
-      display: block;
-      position: relative;
-      left: 0;
-      top: 0.643rem; /*这个是用来调节线高*/
-      height: 1px;
-      width: 100%;
-      background-color: $border-frame;
-    }
+    @include middleText();
 
     .about-main {
       .about-chart {
