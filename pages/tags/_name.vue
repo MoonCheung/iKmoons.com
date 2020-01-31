@@ -132,6 +132,9 @@ export default {
       const tags = this.$route.params
       this.$store.dispatch('tags/fetchMoreTags', tags);
     }
+  },
+  destoryed () {
+    this.fetchMoreTags();
   }
 }
 </script>

@@ -132,6 +132,9 @@ export default {
       const catg = this.$route.params;
       this.$store.dispatch('catg/fetchMoreCatg', catg);
     }
+  },
+  destoryed () {
+    this.fetchMoreCatgs();
   }
 }
 </script>

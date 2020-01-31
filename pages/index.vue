@@ -126,6 +126,9 @@ export default {
     fetchMoreArt () {
       this.$store.dispatch('articles/fetchMoreArt');
     },
+  },
+  destroyed(){
+    this.fetchMoreArt();
   }
 };
 </script>
