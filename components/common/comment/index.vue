@@ -132,7 +132,8 @@
               <a :href='item.from_webSite == "" ? "#": item.from_webSite'
                  v-text="item.from_user"></a></strong>
             <span class="right">
-              <small class="location">
+              <small class="location"
+                     v-if="item.from_locate !== null">
                 <span>{{item.from_locate.country}}</span>
                 <span v-if="item.from_locate.country && item.from_locate.city">&nbsp;-&nbsp;</span>
                 <span>{{item.from_locate.city}}</span>
@@ -184,7 +185,8 @@
                        target="_blank"></a>
                   </strong>
                   <span class="right">
-                    <small class="location">
+                    <small class="location"
+                           v-if="subItem.from_locate !== null">
                       <span>{{subItem.from_locate.country}}</span>
                       <span v-if="subItem.from_locate.country && subItem.from_locate.city">&nbsp;-&nbsp;</span>
                       <span>{{subItem.from_locate.city}}</span>
