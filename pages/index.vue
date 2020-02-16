@@ -127,7 +127,8 @@ export default {
       this.$store.dispatch('articles/fetchMoreArt');
     },
   },
-  destroyed(){
+  // 实例销毁之后调用
+  destroyed () {
     this.fetchMoreArt();
   }
 };

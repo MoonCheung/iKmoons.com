@@ -133,6 +133,7 @@ export default {
       this.$store.dispatch('tags/fetchMoreTags', tags);
     }
   },
+  // 实例销毁之后调用
   destoryed () {
     this.fetchMoreTags();
   }

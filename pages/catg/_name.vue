@@ -133,6 +133,7 @@ export default {
       this.$store.dispatch('catg/fetchMoreCatg', catg);
     }
   },
+  // 实例销毁之后调用
   destoryed () {
     this.fetchMoreCatgs();
   }

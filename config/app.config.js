@@ -4,7 +4,7 @@
  * @Github: https://github.com/MoonCheung
  * @Date: 2020-01-17 13:49:31
  * @LastEditors: MoonCheung
- * @LastEditTime: 2020-01-21 15:32:04
+ * @LastEditTime: 2020-02-16 13:59:31
  */
 
 export const constant = {
@@ -21,7 +21,8 @@ export const constant = {
       { name: '旅行，' },
       { name: '登山，' },
       { name: '看书，' },
-      { name: '下厨' }
+      { name: '下厨，' },
+      { name: '健身' }
     ],
     skill: [
       { name: 'Nodejs，' },
