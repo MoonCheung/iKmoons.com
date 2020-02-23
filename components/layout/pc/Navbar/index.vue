@@ -18,19 +18,19 @@
                      :to="item.route">{{item.name}}</nuxt-link>
         </div>
       </div>
-      <!-- <v-search></v-search> -->
+      <v-search :isSearch="true"></v-search>
     </div>
   </nav>
 </template>
 
 <script>
-// import VSearch from '@/components/common/search';
-import { constant } from '@/config/app.config'
+import VSearch from '@/components/common/search';
+import { constant } from '@/config/app.config';
 
 export default {
   name: 'VNavbar',
   components: {
-    // VSearch,
+    VSearch,
   },
   data () {
     return {

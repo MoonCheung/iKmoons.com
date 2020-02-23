@@ -1,26 +1,26 @@
 <template>
-  <div :class="[isMobile? 'mobileTag-wrap':'tags-wrap']">
-    <div class="tags-main">
-      <header class="tags-head">
+  <div :class="[isMobile? 'mobileSearch-wrap':'search-wrap']">
+    <div class="search-main">
+      <header class="search-head">
         <i class="head-icon">
-          <svg-icon name="tag" />
+          <svg-icon name="search" />
         </i>
-        <div class="head-name">{{$route.params.name}}</div>
-        <div class="head-count">共搜索到&nbsp;{{apptTags.tagNum === undefined ? 0 : apptTags.tagNum.count}}&nbsp;篇文章</div>
+        <div class="head-name">与{{$route.params.keyword}}关键词有关的文章</div>
+        <div class="head-count">共搜索到&nbsp;{{keyWordList.length}}&nbsp;篇文章</div>
       </header>
-      <article class="tags-list"
-               v-if="apptTags.tagNum === undefined">
+      <article class="search-list"
+               v-if="!keyWordList.length">
         <div class="container">
           <div class="list-noMedia">
-            没有相关标签的文章🙂
+            没有相关分类的文章🙂
           </div>
         </div>
       </article>
       <article v-else
-               class="tags-list">
+               class="search-list">
         <div class="container">
           <div class="media"
-               v-for="(item,index) in apptTagList"
+               v-for="(item,index) in keyWordList"
                :key="index">
             <div v-if="!isMobile"
                  class="media-left">
@@ -75,8 +75,8 @@
           </div>
           <button v-if="!noMore"
                   class="btn"
-                  :class="tagsLoadMore"
-                  @click="fetchMoreTags">下一页</button>
+                  :class="searchLoadMore"
+                  @click="fetchMoreKeyWord">下一页</button>
           <button v-else
                   class="btn is-light">
             {{noMore}}
@@ -92,16 +92,16 @@ import { mapGetters, mapState } from 'vuex';
 import { mixin, formatDate } from '@/utils/index';
 
 export default {
-  name: 'ApptTag',
+  name: 'Keyword',
   fetch ({ store, params }) {
     return Promise.all([
-      store.dispatch('tags/fetchApptTags', params)
+      store.dispatch('search/fetchAtrKeyWord', params)
     ])
   },
   head () {
     const { $route } = this;
     return {
-      title: $route.params.name
+      title: $route.params.keyword
     }
   },
   mixins: [mixin],
@@ -110,49 +110,46 @@ export default {
       isMobile: state => state.global.isMobile
     }),
     ...mapGetters({
-      tagList: 'tags/tagList',
-      apptTagList: 'tags/apptTagList',
-      loadMore: 'tags/loadMore',
-      noMore: 'tags/noMore'
+      keyWordList: 'search/keyWordList',
+      loadMore: 'search/loadMore',
+      noMore: 'search/noMore'
     }),
-    apptTags () {
-      return this.tagList.find(el => el.tagname === this.$route.params.name);
-    },
-    tagsLoadMore () {
-      return this.loadMore == false ? 'is-light' : 'is-loading';
+    searchLoadMore () {
+      return this.loadMore == false ? 'is-light' : 'is-loading'
     },
     getFormatDate () {
       return param => {
         return formatDate(param, "yyyy年MM月dd日");
       }
-    },
+    }
   },
   methods: {
-    fetchMoreTags () {
-      const tags = this.$route.params
-      this.$store.dispatch('tags/fetchMoreTags', tags);
+    fetchMoreKeyWord () {
+      const keyword = this.$route.params;
+      this.$store.dispatch('search/fetchMoreKeyWord', keyword);
     }
   },
   // 实例销毁之后调用
   destoryed () {
-    this.fetchMoreTags();
+    this.fetchMoreKeyWord();
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.tags {
+.search {
   &-wrap {
     width: $part-width-size;
     min-width: $part-width-size;
   }
+
   &-main {
     display: flex;
     padding: 0.857rem 0.857rem 0 0.857rem;
     flex-direction: column;
     justify-content: flex-start;
 
-    .tags-head {
+    .search-head {
       display: flex;
       padding: 0.857rem 0;
       text-align: center;
@@ -162,7 +159,7 @@ export default {
 
       .head {
         &-icon {
-          & > .icon {
+          .icon {
             width: 2.25em;
             height: 2.25em;
             color: $accent-color;
@@ -177,7 +174,7 @@ export default {
       }
     }
 
-    .tags-list {
+    .search-list {
       flex: 1 0;
 
       & > .container {
@@ -291,11 +288,10 @@ export default {
 }
 
 // 移动端样式
-.mobileTag-wrap {
+.mobileSearch-wrap {
   width: auto;
   min-width: auto;
   color: $secondary-text-color;
   background-color: var(--white-bis);
 }
 </style>
-

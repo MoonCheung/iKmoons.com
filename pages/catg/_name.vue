@@ -165,7 +165,7 @@ export default {
           .icon {
             width: 2.25em;
             height: 2.25em;
-            color: #9e9e9e;
+            color: $accent-color;
           }
         }
 
@@ -216,7 +216,7 @@ export default {
         }
 
         &-content {
-          flex: 1 0 0;
+          flex: 1 0;
           display: flex;
           flex-direction: column;
           justify-content: space-between;

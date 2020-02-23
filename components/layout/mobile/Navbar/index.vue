@@ -28,27 +28,62 @@
         </nuxt-link>
       </div>
       <!-- 搜索图标 -->
-      <div class="nav-search">
+      <div class="nav-search"
+           @click.stop="onShowSearch">
         <i class="icon-search">
           <svg-icon name="search" />
         </i>
       </div>
+      <!-- 搜索栏显示与否 -->
+      <v-search class="fixedSearch"
+                :isSearch="false"
+                v-show="isShowSearch"></v-search>
     </div>
   </nav>
 </template>
 
 <script>
+import VSearch from '@/components/common/search';
 import { constant } from '@/config/app.config';
 
 export default {
   name: 'MobileNav',
+  components: {
+    VSearch
+  },
   data () {
     return {
       isActive: false,
+      isShowSearch: false,
       menus: constant.menus
     }
   },
+  created () {
+    this.$on('onCloseSearch', function (searchMap) {
+      this.$nextTick(() => {
+        if (!this.isShowSearch) {
+          searchMap[0].focus()
+          this.isShowSearch = true;
+        } else {
+          searchMap[0].blur()
+          this.isShowSearch = false;
+        }
+      })
+    })
+  },
   methods: {
+    // 显示搜索栏
+    onShowSearch () {
+      this.isShowSearch = true;
+      const burger = this.$refs.burger.children;
+      if (this.isActive) {
+        this.isActive = false;
+        burger[0].style.transform = `rotate(${0}deg)`;
+        burger[1].style.opacity = 1;
+        burger[2].style.transform = `rotate(${0}deg)`;
+      };
+    },
+    // 菜单显示与否
     toggleMenus () {
       const burger = this.$refs.burger.children;
       if (!this.isActive) {
@@ -63,7 +98,7 @@ export default {
         burger[2].style.transform = `rotate(${0}deg)`;
       }
     }
-  },
+  }
 }
 </script>
 
@@ -96,12 +131,12 @@ export default {
 
         .hamburger-menu {
           display: flex;
+          cursor: pointer;
           flex-direction: column;
           flex-wrap: wrap;
           justify-content: space-around;
           width: 1.786rem;
           height: 1.786rem;
-          cursor: pointer;
 
           & > .bar {
             height: 0.286em;
@@ -163,6 +198,9 @@ export default {
       &-search {
         flex: 0 0 2em;
         display: inline-flex;
+        padding-left: calc(0.5em - 1px);
+        padding-top: calc(0.25em - 1px);
+        padding-bottom: calc(0.25em - 1px);
 
         & > .icon-search {
           display: inline-flex;
@@ -170,6 +208,23 @@ export default {
 
           & > .icon {
             font-size: 0.8rem;
+          }
+        }
+      }
+    }
+
+    .fixedSearch {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1;
+
+      /deep/ .control {
+        &.has-icons-right {
+          & > .input,
+          & > .search-icon {
+            height: 3.2em;
           }
         }
       }
