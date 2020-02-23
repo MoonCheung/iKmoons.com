@@ -757,6 +757,7 @@ export default {
           .item-content {
             flex: 1 0;
             display: flex;
+            overflow: hidden;
             flex-direction: column;
             justify-content: flex-start;
 
