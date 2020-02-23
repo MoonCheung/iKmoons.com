@@ -2,10 +2,13 @@
   <div class="navbar-search">
     <div class="control has-icons-right">
       <input class="input"
-             type="text"
+             type="search"
              ref="searchInput"
+             maxlength="15"
              v-model.trim="keyName"
              placeholder="搜索文章"
+             @blur="onToggleSearch('blur')"
+             @focus="onToggleSearch('focus')"
              @keyup.enter="onChangeSearch" />
       <span v-if="isSearch"
             class="search-icon"
@@ -47,8 +50,11 @@ export default {
       this.keyName = "";
     },
     onCloseSearch () {
+      this.$parent.$emit('onCloseSearch');
+    },
+    onToggleSearch (type) {
       const searchMap = this.$refs.searchInput;
-      this.$parent.$emit('onCloseSearch', [searchMap]);
+      this.$parent.$emit('onToggleSearch', type, searchMap);
     }
   },
   // 实例销毁之前调用
@@ -84,6 +90,10 @@ export default {
         color: var(--grey-light);
       }
 
+      & > .input::-webkit-search-cancel-button {
+        -webkit-appearance: none; //此处就是去掉默认的小×
+      }
+
       & > .input:focus {
         background-color: $form-bg-color;
       }
@@ -91,6 +101,7 @@ export default {
       & > .search-icon {
         position: absolute;
         right: 0;
+        bottom: 0;
         width: 2em;
         height: 2.5em;
         cursor: pointer;
@@ -101,7 +112,8 @@ export default {
 
         & > .icon {
           color: $accent-color;
-          font-size: 0.5rem;
+          width: 1.25em;
+          height: 1.25em;
         }
       }
     }

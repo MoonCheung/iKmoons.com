@@ -35,9 +35,11 @@
         </i>
       </div>
       <!-- 搜索栏显示与否 -->
-      <v-search class="fixedSearch"
-                :isSearch="false"
-                v-show="isShowSearch"></v-search>
+      <div class="fixedSearch"
+           v-show="isShowSearch">
+        <v-search ref="parentSearch"
+                  :isSearch="false"></v-search>
+      </div>
     </div>
   </nav>
 </template>
@@ -59,16 +61,16 @@ export default {
     }
   },
   created () {
-    this.$on('onCloseSearch', function (searchMap) {
-      this.$nextTick(() => {
-        if (!this.isShowSearch) {
-          searchMap[0].focus()
-          this.isShowSearch = true;
-        } else {
-          searchMap[0].blur()
+    this.$on('onCloseSearch', function () {
+      this.isShowSearch = false;
+    })
+    this.$on('onToggleSearch', function (type, searchMap) {
+      if (type === 'blur') {
+        this.$nextTick(() => {
+          searchMap.blur();
           this.isShowSearch = false;
-        }
-      })
+        });
+      }
     })
   },
   methods: {
@@ -76,12 +78,16 @@ export default {
     onShowSearch () {
       this.isShowSearch = true;
       const burger = this.$refs.burger.children;
+      const searchMap = this.$refs.parentSearch.$refs.searchInput;
       if (this.isActive) {
         this.isActive = false;
         burger[0].style.transform = `rotate(${0}deg)`;
         burger[1].style.opacity = 1;
         burger[2].style.transform = `rotate(${0}deg)`;
       };
+      this.$nextTick(() => {
+        searchMap.focus();
+      })
     },
     // 菜单显示与否
     toggleMenus () {
@@ -207,7 +213,8 @@ export default {
           align-self: center;
 
           & > .icon {
-            font-size: 0.8rem;
+            width: 1.5em;
+            height: 1.5em;
           }
         }
       }
@@ -218,10 +225,17 @@ export default {
       top: 0;
       left: 0;
       right: 0;
-      z-index: 1;
+      bottom: 0;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
 
       /deep/ .control {
         &.has-icons-right {
+          & > .input {
+            border-radius: 0;
+          }
           & > .input,
           & > .search-icon {
             height: 3.2em;
