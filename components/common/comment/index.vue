@@ -428,10 +428,18 @@ export default {
       const elementPosition = this.$parent.$refs.artMain.offsetHeight;
       const headerOffset = 20;
       const offsetPosition = elementPosition + headerOffset;
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth"
-      })
+      try {
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        })
+      } catch (err) {
+        if (err instanceof TypeError) {
+          window.scroll(0, offsetPosition)
+        } else {
+          throw err
+        }
+      }
     },
     // 点赞评论方法
     likeArtComment (elem, type) {
