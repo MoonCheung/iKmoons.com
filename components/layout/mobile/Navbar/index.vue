@@ -104,6 +104,11 @@ export default {
         burger[2].style.transform = `rotate(${0}deg)`;
       }
     }
+  },
+  // 实例销毁后调用
+  destroyed () {
+    this.toggleMenus();
+    this.onShowSearch();
   }
 }
 </script>
