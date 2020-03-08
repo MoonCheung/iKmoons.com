@@ -172,6 +172,7 @@ export default {
     .art-head {
       .head-title {
         text-align: center;
+        color: $primary-text-color;
       }
       .head-level {
         display: flex;
@@ -215,23 +216,21 @@ export default {
       }
 
       & > .markdown-body {
+        color: $primary-text-color;
+        font-size: 1rem;
+
         /deep/ p {
+          overflow: hidden;
           & > img {
-            width: 100%;
+            display: block;
+            max-width: 96%;
+            position: relative;
+            margin: 0 auto;
             border: 0.429rem solid #dcdfe6;
           }
         }
 
-        /deep/ ul,
-        /deep/ ol {
-          padding: 0 2em;
-        }
-
-        /deep/ & > .ql-syntax {
-          padding: 0.5em;
-          overflow-x: scroll;
-          color: var(--white);
-          border-radius: 0.143rem;
+        /deep/ .hljs {
           background-color: #23241f;
         }
       }

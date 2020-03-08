@@ -60,6 +60,7 @@ module.exports = {
   css: [
     'normalize.css/normalize.css',
     'highlight.js/styles/monokai-sublime.css',
+    'github-markdown-css/github-markdown.css',
     '@/assets/styles/index'
   ],
   /**
@@ -135,6 +136,9 @@ module.exports = {
    ** Build configuration
    */
   build: {
+    analyza: {
+      analyzeMode: 'static'
+    },
     extractCSS: true,
     // publicPath: `${apiMap.CDN}/_nuxt/`,
     // 性能优化配置
@@ -146,7 +150,7 @@ module.exports = {
         cacheGroups: {
           libs: {
             name: 'chunk-libs',
-            test: /highlight|markdown-it|particles|ua-parser-js/,
+            test: /highlight|markdown-it|particles|ua-parser-js|github-markdown-css/,
             priority: 10,
             chunks: 'initial'
           },
