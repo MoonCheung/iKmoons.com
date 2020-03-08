@@ -60,6 +60,7 @@ module.exports = {
         "data",
         "computed",
       ]
-    }]
+    }],
+    'import/order': ['off']
   }
 }

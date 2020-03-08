@@ -4,7 +4,7 @@
  * @Github: https://github.com/MoonCheung
  * @Date: 2020-01-17 13:49:31
  * @LastEditors: MoonCheung
- * @LastEditTime: 2020-02-16 14:11:03
+ * @LastEditTime: 2020-03-08 23:58:04
  */
 
 export const constant = {
@@ -32,7 +32,8 @@ export const constant = {
     ],
     tags: [
       { name: '技术爱好者，' },
-      { name: '日漫爱好者' },
+      { name: '日漫爱好者，' },
+      { name: '自由开发者' },
     ]
   },
   meta: {
