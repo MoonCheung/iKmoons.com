@@ -54,6 +54,13 @@ module.exports = {
   loading: {
     color: '#0288D1'
   },
+  /**
+   * icon 图标
+   */
+  icon: {
+    iconSrc: '/static/icon.png',
+    sizes: [16, 120, 144, 152, 192, 384, 512]
+  },
   /*
    ** Global CSS
    */
