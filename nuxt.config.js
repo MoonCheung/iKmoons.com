@@ -89,7 +89,8 @@ module.exports = {
     input: '~/assets/sprite/svg',
     output: '~/assets/sprite/gen',
     defaultSprite: 'icons',
-    elementClass: 'icon'
+    elementClass: 'icon',
+    publicPath: '/_nuxt/',
   },
   /*
    ** Plugins to load before mounting the App
@@ -147,7 +148,7 @@ module.exports = {
       analyzeMode: 'static'
     },
     extractCSS: true,
-    // publicPath: `${apiMap.CDN}/_nuxt/`,
+    publicPath: apiMap.CDN + '/_nuxt/',
     // 性能优化配置
     optimization: {
       splitChunks: {
