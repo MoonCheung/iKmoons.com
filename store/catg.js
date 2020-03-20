@@ -4,7 +4,7 @@
  * @Github: https://github.com/MoonCheung
  * @Date: 2019-12-18 22:53:11
  * @LastEditors: MoonCheung
- * @LastEditTime: 2020-02-22 14:24:16
+ * @LastEditTime: 2020-03-20 11:22:28
  */
 
 export const state = () => {
@@ -12,9 +12,9 @@ export const state = () => {
     list: {
       catgList: [],
       catgIcon: [
-        { name: 'book', link: '//static.ikmoons.com/book.jpg' },
-        { name: 'code', link: '//static.ikmoons.com/code.jpg' },
         { name: 'travel', link: '//static.ikmoons.com/travel.jpg' },
+        { name: 'code', link: '//static.ikmoons.com/code.jpg' },
+        { name: 'book', link: '//static.ikmoons.com/book.jpg' },
         { name: 'gear', link: '//static.ikmoons.com/gear.jpg' }
       ],
       fetching: false
