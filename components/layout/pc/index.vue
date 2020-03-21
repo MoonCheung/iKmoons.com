@@ -7,7 +7,9 @@
         <!-- TODO: 切换其他页面时候有存在Bug,待处理 -->
         <!-- <nuxt keep-alive /> -->
         <nuxt />
-        <v-aside v-if="!noAsidePage" />
+        <transition name="slide-fade">
+          <v-aside v-if="!noAsidePage" />
+        </transition>
       </article>
     </main>
     <v-footer class="hero-foot" />

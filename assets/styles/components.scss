@@ -107,3 +107,22 @@
     transform: rotate(360deg);
   }
 }
+
+// 布局切换过渡效果
+// 进入过渡效果
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+
+// 离开过渡效果
+.slide-fade-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+
+// 进入过渡开始状态
+.slide-fade-enter,
+// 离开过渡结束状态
+.slide-fade-leave-to {
+  transform: translateX(10px);
+  opacity: 0;
+}
