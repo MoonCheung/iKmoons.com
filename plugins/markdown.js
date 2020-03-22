@@ -4,7 +4,7 @@
  * @Github: https://github.com/MoonCheung
  * @Date: 2019-12-28 00:46:47
  * @LastEditors: MoonCheung
- * @LastEditTime: 2019-12-28 21:54:39
+ * @LastEditTime: 2020-03-22 17:44:41
  */
 
 import Vue from 'vue';
@@ -24,7 +24,7 @@ import hljs from '@/plugins/highlight';
 
 const config = {
   html: true,
-  breaks: true,
+  breaks: false,
   linkify: false,
   injected: true,
   xhtmlOut: true,
