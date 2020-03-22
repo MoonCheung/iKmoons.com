@@ -6,6 +6,8 @@
             :isLike="isLikedArt"></v-like>
     <div ref="artMain"
          class="art-main">
+      <span class="art-origin"
+            :style="originState(artDeil.origin)">{{artDeil.origin}}</span>
       <div class="art-head">
         <h1 class="head-title">{{artDeil.title}}</h1>
         <div class="head-level">
@@ -52,7 +54,7 @@
 
 <script>
 import { mapGetters, mapState } from 'vuex';
-import { formatDate } from '@/utils/index';
+import { formatDate, mixin } from '@/utils/index';
 import VLike from '@/components/common/like';
 import VComment from '@/components/common/comment';
 import { localLikeHistory } from '@/service/storage';
@@ -74,6 +76,7 @@ export default {
       title: artDeil.title
     }
   },
+  mixins: [mixin],
   data () {
     return {
       // 用户点赞历史
@@ -161,8 +164,22 @@ export default {
     padding: 0.857rem;
     display: flex;
     overflow: hidden;
+    position: relative;
     flex-direction: column;
     justify-content: space-between;
+
+    .art-origin {
+      position: absolute;
+      display: inline-block;
+      top: -0.4em;
+      left: -2em;
+      width: 6em;
+      height: 3em;
+      line-height: 4em;
+      text-align: center;
+      font-size: 0.857rem;
+      transform: rotate(-45deg);
+    }
 
     .art-head,
     .art-foot {

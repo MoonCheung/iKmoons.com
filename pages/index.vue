@@ -75,6 +75,10 @@
                 <time class="right-time">
                   {{item.cdate}}
                 </time>
+                <span class="right-origin"
+                      :style="originState(item.origin)">
+                  {{item.origin}}
+                </span>
               </div>
             </div>
           </div>
@@ -213,6 +217,7 @@ export default {
           & > img {
             width: 220px;
             height: 140px;
+            border: 0.286rem solid #dcdfe6;
           }
         }
       }
@@ -285,6 +290,15 @@ export default {
             }
             .right-time {
               display: inline-flex;
+              margin-right: $spacing-evenSize * 2;
+            }
+
+            .right-origin {
+              display: inline-block;
+              padding-top: calc(0.3em - 1px);
+              padding-bottom: calc(0.3em - 1px);
+              padding-left: calc(0.5em - 1px);
+              padding-right: calc(0.5em - 1px);
             }
           }
         }
@@ -454,6 +468,15 @@ export default {
               }
               .right-time {
                 display: inline-flex;
+                margin-right: $spacing-evenSize * 2;
+              }
+
+              .right-origin {
+                display: inline-block;
+                padding-top: calc(0.3em - 1px);
+                padding-bottom: calc(0.3em - 1px);
+                padding-left: calc(0.5em - 1px);
+                padding-right: calc(0.5em - 1px);
               }
             }
           }

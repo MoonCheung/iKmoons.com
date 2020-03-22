@@ -4,7 +4,7 @@
  * @Github: https://github.com/MoonCheung
  * @Date: 2020-01-17 23:05:10
  * @LastEditors: MoonCheung
- * @LastEditTime: 2020-02-22 17:18:05
+ * @LastEditTime: 2020-03-22 22:34:11
  */
 
 export const mixin = {
@@ -18,5 +18,20 @@ export const mixin = {
       const len = commentCount + replyCount;
       return Number.isNaN(len) ? 0 : len;
     }
+  },
+  computed: {
+    originState() {
+      const mapOrigin = new Map([
+        ['原创', ['--turquoise', '--turquoise-opacity']],
+        ['转载', ['--cyan', '--cyan-opacity']],
+        ['混合', ['--orange', '--orange-opacity']]
+      ])
+      return state => {
+        return {
+          color: `var(${mapOrigin.get(state)[0]})`,
+          'background-color': `var(${mapOrigin.get(state)[1]})`
+        }
+      }
+    },
   }
 }

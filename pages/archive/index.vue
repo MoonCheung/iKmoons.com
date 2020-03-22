@@ -25,6 +25,8 @@
                         v-for="threeItem in twoItem.items"
                         :key="threeItem.id">
                       <span class="three-date">{{threeItem.date}}</span>
+                      <span class="three-origin"
+                            :style="originState(threeItem.origin)">{{threeItem.origin}}</span>
                       <nuxt-link class="three-link"
                                  :to="`/article/${threeItem.id}`">{{threeItem.title}}</nuxt-link>
                     </li>
@@ -41,6 +43,7 @@
 
 <script>
 import { mapState } from 'vuex';
+import { mixin } from '@/utils/index';
 
 export default {
   name: "Archive",
@@ -54,6 +57,7 @@ export default {
       title: "归档"
     }
   },
+  mixins: [mixin],
   computed: {
     ...mapState({
       artArch: state => state.articles.arch.artList,
@@ -151,6 +155,14 @@ export default {
               &-link {
                 display: inline-block;
                 font-size: 1rem;
+              }
+              &-origin {
+                display: inline-block;
+                font-size: 0.714rem;
+                padding-top: calc(0.3em - 1px);
+                padding-bottom: calc(0.3em - 1px);
+                padding-left: calc(0.5em - 1px);
+                padding-right: calc(0.5em - 1px);
               }
             }
           }
