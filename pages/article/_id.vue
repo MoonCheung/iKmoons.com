@@ -135,19 +135,12 @@ export default {
   },
   mounted () {
     this.initUserLikeHistory();
-    this.dynamicMarkdownWidth();
   },
   methods: {
     // 初始化用户点赞历史
     initUserLikeHistory () {
       const likeHistorys = localLikeHistory.get();
       !likeHistorys ? localLikeHistory.set(this.likeHistory) : (this.likeHistory = likeHistorys)
-    },
-    // 动态markdown元素宽度
-    dynamicMarkdownWidth () {
-      const artBody = this.$refs.artBody;
-      const markBody = artBody.lastChild;
-      markBody.style.width = `${artBody.clientWidth}px`;
     }
   }
 }
