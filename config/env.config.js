@@ -4,7 +4,7 @@
  * @Github: https://github.com/MoonCheung
  * @Date: 2019-12-09 23:10:44
  * @LastEditors: MoonCheung
- * @LastEditTime: 2020-01-20 20:52:23
+ * @LastEditTime: 2020-03-25 14:44:42
  */
 
 export const ENV = process.env;
@@ -13,3 +13,4 @@ export const isDevMode = Object.is(NODE_ENV, 'development');
 export const isProdMode = Object.is(NODE_ENV, 'production');
 
 export const isServer = process && process.server;
+export const isBrowser = process && process.browser;
