@@ -4,7 +4,7 @@
  * @Github: https://github.com/MoonCheung
  * @Date: 2020-01-13 21:33:19
  * @LastEditors: MoonCheung
- * @LastEditTime: 2020-01-18 15:22:55
+ * @LastEditTime: 2020-03-24 23:01:27
  */
 
 export const state = () => ({
@@ -25,7 +25,7 @@ export const getters = {
 export const mutations = {
   // 更新设备类型
   UPDATE_DEVICE_TYPE(state, deviceType) {
-    state.userAgent = deviceType
+    state.userAgent = deviceType;
   },
   // 设置是否移动端状态
   UPDATE_MOBILE_STATUS(state, action) {

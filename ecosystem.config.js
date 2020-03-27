@@ -2,7 +2,7 @@ module.exports = {
   apps: [{
     name: "nuxt-blog",
     cwd: '/www/nuxt-blog/',
-    script: "server/index.js",
+    script: "./server/index.js",
     instances: 1,
     autorestart: true,
     watch: false,

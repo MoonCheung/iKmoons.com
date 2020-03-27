@@ -36,9 +36,11 @@
     "highlight.js": "^9.17.1",
     "koa": "^2.6.2",
     "markdown-it": "^10.0.0",
+    "nativeshare": "^2.1.3",
     "normalize.css": "^8.0.1",
     "nuxt": "^2.10.1",
     "particles.js": "^2.0.0",
+    "qrcode-generator": "^1.4.4",
     "ua-parser-js": "^0.7.21"
   },
   "devDependencies": {

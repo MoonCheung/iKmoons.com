@@ -4,7 +4,7 @@
  * @Github: https://github.com/MoonCheung
  * @Date: 2019-12-28 22:36:28
  * @LastEditors: MoonCheung
- * @LastEditTime: 2020-03-24 22:11:18
+ * @LastEditTime: 2020-03-24 22:27:08
  */
 
 import parser from 'ua-parser-js';
