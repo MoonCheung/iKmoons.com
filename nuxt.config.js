@@ -99,7 +99,8 @@ module.exports = {
     { src: '@/plugins/axios' },
     { src: '@/plugins/markdown' },
     { src: '@/plugins/highlight' },
-    { src: '@/plugins/particles', ssr: false }
+    { src: '@/plugins/particles', ssr: false },
+    { src: '@/plugins/nativeShare', ssr: false }
   ],
   /*
    ** Nuxt.js dev-modules
@@ -158,7 +159,7 @@ module.exports = {
         cacheGroups: {
           libs: {
             name: 'chunk-libs',
-            test: /highlight|markdown-it|particles|ua-parser-js|github-markdown-css/,
+            test: /highlight|markdown-it|particles|ua-parser-js|github-markdown-css|nativeshare|qrcode-generator/,
             priority: 10,
             chunks: 'initial'
           },
