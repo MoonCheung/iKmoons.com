@@ -68,6 +68,7 @@ module.exports = {
     'normalize.css/normalize.css',
     'highlight.js/styles/monokai-sublime.css',
     'github-markdown-css/github-markdown.css',
+    'plyr/dist/plyr.css',
     '@/assets/styles/index'
   ],
   /**
@@ -97,6 +98,7 @@ module.exports = {
    */
   plugins: [
     { src: '@/plugins/axios' },
+    { src: '@/plugins/player' },
     { src: '@/plugins/markdown' },
     { src: '@/plugins/highlight' },
     { src: '@/plugins/particles', ssr: false },
@@ -145,6 +147,20 @@ module.exports = {
    ** Build configuration
    */
   build: {
+    babel: {
+      presets({ isServer }) {
+        return [
+          [
+            require.resolve('@nuxt/babel-preset-app'),
+            // require.resolve('@nuxt/babel-preset-app-edge'), // For nuxt-edge users
+            {
+              buildTarget: isServer ? 'server' : 'client',
+              corejs: { version: 3 }
+            }
+          ]
+        ]
+      }
+    },
     analyza: {
       analyzeMode: 'static'
     },

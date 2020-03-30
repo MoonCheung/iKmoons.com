@@ -88,6 +88,7 @@ import VLike from '@/components/widget/like';
 import VComment from '@/components/common/comment';
 import { localLikeHistory } from '@/service/storage';
 import apiMap from '@/config/api.config';
+import { plyrConfig } from '@/config/app.config';
 
 export default {
   name: 'ArtDeil',
@@ -165,8 +166,12 @@ export default {
   },
   mounted () {
     this.initUserLikeHistory();
+    this.initPlayer();
   },
   methods: {
+    initPlayer () {
+      Array.from(document.querySelectorAll('#player')).map(p => new Plyr(p, plyrConfig));
+    },
     // 初始化用户点赞历史
     initUserLikeHistory () {
       const likeHistorys = localLikeHistory.get();
@@ -230,6 +235,14 @@ export default {
         localLikeHistory.set(this.likeHistory);
       });
     }
+  },
+  // 实例销毁之前调用
+  beforeDestroy () {
+    // 销毁实例并垃圾收集任何元素
+    Array.from(document.querySelectorAll('#player')).map(p => {
+      const players = new Plyr(p);
+      players.destroy();
+    });
   }
 }
 </script>
@@ -328,6 +341,7 @@ export default {
           }
         }
 
+        // 代码高亮显示
         /deep/ .hljs {
           background-color: #23241f;
         }

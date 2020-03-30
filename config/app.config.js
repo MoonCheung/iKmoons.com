@@ -4,7 +4,7 @@
  * @Github: https://github.com/MoonCheung
  * @Date: 2020-01-17 13:49:31
  * @LastEditors: MoonCheung
- * @LastEditTime: 2020-03-08 23:58:04
+ * @LastEditTime: 2020-03-30 15:28:06
  */
 
 export const constant = {
@@ -45,6 +45,7 @@ export const constant = {
   }
 }
 
+// 粒子效果配置
 export const partConfig = {
   "particles": {
     "number": {
@@ -154,4 +155,45 @@ export const partConfig = {
     }
   },
   "retina_detect": true
+}
+
+// Plyr 多媒体配置
+export const plyrConfig = {
+  invertTime: false,
+  settings: ['captions', 'quality', 'speed', 'loop'],
+  i18n: {
+    restart: '重新播放',
+    rewind: '倒退 {seektime} 秒',
+    play: '播放',
+    pause: '暫停',
+    fastForward: '向前 {seektime} 秒',
+    seek: 'Seek',
+    played: 'Played',
+    buffered: '缓冲',
+    currentTime: '当前时间',
+    duration: '持续时间',
+    volume: '体积',
+    mute: '静音',
+    unmute: '取消静音',
+    enableCaptions: '开启字幕',
+    disableCaptions: '关闭字幕',
+    enterFullscreen: '进入全屏幕',
+    exitFullscreen: '退出全屏幕',
+    frameTitle: 'Player for {title}',
+    captions: '字幕',
+    settings: '设定',
+    speed: '速率',
+    normal: '正常',
+    quality: '质量',
+    loop: 'Loop',
+    start: '开始',
+    end: '结束',
+    all: '全部',
+    reset: '重置',
+    disabled: '禁用',
+    enabled: '启用',
+    advertisement: '广告'
+  },
+  quality: { default: 576, options: [1080, 720] },
+  loop: { active: false }
 }
