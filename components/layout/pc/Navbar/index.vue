@@ -67,10 +67,15 @@ export default {
       align-items: center;
       justify-content: flex-start;
 
-      .navbar-link {
+      & > .navbar-link {
         line-height: 2.5rem;
         padding: 0.375rem 1rem;
         white-space: nowrap;
+
+        &.navbar-active {
+          color: var(--black-bis);
+          font-weight: $weight-semibold;
+        }
       }
     }
   }
