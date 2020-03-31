@@ -97,6 +97,7 @@ import { mixin, formatDate } from '@/utils/index';
 
 export default {
   name: 'Keyword',
+  scrollToTop: true,
   fetch ({ store, params }) {
     return Promise.all([
       store.dispatch('search/fetchAtrKeyWord', params)

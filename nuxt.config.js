@@ -175,7 +175,7 @@ module.exports = {
         cacheGroups: {
           libs: {
             name: 'chunk-libs',
-            test: /highlight|markdown-it|particles|ua-parser-js|github-markdown-css|nativeshare|qrcode-generator/,
+            test: /highlight|markdown-it|particles|ua-parser-js|github-markdown-css|nativeshare|qrcode-generator|Plyr/,
             priority: 10,
             chunks: 'initial'
           },

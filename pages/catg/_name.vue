@@ -97,6 +97,7 @@ import { mixin, formatDate } from '@/utils/index';
 
 export default {
   name: 'ApptCatg',
+  scrollToTop: true,
   fetch ({ store, params }) {
     return Promise.all([
       store.dispatch('catg/fetchApptCatg', params)

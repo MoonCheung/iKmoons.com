@@ -104,6 +104,7 @@ import { mixin } from '@/utils/index';
 
 export default {
   name: 'Home',
+  scrollToTop: true,
   fetch ({ store }) {
     return Promise.all([
       store.dispatch('articles/fetchAllArt')

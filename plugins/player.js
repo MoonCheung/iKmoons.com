@@ -4,7 +4,7 @@
  * @Github: https://github.com/MoonCheung
  * @Date: 2020-03-29 23:17:46
  * @LastEditors: MoonCheung
- * @LastEditTime: 2020-03-30 12:52:41
+ * @LastEditTime: 2020-03-30 22:58:07
  */
 
 import Plyr from 'plyr';
