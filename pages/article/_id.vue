@@ -115,9 +115,7 @@ export default {
         article: [],
         comment: [],
         reply: []
-      },
-      // 是否显示遮罩层
-      isShade: false
+      }
     }
   },
   computed: {
@@ -197,6 +195,7 @@ export default {
     onShareWeixin (command, event) {
       if (this.isWeChat) {
         this.$toast.info('无法直接分享，只能点击右上角选择"微信"分享');
+        return false;
       }
       this.commonShare(command);
     },
@@ -204,6 +203,7 @@ export default {
     onShareFriend (command) {
       if (this.isWeChat) {
         this.$toast.info('无法直接分享，只能点击右上角选择"朋友圈"分享');
+        return false;
       }
       this.commonShare(command);
     },
@@ -211,6 +211,7 @@ export default {
     onShareWeibos (command) {
       if (this.isWeChat) {
         this.$toast.info('无法直接分享，只能点击右上角选择"浏览器"分享');
+        return false;
       }
       this.commonShare(command);
     },
