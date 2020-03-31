@@ -115,12 +115,15 @@ export default {
         article: [],
         comment: [],
         reply: []
-      }
+      },
+      // 是否显示遮罩层
+      isShade: false
     }
   },
   computed: {
     ...mapState({
       isMobile: state => state.global.isMobile,
+      isWeChat: state => state.global.isWeChat
     }),
     ...mapGetters({
       artDeil: 'articles/artDeil',
@@ -191,15 +194,24 @@ export default {
       document.body.removeChild(input);
     },
     // 分享微信好友方法
-    onShareWeixin (command) {
+    onShareWeixin (command, event) {
+      if (this.isWeChat) {
+        this.$toast.info('无法直接分享，只能点击右上角选择"微信"分享');
+      }
       this.commonShare(command);
     },
     // 分享微信朋友圈方法
     onShareFriend (command) {
+      if (this.isWeChat) {
+        this.$toast.info('无法直接分享，只能点击右上角选择"朋友圈"分享');
+      }
       this.commonShare(command);
     },
     // 分享微博方法
     onShareWeibos (command) {
+      if (this.isWeChat) {
+        this.$toast.info('无法直接分享，只能点击右上角选择"浏览器"分享');
+      }
       this.commonShare(command);
     },
     // 点赞父级文章方法
