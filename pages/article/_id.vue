@@ -506,7 +506,8 @@ export default {
             --weibo-color-3:#9E9E9E;
             --weibo-color-4:#9E9E9E;
 
-            &:hover {
+            &:active,
+            &:visited {
               --weibo-color-1:#E71F19;
               --weibo-color-2:#F5AA15;
               --weibo-color-3:#F5AA15;
