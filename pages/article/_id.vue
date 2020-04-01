@@ -59,19 +59,19 @@
         <div class="share-level">
           <span class="share-item"
                 @click.prevent="onCopyPageLink">
-            <svg-icon name="links" />
+            <svg-icon class="links-icon" name="links" />
           </span>
           <span class="share-item"
                 @click="onShareWeixin('wechatFriend')">
-            <svg-icon name="weixin" />
+            <svg-icon class="weixin-icon" name="weixin" />
           </span>
           <span class="share-item"
                 @click="onShareFriend('wechatTimeline')">
-            <svg-icon name="friend" />
+            <svg-icon class="friend-icon" name="friend" />
           </span>
           <span class="share-item"
                 @click="onShareWeibos('weibo')">
-            <svg-icon name="weibo" />
+            <svg-icon class="weibo-icon" name="weibo" />
           </span>
         </div>
       </div>
@@ -455,6 +455,63 @@ export default {
           & > .icon {
             width: 1.45em;
             height: 1.45em;
+          }
+
+          &> .links-icon{
+            --link-color-1: #9E9E9E;
+            --link-color-2: #9E9E9E;
+
+            &:active,
+            &:visited {
+              --link-color-1: #1976D2;
+              --link-color-2: #42A5F5;
+            }
+          }
+
+          &> .weixin-icon{
+            --weixin-color: #9E9E9E;
+
+            &:active,
+            &:visited {
+              --weixin-color: #24DB5A;
+            }
+          }
+
+          &> .friend-icon{
+            --friend--color-1:#9E9E9E;
+            --friend--color-2:#9E9E9E;
+            --friend--color-3:#9E9E9E;
+            --friend--color-4:#9E9E9E;
+            --friend--color-5:#9E9E9E;
+            --friend--color-6:#9E9E9E;
+            --friend--color-7:#9E9E9E;
+            --friend--color-8:#9E9E9E;
+
+            &:active,
+            &:visited{
+              --friend--color-1:#FB5453;
+              --friend--color-2:#6468F1;
+              --friend--color-3:#5283F0;
+              --friend--color-4:#00B2FE;
+              --friend--color-5:#66D020;
+              --friend--color-6:#9AD122;
+              --friend--color-7:#FFC71A;
+              --friend--color-8:#FF7612;
+            }
+          }
+
+          &> .weibo-icon{
+            --weibo-color-1:#9E9E9E;
+            --weibo-color-2:#9E9E9E;
+            --weibo-color-3:#9E9E9E;
+            --weibo-color-4:#9E9E9E;
+
+            &:hover {
+              --weibo-color-1:#E71F19;
+              --weibo-color-2:#F5AA15;
+              --weibo-color-3:#F5AA15;
+              --weibo-color-4:#040000;
+            }
           }
         }
 

@@ -164,7 +164,7 @@ export default {
 
         .like-icon,
         .comment-icon {
-          display: inline-block;
+          display: block;
           height: 2.65em;
           line-height: 3.2em;
 
@@ -172,6 +172,10 @@ export default {
             width: 1.25em;
             height: 1.25em;
             color: $accent-color;
+
+            &:hover{
+              color: $accent-hover-color;
+            }
           }
         }
 
@@ -182,9 +186,30 @@ export default {
           & > .icon {
             width: 1.25em;
             height: 1.25em;
+          }
+        }
+        .weibo-icon {
+          &>.icon{
+            --weibo-color-1:#9E9E9E;
+            --weibo-color-2:#9E9E9E;
+            --weibo-color-3:#9E9E9E;
+            --weibo-color-4:#9E9E9E;
 
-            use path#i-weibo {
-              fill: $accent-color;
+            &:hover {
+              --weibo-color-1:#E71F19;
+              --weibo-color-2:#F5AA15;
+              --weibo-color-3:#F5AA15;
+              --weibo-color-4:#040000;
+            }
+          }
+        }
+
+        .weixin-icon{
+          &>.icon{
+            --weixin-color: #9E9E9E;
+
+            &:hover{
+              --weixin-color: #24DB5A;
             }
           }
         }
@@ -228,6 +253,10 @@ export default {
       .like-icon {
         & > .icon {
           color: var(--green);
+
+          &:hover{
+            color: var(--green);
+          }
         }
       }
     }
