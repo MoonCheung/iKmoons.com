@@ -346,12 +346,21 @@ export default {
         /deep/ p {
           overflow: hidden;
           & > img {
-            display: block;
-            max-width: 96%;
-            position: relative;
-            margin: 0 auto;
-            border: 0.429rem solid #dcdfe6;
+            @extend .extendImg;
           }
+        }
+
+        /deep/ img {
+          @extend .extendImg;
+        }
+
+        .extendImg {
+          display: block;
+          max-width: 60%;
+          min-width: 80%;
+          position: relative;
+          margin: 0 auto;
+          border: 0.429rem solid #dcdfe6;
         }
 
         // 代码高亮显示
