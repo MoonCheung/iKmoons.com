@@ -4,7 +4,7 @@
  * @Github: https://github.com/MoonCheung
  * @Date: 2020-01-13 21:33:19
  * @LastEditors: MoonCheung
- * @LastEditTime: 2020-03-31 15:56:34
+ * @LastEditTime: 2020-04-04 15:52:45
  */
 
 export const state = () => ({
@@ -16,6 +16,8 @@ export const state = () => ({
   isWeChat: false,
   // 当前年份时间
   getYearTime: new Date(),
+  // blob path
+  blobPath: [],
 })
 
 export const getters = {
@@ -36,5 +38,26 @@ export const mutations = {
   // 设置是否微信移动端状态
   UPDATE_WECHAT_STATUS(state, action) {
     state.isWeChat = action;
+  },
+  // blob对象源路径
+  UPDATE_BLOB_PATH(state, blob){
+    state.blobPath.push(blob)
+  }
+}
+
+export const actions = {
+  // 源路径转换blob对象
+  sourcePathToBlob({ state,commit }, path){
+    return new Promise((resolve, reject) => {
+      this.$axios.request({
+        url: path,
+        responseType: 'blob'
+      }).then(res => {
+        commit('UPDATE_BLOB_PATH', res.data);
+        resolve(state.blobPath);
+      }).catch(err => {
+        reject(err);
+      });
+    })
   }
 }

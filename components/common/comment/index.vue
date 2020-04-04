@@ -305,7 +305,6 @@ export default {
   // },
   mounted () {
     this.initUserLikeCmt();
-    this.hiddenSourcePath();
   },
   methods: {
     // 初始化用户点赞评论历史
@@ -450,21 +449,6 @@ export default {
         return false;
       }
       this.$parent.$emit('likeArtComment', [elem, type]);
-    },
-    // 隐藏源路径方法
-    hiddenSourcePath(){
-      const player = document.querySelectorAll('#player');
-      player.forEach(elem => {
-        const src = elem.children[0].src
-        this.$axios.request({
-          url: src,
-          method: 'get',
-          responseType: 'blob'
-        }).then(res => {
-          const url = URL.createObjectURL(res.data);
-          elem.children[0].setAttribute('src', url);
-        })
-      })
     }
   }
 }

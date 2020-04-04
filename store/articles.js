@@ -4,7 +4,7 @@
  * @Github: https://github.com/MoonCheung
  * @Date: 2019-12-11 14:50:20
  * @LastEditors: MoonCheung
- * @LastEditTime: 2020-04-01 22:58:44
+ * @LastEditTime: 2020-04-04 15:06:57
  */
 
 export const state = () => {
@@ -54,8 +54,7 @@ export const getters = {
         count += item.reply_count;
       }
     })
-    const len = count + cmtCount;
-    return len;
+    return (count + cmtCount);
   }
 }
 

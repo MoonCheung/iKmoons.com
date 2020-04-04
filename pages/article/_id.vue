@@ -171,7 +171,21 @@ export default {
   },
   methods: {
     initPlayer () {
-      Array.from(document.querySelectorAll('#player')).map(p => new Plyr(p, plyrConfig));
+      const player = document.querySelectorAll('#player');
+      // 隐藏源路径方法
+      Array.from(player).map(elem => {
+        const plyr = new Plyr(elem, plyrConfig);
+        // 隐藏源路径方法
+        const src = elem.children[0].src
+        this.$store.dispatch('global/sourcePathToBlob', src).then(dataBlob => {
+          dataBlob.forEach(blob => {
+            const url = (URL || webkitURL).createObjectURL(blob);
+            elem.children[0].setAttribute('src', url);
+          })
+        }).catch(() => {
+          elem.children[0].setAttribute('src', src);
+        });
+      });
     },
     // 初始化用户点赞历史
     initUserLikeHistory () {
