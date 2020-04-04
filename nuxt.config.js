@@ -45,6 +45,9 @@ module.exports = {
       { hid: 'description', name: 'description', content: constant.meta.desc }
     ],
     link: [
+      { rel: 'dns-prefetch', href: '//api.ikmoons.com' },
+      { rel: 'dns-prefetch', href: '//cdn.ikmoons.com' },
+      { rel: 'dns-prefetch', href: '//static.ikmoons.com' },
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
@@ -171,11 +174,12 @@ module.exports = {
       splitChunks: {
         name: true,
         chunks: 'all',
-        minSize: 360000,
+        maxSize: 350000,
+        minSize: 250000,
         cacheGroups: {
           libs: {
             name: 'chunk-libs',
-            test: /highlight|markdown-it|particles|ua-parser-js|github-markdown-css|nativeshare|qrcode-generator|Plyr/,
+            test: /highlight|markdown-it|particles|ua-parser-js|github-markdown-css|plyr|nativeshare|qrcode-generator/,
             priority: 10,
             chunks: 'initial'
           },
