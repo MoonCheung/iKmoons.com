@@ -4,7 +4,7 @@
  * @Github: https://github.com/MoonCheung
  * @Date: 2019-12-10 17:15:03
  * @LastEditors: MoonCheung
- * @LastEditTime: 2020-03-24 20:30:53
+ * @LastEditTime: 2020-04-05 01:28:44
  */
 
 export default function({ $axios, redirect }) {
@@ -14,7 +14,7 @@ export default function({ $axios, redirect }) {
     // config.headers["Content-Type"] = "application/json";
     // config.headers["Access-Control-Allow-Origin"] = "*";
     // 请求时间超过会被中止
-    config.timeout = 5000
+    // config.timeout = 5000
   })
 
   // 向服务器请求得到错误信息

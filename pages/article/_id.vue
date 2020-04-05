@@ -177,11 +177,9 @@ export default {
         const plyr = new Plyr(elem, plyrConfig);
         // 隐藏源路径方法
         const src = elem.children[0].src
-        this.$store.dispatch('global/sourcePathToBlob', src).then(dataBlob => {
-          dataBlob.forEach(blob => {
-            const url = (URL || webkitURL).createObjectURL(blob);
-            elem.children[0].setAttribute('src', url);
-          })
+        fetch(src).then(res => res.blob()).then(blob => {
+          const url = (URL || webkitURL).createObjectURL(blob);
+          elem.children[0].setAttribute('src', url);
         }).catch(() => {
           elem.children[0].setAttribute('src', src);
         });
