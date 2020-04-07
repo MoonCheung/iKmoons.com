@@ -15,7 +15,9 @@
 
 ### 更新记录: [CHANGELOG.md](./CHANGELOG.md)
 
-## 截图(暂定)
+## 截图
+
+![博客](https://static.ikmoons.com/blogs/image/ikmoons_com.png)
 
 ## 执行命令
 
