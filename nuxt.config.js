@@ -101,6 +101,7 @@ module.exports = {
    */
   plugins: [
     { src: '@/plugins/axios' },
+    { src: '@/plugins/lozad' },
     { src: '@/plugins/player' },
     { src: '@/plugins/markdown' },
     { src: '@/plugins/highlight' },
@@ -179,7 +180,7 @@ module.exports = {
         cacheGroups: {
           libs: {
             name: 'chunk-libs',
-            test: /highlight|markdown-it|particles|ua-parser-js|github-markdown-css|plyr|nativeshare|qrcode-generator/,
+            test: /highlight|markdown-it|particles|ua-parser-js|github-markdown-css|plyr|nativeshare|qrcode-generator|lozad/,
             priority: 10,
             chunks: 'initial'
           },

@@ -4,7 +4,7 @@
  * @Github: https://github.com/MoonCheung
  * @Date: 2020-01-17 23:05:10
  * @LastEditors: MoonCheung
- * @LastEditTime: 2020-03-27 11:23:58
+ * @LastEditTime: 2020-04-10 01:21:07
  */
 
 export const mixin = {
@@ -19,6 +19,7 @@ export const mixin = {
       return Number.isNaN(len) ? 0 : len;
     }
   },
+  // 计算属性且有缓存
   computed: {
     originState() {
       const mapOrigin = new Map([
@@ -33,5 +34,22 @@ export const mixin = {
         }
       }
     },
+  },
+  // 实例被挂载后调用
+  mounted () {
+    this.lazyLoadingImg();
+  },
+  // 该方法被混入实例
+  methods: {
+    // 懒加载图片方法
+    lazyLoadingImg(){
+      const el = document.querySelectorAll('img');
+      const observer = lozad(el);
+      observer.observe();
+    }
+  },
+  // 实例销毁之后调用
+  destroyed () {
+    this.lazyLoadingImg();
   }
 }

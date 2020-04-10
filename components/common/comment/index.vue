@@ -235,7 +235,7 @@
 <script>
 import { mapState } from 'vuex';
 import CommentUa from './ua';
-import { DateBefore } from '@/utils/index';
+import { mixin, DateBefore } from '@/utils/index';
 import { localLikeHistory } from '@/service/storage';
 
 export default {
@@ -280,6 +280,7 @@ export default {
       }
     }
   },
+  mixins: [mixin],
   computed: {
     ...mapState({
       isMobile: state => state.global.isMobile

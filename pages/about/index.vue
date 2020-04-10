@@ -95,7 +95,8 @@
 
 <script>
 import { mapState } from 'vuex';
-import { constant } from '@/config/app.config'
+import { constant } from '@/config/app.config';
+import { mixin } from '@/utils/index';
 
 export default {
   name: 'About',
@@ -109,6 +110,7 @@ export default {
       title: "关于"
     }
   },
+  mixins: [mixin],
   computed: {
     ...mapState({
       isMobile: state => state.global.isMobile
