@@ -10,8 +10,9 @@
 
 ## 其他相关项目
 
-- Vue Admin: [vue-backstage](https://github.com/MoonCheung/vue-backstage) based on vue background construction development
-- Node server: [node-server](https://github.com/MoonCheung/node-server) is developed based on the node build
+- Blog admin: [iKmoons-admin](https://github.com/MoonCheung/iKmooms-admin) Build and develop based on vue + elementUI
+- Blog applet: [blog-applet](https://github.com/MoonCheung/blog-applet) Build and develop based on mpvue + Vant + ColorUI
+- admin server: [node-server](https://github.com/MoonCheung/node-server) Build development based on koa node
 
 ### 更新记录: [CHANGELOG.md](./CHANGELOG.md)
 
