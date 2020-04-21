@@ -106,7 +106,8 @@ module.exports = {
     { src: '@/plugins/markdown' },
     { src: '@/plugins/highlight' },
     { src: '@/plugins/particles', ssr: false },
-    { src: '@/plugins/nativeShare', ssr: false }
+    { src: '@/plugins/nativeShare', ssr: false },
+    { src: '@/plugins/baidu-seo-push', ssr: false }
   ],
   /*
    ** Nuxt.js dev-modules
