@@ -173,7 +173,7 @@ export default {
             height: 1.25em;
             color: $accent-color;
 
-            &:hover{
+            &:hover {
               color: $accent-hover-color;
             }
           }
@@ -189,27 +189,29 @@ export default {
           }
         }
         .weibo-icon {
-          &>.icon{
-            --weibo-color-1:#9E9E9E;
-            --weibo-color-2:#9E9E9E;
-            --weibo-color-3:#9E9E9E;
-            --weibo-color-4:#9E9E9E;
+          & > .icon {
+            --weibo-color-1: #9e9e9e;
+            --weibo-color-2: #9e9e9e;
+            --weibo-color-3: #9e9e9e;
+            --weibo-color-4: #9e9e9e;
 
             &:hover {
-              --weibo-color-1:#E71F19;
-              --weibo-color-2:#F5AA15;
-              --weibo-color-3:#F5AA15;
-              --weibo-color-4:#040000;
+              --weibo-color-1: #e71f19;
+              --weibo-color-2: #f5aa15;
+              --weibo-color-3: #f5aa15;
+              --weibo-color-4: #040000;
             }
           }
         }
 
-        .weixin-icon{
-          &>.icon{
-            --weixin-color: #9E9E9E;
+        .weixin-icon {
+          & > .icon {
+            font-size: 2.142em;
+            padding: 0.714rem;
+            --weixin-color: #9e9e9e;
 
-            &:hover{
-              --weixin-color: #24DB5A;
+            &:hover {
+              --weixin-color: #24db5a;
             }
           }
         }
@@ -254,7 +256,7 @@ export default {
         & > .icon {
           color: var(--green);
 
-          &:hover{
+          &:hover {
             color: var(--green);
           }
         }
