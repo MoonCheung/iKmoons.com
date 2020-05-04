@@ -19,7 +19,7 @@
                 <li class="child-two"
                     v-for="twoItem in oneItem.secondDate"
                     :key="twoItem.id">
-                  <h4>{{twoItem.month}}月</h4>
+                  <h3>{{twoItem.month}}月</h3>
                   <ul>
                     <li class="child-three"
                         v-for="threeItem in twoItem.items"
@@ -28,7 +28,8 @@
                       <span class="three-origin"
                             :style="originState(threeItem.origin)">{{threeItem.origin}}</span>
                       <nuxt-link class="three-link"
-                                 :to="`/article/${threeItem.id}`">{{threeItem.title}}</nuxt-link>
+                                 :to="`/article/${threeItem.id}`"
+                                 :title="threeItem.title">{{threeItem.title}}</nuxt-link>
                     </li>
                   </ul>
                 </li>
@@ -53,8 +54,12 @@ export default {
     ])
   },
   head () {
+    const { $route } = this;
     return {
-      title: "归档"
+      title: "归档",
+      link: [
+        { hid: 'canonical', rel: 'canonical', href: `//ikmoons.com${$route.path}` }
+      ]
     }
   },
   mixins: [mixin],
@@ -113,7 +118,7 @@ export default {
         }
 
         h2,
-        h4 {
+        h3 {
           color: #363636;
           font-weight: $weight-semibold;
           line-height: 1.125rem;
@@ -124,7 +129,7 @@ export default {
           margin-bottom: 0.5714rem;
         }
 
-        h4 {
+        h3 {
           font-size: 1.25rem;
           margin-bottom: 0.8rem;
         }

@@ -25,13 +25,14 @@
             <div v-if="!isMobile"
                  class="media-left">
               <figure class="image">
-                <img :src="item.banner == ''? 'https://dummyimage.com/220x140/7a657a/fff':item.banner"
+                <img :src="item.banner"
                      alt="Placeholder image">
               </figure>
             </div>
             <div class="media-content">
               <nuxt-link class="media-link"
                          :to="`/article/${item.id}`"
+                         :title="item.title"
                          no-prefetch>
                 <h2 class="link-head">{{item.title}}</h2>
                 <div class="link-content">{{item.desc}}</div>
@@ -106,7 +107,10 @@ export default {
   head () {
     const { $route } = this;
     return {
-      title: $route.params.keyword
+      title: $route.params.keyword,
+      link: [
+        { hid: 'canonical', rel: 'canonical', href: `//ikmoons.com${$route.path}` }
+      ]
     }
   },
   mixins: [mixin],

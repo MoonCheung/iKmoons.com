@@ -106,8 +106,12 @@ export default {
     }
   },
   head () {
+    const { $route } = this;
     return {
-      title: "关于"
+      title: "关于",
+      link: [
+        { hid: 'canonical', rel: 'canonical', href: `//ikmoons.com${$route.path}` }
+      ]
     }
   },
   mixins: [mixin],

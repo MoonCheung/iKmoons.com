@@ -5,9 +5,7 @@
       <div class="navbar-brand">
         <nuxt-link to="/"
                    class="navbar-item">
-          <img class="logo"
-               src="https://static.ikmoons.com/logo.svg"
-               alt="logo" />
+          <h1 class="logo">{{logoName}}</h1>
         </nuxt-link>
       </div>
       <div class="navbar-menu">
@@ -34,7 +32,8 @@ export default {
   },
   data () {
     return {
-      menus: constant.menus
+      menus: constant.menus,
+      logoName: constant.logos
     }
   }
 }
@@ -54,6 +53,12 @@ export default {
       display: inline-block;
       & > .logo {
         width: 120px;
+        font-size: 1.3em;
+        color: var(--white);
+        text-indent: -9999px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background: url("https://static.ikmoons.com/logo.svg");
       }
     }
   }

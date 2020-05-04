@@ -4,10 +4,11 @@
  * @Github: https://github.com/MoonCheung
  * @Date: 2020-01-17 13:49:31
  * @LastEditors: MoonCheung
- * @LastEditTime: 2020-03-30 15:28:06
+ * @LastEditTime: 2020-05-04 21:36:51
  */
 
 export const constant = {
+  logos: 'iKmoons - 个人博客会随时撰写技术文章以及个人生活，分享他人',
   menus: [
     { route: '/', name: '首页' },
     { route: '/archive', name: '归档' },
@@ -39,8 +40,8 @@ export const constant = {
   meta: {
     title: 'ikmoons.com',
     site: 'ikmoons.com',
-    keys: 'iKmoons,MoonCheung,Blog,前端开发者,Javascript技术',
-    desc: '人生路漫漫，何曾有坦途',
+    keys: 'iKmoons,MoonCheung,Blog,前端开发者,自由开发者,Javascript技术',
+    desc: '人生路漫漫，何曾有坦途 - 保持学习态度重要,技术随着时间日异月新,不能落后于前沿技术,没有捷径之路,只有靠自己不断努力学,突破自我',
     email: 'salvador23@163.com'
   }
 }

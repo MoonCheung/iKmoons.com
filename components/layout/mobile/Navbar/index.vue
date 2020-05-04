@@ -22,9 +22,7 @@
       <div class="nav-brand">
         <nuxt-link to="/"
                    class="navbar-item">
-          <img class="logo"
-               src="https://static.ikmoons.com/logo.svg"
-               alt="logo">
+          <h1 class="logo">{{logoName}}</h1>
         </nuxt-link>
       </div>
       <!-- 搜索图标 -->
@@ -57,7 +55,8 @@ export default {
     return {
       isActive: false,
       isShowSearch: false,
-      menus: constant.menus
+      menus: constant.menus,
+      logoName: constant.logos
     }
   },
   created () {
@@ -202,6 +201,12 @@ export default {
 
           & > .logo {
             width: 120px;
+            font-size: 1.3em;
+            color: var(--white);
+            text-indent: -9999px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background: url("https://static.ikmoons.com/logo.svg");
           }
         }
       }

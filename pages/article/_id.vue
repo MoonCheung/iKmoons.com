@@ -9,7 +9,7 @@
       <span class="art-origin"
             :style="originState(artDeil.origin)">{{artDeil.origin}}</span>
       <div class="art-head">
-        <h1 class="head-title">{{artDeil.title}}</h1>
+        <h2 class="head-title">{{artDeil.title}}</h2>
         <div class="head-level">
           <i class="level-icon">
             <svg-icon name="catg-small" />
@@ -23,9 +23,8 @@
       <div ref="artBody"
            class="art-body">
         <img class="body-img"
-             :src="artDeil.banner == ''? 'https://dummyimage.com/740x400/68a382/fff':artDeil.banner"
+             :src="artDeil.banner"
              art="article banner" />
-        <!-- markdown-it解析 -->
         <div class="markdown-body"
              v-html="$md.render(artDeil.content)"></div>
       </div>
@@ -35,8 +34,8 @@
           <nuxt-link class="two-tag"
                      :to="`/tags/${item}`"
                      v-for="item in artDeil.tag"
-                     :key="item.id">{{item}}
-          </nuxt-link>
+                     :key="item.id"
+                     :title="item">{{item}}</nuxt-link>
         </div>
         <div class="foot-three">版权声明:
           <span>自由转载-署名-非商用&nbsp;&nbsp;|&nbsp;&nbsp;</span>
@@ -92,7 +91,7 @@ import VLike from '@/components/widget/like';
 import VComment from '@/components/common/comment';
 import { localLikeHistory } from '@/service/storage';
 import apiMap from '@/config/api.config';
-import { plyrConfig } from '@/config/app.config';
+import { plyrConfig, constant } from '@/config/app.config';
 
 export default {
   name: 'ArtDeil',
@@ -106,12 +105,16 @@ export default {
     VLike
   },
   head () {
-    const { artDeil } = this;
+    const { artDeil, $route } = this;
+    const keys = artDeil.tag.join(',');
     return {
       title: artDeil.title || 'Article Not Found',
       meta: [
-        { hid: 'keywords', name: 'keywords', content: artDeil.title },
-        { hid: 'description', name: 'description', content: artDeil.desc }
+        { hid: 'keywords', name: 'keywords', content: keys || constant.meta.keys },
+        { hid: 'description', name: 'description', content: artDeil.desc || constant.meta.desc }
+      ],
+      link: [
+        { hid: 'canonical', rel: 'canonical', href: `//ikmoons.com${$route.path}` }
       ]
     }
   },
@@ -315,8 +318,11 @@ export default {
 
     .art-head {
       .head-title {
+        font-size: 2em;
+        margin: 0.67em 0;
         text-align: center;
         color: $primary-text-color;
+        font-weight: $weight-semibold;
       }
       .head-level {
         display: flex;
