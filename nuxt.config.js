@@ -99,14 +99,14 @@ module.exports = {
    ** Plugins to load before mounting the App
    */
   plugins: [
-    { src: '@/plugins/axios' },
-    { src: '@/plugins/lozad' },
-    { src: '@/plugins/player' },
-    { src: '@/plugins/markdown' },
-    { src: '@/plugins/highlight' },
-    { src: '@/plugins/particles', ssr: false },
-    { src: '@/plugins/nativeShare', ssr: false },
-    { src: '@/plugins/baidu-seo-push', ssr: false }
+    { src: '@/plugins/axios', },
+    { src: '@/plugins/lozad', },
+    { src: '@/plugins/player', },
+    { src: '@/plugins/markdown', },
+    { src: '@/plugins/highlight', },
+    { src: '@/plugins/particles', mode: 'client' },
+    { src: '@/plugins/nativeShare', mode: 'client' },
+    { src: '@/plugins/baidu-seo-push', mode: 'client' }
   ],
   /*
    ** Nuxt.js dev-modules
