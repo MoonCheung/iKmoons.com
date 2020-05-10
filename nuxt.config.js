@@ -106,7 +106,9 @@ module.exports = {
     { src: '@/plugins/highlight', },
     { src: '@/plugins/particles', mode: 'client' },
     { src: '@/plugins/nativeShare', mode: 'client' },
-    { src: '@/plugins/baidu-seo-push', mode: 'client' }
+    { src: '@/plugins/google-gtag', mode: 'client' },
+    { src: '@/plugins/baidu-seo-push', mode: 'client' },
+    { src: '@/plugins/baidu-statistic', mode: 'client' }
   ],
   /*
    ** Nuxt.js dev-modules
@@ -180,7 +182,7 @@ module.exports = {
         cacheGroups: {
           libs: {
             name: 'chunk-libs',
-            test: /highlight|markdown-it|particles|ua-parser-js|github-markdown-css|plyr|nativeshare|qrcode-generator|lozad/,
+            test: /highlight|markdown-it|particles|ua-parser-js|github-markdown-css|plyr|nativeshare|qrcode-generator|lozad|vue-gtag/,
             priority: 10,
             chunks: 'initial'
           },

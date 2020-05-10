@@ -47,7 +47,8 @@
     "particles.js": "^2.0.0",
     "plyr": "^3.5.10",
     "qrcode-generator": "^1.4.4",
-    "ua-parser-js": "^0.7.21"
+    "ua-parser-js": "^0.7.21",
+    "vue-gtag": "^1.6.2"
   },
   "devDependencies": {
     "@babel/runtime-corejs3": "^7.9.2",
