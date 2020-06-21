@@ -9,6 +9,9 @@
 - 添加图片懒加载
 - 百度 SEO 推送
 - SEO 优化
+- Google Adsense
+- Googlo Gtag
+- 百度统计
 
 ## v1.1.2
 
