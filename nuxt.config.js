@@ -7,7 +7,7 @@ module.exports = {
   mode: 'universal',
   server: {
     host: '127.0.0.1',
-    port: 3031,
+    port: 3031
   },
   /**
    * Dev property configuration
@@ -32,13 +32,16 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1,user-scalable=no' },
-      { name: "MobileOptimized", content: "320" },
-      { name: "HandheldFriendly", content: "true" },
-      { name: 'apple-mobile-web-app-title', content: `${constant.meta.title} | ${constant.meta.desc}` },
+      { name: 'MobileOptimized', content: '320' },
+      { name: 'HandheldFriendly', content: 'true' },
+      {
+        name: 'apple-mobile-web-app-title',
+        content: `${constant.meta.title} | ${constant.meta.desc}`
+      },
       { name: 'apple-mobile-web-app-capable', content: 'yes' },
       { name: 'apple-mobile-web-app-status-bar-style', content: 'white' },
       { name: 'author', content: constant.meta.email },
-      { name: 'X-UA-Compatible', content: "IE=edge,chrome=1" },
+      { name: 'X-UA-Compatible', content: 'IE=edge,chrome=1' },
       { hid: 'keywords', name: 'keywords', content: constant.meta.keys },
       { hid: 'description', name: 'description', content: constant.meta.desc }
     ],
@@ -83,7 +86,7 @@ module.exports = {
    * Preprocessor configuration
    */
   styleResources: {
-    scss: './assets/styles/init.scss',
+    scss: './assets/styles/init.scss'
   },
   /**
    * svg configuration
@@ -93,17 +96,18 @@ module.exports = {
     output: '~/assets/sprite/gen',
     defaultSprite: 'icons',
     elementClass: 'icon',
-    publicPath: '/_nuxt/',
+    publicPath: '/_nuxt/'
   },
   /*
    ** Plugins to load before mounting the App
    */
   plugins: [
-    { src: '@/plugins/axios', },
-    { src: '@/plugins/lozad', },
-    { src: '@/plugins/player', },
-    { src: '@/plugins/markdown', },
-    { src: '@/plugins/highlight', },
+    { src: '@/plugins/axios' },
+    { src: '@/plugins/lozad' },
+    { src: '@/plugins/player' },
+    { src: '@/plugins/markdown' },
+    { src: '@/plugins/highlight' },
+    { src: '@/plugins/adsense', mode: 'client' },
     { src: '@/plugins/particles', mode: 'client' },
     { src: '@/plugins/nativeShare', mode: 'client' },
     { src: '@/plugins/google-gtag', mode: 'client' },
@@ -133,14 +137,14 @@ module.exports = {
    * Touch Toast in response
    */
   toast: {
-    position: "top-right",
+    position: 'top-right',
     duration: 3000,
     action: {
       text: '关闭',
       onClick: (e, toastObject) => {
         toastObject.goAway(0);
       }
-    },
+    }
   },
   /*
    ** Axios module configuration
@@ -164,7 +168,7 @@ module.exports = {
               corejs: { version: 3 }
             }
           ]
-        ]
+        ];
       }
     },
     analyza: {
@@ -182,7 +186,7 @@ module.exports = {
         cacheGroups: {
           libs: {
             name: 'chunk-libs',
-            test: /highlight|markdown-it|particles|ua-parser-js|github-markdown-css|plyr|nativeshare|qrcode-generator|lozad|vue-gtag/,
+            test: /highlight|markdown-it|particles|ua-parser-js|github-markdown-css|plyr|nativeshare|qrcode-generator|lozad/,
             priority: 10,
             chunks: 'initial'
           },
@@ -196,9 +200,9 @@ module.exports = {
             reuseExistingChunk: true
           }
         }
-      },
+      }
     },
     // extend webpack config
     extend(config, ctx) {}
   }
-}
+};
