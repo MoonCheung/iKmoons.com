@@ -2,41 +2,38 @@
   <nav class="mobile-nav">
     <div class="container">
       <!-- 汉堡包菜单 -->
-      <div class="nav-hamburger"
-           @click.stop="toggleMenus">
-        <div class="hamburger-menu"
-             ref="burger">
+      <div class="nav-hamburger" @click.stop="toggleMenus">
+        <div class="hamburger-menu" ref="burger">
           <div class="bar top"></div>
           <div class="bar middle"></div>
           <div class="bar bottom"></div>
         </div>
-        <div class="nav-menu"
-             v-show="isActive">
-          <nuxt-link class="navbar-link"
-                     v-for="(item,index) in menus"
-                     :key="index"
-                     :to="item.route">{{item.name}}</nuxt-link>
+        <div class="nav-menu" v-show="isActive">
+          <nuxt-link
+            class="navbar-link"
+            v-for="(item, index) in menus"
+            :key="index"
+            :to="item.route"
+          >
+            {{ item.name }}
+          </nuxt-link>
         </div>
       </div>
       <!-- 导航品牌图标 -->
       <div class="nav-brand">
-        <nuxt-link to="/"
-                   class="navbar-item">
-          <h1 class="logo">{{logoName}}</h1>
+        <nuxt-link to="/" class="navbar-item">
+          <h1 class="logo">{{ logoName }}</h1>
         </nuxt-link>
       </div>
       <!-- 搜索图标 -->
-      <div class="nav-search"
-           @click.stop="onShowSearch">
+      <div class="nav-search" @click.stop="onShowSearch">
         <i class="icon-search">
           <svg-icon name="search" />
         </i>
       </div>
       <!-- 搜索栏显示与否 -->
-      <div class="fixedSearch"
-           v-show="isShowSearch">
-        <v-search ref="parentSearch"
-                  :isSearch="false"></v-search>
+      <div class="fixedSearch" v-show="isShowSearch">
+        <v-search ref="parentSearch" :isSearch="false"></v-search>
       </div>
     </div>
   </nav>
@@ -51,30 +48,30 @@ export default {
   components: {
     VSearch
   },
-  data () {
+  data() {
     return {
       isActive: false,
       isShowSearch: false,
       menus: constant.menus,
       logoName: constant.logos
-    }
+    };
   },
-  created () {
-    this.$on('onCloseSearch', function () {
+  created() {
+    this.$on('onCloseSearch', function() {
       this.isShowSearch = false;
-    })
-    this.$on('onToggleSearch', function (type, searchMap) {
+    });
+    this.$on('onToggleSearch', function(type, searchMap) {
       if (type === 'blur') {
         this.$nextTick(() => {
           searchMap.blur();
           this.isShowSearch = false;
         });
       }
-    })
+    });
   },
   methods: {
     // 显示搜索栏
-    onShowSearch () {
+    onShowSearch() {
       this.isShowSearch = true;
       const burger = this.$refs.burger.children;
       const searchMap = this.$refs.parentSearch.$refs.searchInput;
@@ -83,13 +80,13 @@ export default {
         burger[0].style.transform = `rotate(${0}deg)`;
         burger[1].style.opacity = 1;
         burger[2].style.transform = `rotate(${0}deg)`;
-      };
+      }
       this.$nextTick(() => {
         searchMap.focus();
-      })
+      });
     },
     // 菜单显示与否
-    toggleMenus () {
+    toggleMenus() {
       const burger = this.$refs.burger.children;
       if (!this.isActive) {
         this.isActive = true;
@@ -105,11 +102,11 @@ export default {
     }
   },
   // 实例销毁后调用
-  destroyed () {
+  destroyed() {
     this.toggleMenus();
     this.onShowSearch();
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -131,11 +128,11 @@ export default {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1;
+    z-index: 2;
 
     .nav {
       &-hamburger {
-        flex: 0 0 2em;
+        flex: 0 1 2em;
         align-self: center;
         position: relative;
 
@@ -172,8 +169,7 @@ export default {
           flex-flow: column wrap;
           align-content: center;
           justify-content: flex-start;
-          padding: 0 $spacing-evenSize * 4 $spacing-evenSize * 4
-            $spacing-evenSize * 4;
+          padding: 0 $spacing-evenSize * 4 $spacing-evenSize * 4 $spacing-evenSize * 4;
 
           .navbar-link {
             display: inline-block;
@@ -183,14 +179,16 @@ export default {
           }
 
           .navbar-active {
-            background-color: #eeeeee;
+            background-color: #eee;
             border-color: transparent;
           }
         }
       }
 
       &-brand {
-        flex: 1 0 0;
+        flex: 1 1 0;
+        height: 100%;
+        max-height: 100%;
         align-self: center;
         text-align: center;
 
@@ -202,17 +200,18 @@ export default {
           & > .logo {
             width: 120px;
             font-size: 1.3em;
+            margin: calc(0.65em - 1px) 0;
             color: var(--white);
             text-indent: -9999px;
             background-size: contain;
             background-repeat: no-repeat;
-            background: url("https://static.ikmoons.com/logo.svg");
+            background: url('https://static.ikmoons.com/logo.svg');
           }
         }
       }
 
       &-search {
-        flex: 0 0 2em;
+        flex: 0 1 2em;
         display: inline-flex;
         padding-left: calc(0.5em - 1px);
         padding-top: calc(0.25em - 1px);
