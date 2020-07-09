@@ -3,8 +3,6 @@
  * @Author: MoonCheung
  * @Github: https://github.com/MoonCheung
  * @Date: 2019-12-11 14:50:20
- * @LastEditors: MoonCheung
- * @LastEditTime: 2020-05-05 14:15:55
  */
 
 export const state = () => {
@@ -12,7 +10,7 @@ export const state = () => {
     list: {
       paging: 0,
       artList: [],
-      noMore: "",
+      noMore: '',
       fetching: false
     },
     deil: {
@@ -28,23 +26,23 @@ export const state = () => {
       count: 0,
       fetching: false
     }
-  }
-}
+  };
+};
 
 export const getters = {
-  artList: (state) => {
+  artList: state => {
     return state.list.artList;
   },
-  loadMore: (state) => {
+  loadMore: state => {
     return state.list.fetching;
   },
-  noMore: (state) => {
+  noMore: state => {
     return state.list.noMore;
   },
-  artDeil: (state) => {
+  artDeil: state => {
     return state.deil.artDeil;
   },
-  artDeilLen: (state) => {
+  artDeilLen: state => {
     const cmtCount = state.deil.artDeil.cmt_count;
     let count = 0;
     state.deil.artDeil.comments.map(item => {
@@ -53,17 +51,17 @@ export const getters = {
       } else {
         count += item.reply_count;
       }
-    })
-    return (count + cmtCount);
+    });
+    return count + cmtCount;
   }
-}
+};
 
 export const mutations = {
   // 获取文章列表API
   POST_ART_LIST(state, data) {
     if (data.length > 0) {
       state.list.paging = 0;
-      state.list.noMore = "";
+      state.list.noMore = '';
       state.list.artList = data;
     }
   },
@@ -75,15 +73,15 @@ export const mutations = {
   POST_MORE_ART(state, data) {
     if (data.length <= 4) {
       state.list.paging = 0;
-      state.list.noMore = "没有更多了..."
+      state.list.noMore = '没有更多了...';
       state.list.artList.push(...data);
     } else {
-      state.list.noMore = "";
+      state.list.noMore = '';
       state.list.artList.push(...data);
     }
   },
   UPDATE_MORE_ART(state, actions) {
-    const { paging, fetching } = actions
+    const { paging, fetching } = actions;
     if (fetching) {
       state.list.paging = paging;
       state.list.fetching = fetching;
@@ -108,11 +106,11 @@ export const mutations = {
         ++item.reply_count;
         item.replys.push(data);
       }
-    })
+    });
   },
   // 更新点赞文章详情
   ADD_LIKE_ART_PAGE(state, { like }) {
-    state.deil.artDeil.like = like
+    state.deil.artDeil.like = like;
   },
   // 更新点赞评价
   ADD_LIKE_COMMENT(state, data) {
@@ -120,7 +118,7 @@ export const mutations = {
       if (elem.id === data.id) {
         elem.like = data.like;
       }
-    })
+    });
   },
   // 更新点赞被评价回复
   ADD_LIKE_REPLY(state, data) {
@@ -130,9 +128,9 @@ export const mutations = {
           if (subElem.id === data.id) {
             subElem.like = data.like;
           }
-        })
+        });
       }
-    })
+    });
   },
   UPDATE_ART_DEIL(state, actions) {
     state.deil.fetching = actions;
@@ -154,7 +152,7 @@ export const mutations = {
   UPDATE_ART_ARCH(state, actions) {
     state.arch.fetching = actions;
   }
-}
+};
 
 export const actions = {
   // 获取文章列表API
@@ -178,11 +176,11 @@ export const actions = {
       const list = {
         fetching: true,
         paging: state.list.paging + 1
-      }
+      };
       commit('UPDATE_MORE_ART', list);
       const param = {
         page: state.list.paging
-      }
+      };
       await this.$axios.$post('/art/fetchallart', param).then(data => {
         if (data.code === 1) {
           commit('POST_MORE_ART', data.result);
@@ -200,7 +198,7 @@ export const actions = {
       commit('UPDATE_ART_DEIL', true);
       const param = {
         id: query.id
-      }
+      };
       await this.$axios.$post('/art/fetchartdeil', param).then(data => {
         if (data.code === 1) {
           commit('GET_ART_DEIL', data.result);
@@ -287,7 +285,7 @@ export const actions = {
             commit('UPDATE_ART_DEIL', false);
             resolve(data.result);
           }
-        })
+        });
       });
     } catch (err) {
       commit('ADD_LIKE_ART_PAGE', null);
@@ -304,9 +302,9 @@ export const actions = {
             if (data.code === 1) {
               commit('ADD_LIKE_COMMENT', data.result);
               commit('UPDATE_ART_DEIL', false);
-              resolve(data.result)
+              resolve(data.result);
             }
-          })
+          });
         });
       } else if (param.type === 'reply') {
         commit('UPDATE_ART_DEIL', true);
@@ -315,9 +313,9 @@ export const actions = {
             if (data.code === 1) {
               commit('ADD_LIKE_REPLY', data.result);
               commit('UPDATE_ART_DEIL', false);
-              resolve(data.result)
+              resolve(data.result);
             }
-          })
+          });
         });
       }
     } catch (err) {
@@ -325,4 +323,4 @@ export const actions = {
       commit('ADD_LIKE_REPLY', null);
     }
   }
-}
+};

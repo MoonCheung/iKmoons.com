@@ -3,8 +3,6 @@
  * @Author: MoonCheung
  * @Github: https://github.com/MoonCheung
  * @Date: 2019-12-18 22:53:11
- * @LastEditors: MoonCheung
- * @LastEditTime: 2020-03-22 16:56:42
  */
 
 export const state = () => {
@@ -22,26 +20,26 @@ export const state = () => {
     appt: {
       paging: 0,
       catgList: [],
-      noMore: "",
+      noMore: '',
       fetching: false
     }
-  }
-}
+  };
+};
 
 export const getters = {
-  catgList: (state) => {
+  catgList: state => {
     return state.list.catgList;
   },
-  apptCatgList: (state) => {
-    return state.appt.catgList
+  apptCatgList: state => {
+    return state.appt.catgList;
   },
-  loadMore: (state) => {
+  loadMore: state => {
     return state.appt.fetching;
   },
-  noMore: (state) => {
+  noMore: state => {
     return state.appt.noMore;
   }
-}
+};
 
 export const mutations = {
   // 获取所有分类列表
@@ -54,7 +52,7 @@ export const mutations = {
       keys[name] = IconKey[index][name];
       keys[link] = IconKey[index][link];
       Object.assign(key, keys);
-    })
+    });
     state.list.catgList = data;
   },
   UPDATE_CATG_DATA(state, actions) {
@@ -64,10 +62,10 @@ export const mutations = {
   // 获取指定分类文章列表
   POST_APPT_CATG(state, data) {
     if (data.length <= 4) {
-      state.appt.noMore = "没有更多了...";
+      state.appt.noMore = '没有更多了...';
       state.appt.catgList = data;
     } else {
-      state.appt.noMore = "";
+      state.appt.noMore = '';
       state.appt.catgList = data;
     }
   },
@@ -80,7 +78,7 @@ export const mutations = {
     if (data.length <= 4) {
       state.appt.paging = 0;
       state.appt.catgList.push(...data);
-      state.appt.noMore = "没有更多了...";
+      state.appt.noMore = '没有更多了...';
     } else {
       state.appt.catgList.push(...data);
     }
@@ -94,7 +92,7 @@ export const mutations = {
       state.appt.fetching = fetching;
     }
   }
-}
+};
 
 export const actions = {
   // 获取所有分类列表
@@ -115,11 +113,11 @@ export const actions = {
   // 获取指定分类文章列表
   async fetchApptCatg({ commit }, params) {
     try {
-      commit('UPDATE_APPT_CATG', true)
+      commit('UPDATE_APPT_CATG', true);
       const param = {
         catg: params.name,
         page: 0
-      }
+      };
       await this.$axios.$post('/catg/fetchapptcatg', param).then(data => {
         if (data.code === 1) {
           commit('POST_APPT_CATG', data.result);
@@ -137,12 +135,12 @@ export const actions = {
       const isMore = {
         fetching: true,
         page: state.appt.paging + 1
-      }
+      };
       commit('UPDATE_MORE_CATG', isMore);
       const param = {
         catg: params.name,
         page: state.appt.paging
-      }
+      };
       await this.$axios.$post('/catg/fetchapptcatg', param).then(data => {
         if (data.code === 1) {
           commit('POST_MORE_CATG', data.result);
@@ -153,4 +151,4 @@ export const actions = {
       commit('POST_MORE_CATG', null);
     }
   }
-}
+};

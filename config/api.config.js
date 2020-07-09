@@ -3,8 +3,6 @@
  * @Author: MoonCheung
  * @Github: https://github.com/MoonCheung
  * @Date: 2019-12-09 22:23:09
- * @LastEditors: MoonCheung
- * @LastEditTime: 2020-03-26 22:29:50
  */
 
 import { NODE_ENV } from './env.config';
@@ -22,6 +20,6 @@ const apiMap = {
     CDN: 'https://cdn.ikmoons.com',
     BASE_URL: 'https://api.ikmoons.com'
   }
-}
+};
 
 export default apiMap[NODE_ENV];

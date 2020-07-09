@@ -3,8 +3,6 @@
  * @Author: MoonCheung
  * @Github: https://github.com/MoonCheung
  * @Date: 2019-12-16 17:34:50
- * @LastEditors: MoonCheung
- * @LastEditTime: 2020-03-31 15:56:46
  */
 
 import { isServer } from '@/config/env.config';
@@ -30,4 +28,4 @@ export const actions = {
     );
     return Promise.all(initArray);
   }
-}
+};

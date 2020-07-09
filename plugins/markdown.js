@@ -3,8 +3,6 @@
  * @Author: MoonCheung
  * @Github: https://github.com/MoonCheung
  * @Date: 2019-12-28 00:46:47
- * @LastEditors: MoonCheung
- * @LastEditTime: 2020-03-22 17:44:41
  */
 
 import Vue from 'vue';
@@ -34,17 +32,18 @@ const config = {
   highlight: function(str, lang) {
     if (lang && hljs.getLanguage(lang)) {
       try {
-        return '<pre class="hljs"><code>' +
-          hljs.highlight(lang, str, true).value +
-          '</code></pre>';
+        return '<pre class="hljs"><code>' + hljs.highlight(lang, str, true).value + '</code></pre>';
       } catch (__) {}
     }
     // 如果没有语言设置，则显示为纯文本
-    return '<pre class="hljs"><code>' + hljs.highlight('plaintext', str, true).value + '</code></pre>'
+    return (
+      '<pre class="hljs"><code>' + hljs.highlight('plaintext', str, true).value + '</code></pre>'
+    );
   }
-}
+};
 
-const md = new Markdown(config).use(abbr)
+const md = new Markdown(config)
+  .use(abbr)
   .use(deflist)
   .use(emoji)
   .use(footnote)
@@ -54,7 +53,7 @@ const md = new Markdown(config).use(abbr)
   .use(sub)
   .use(sup)
   .use(taskLists)
-  .use(toc)
+  .use(toc);
 
 // 全局挂载
 Vue.prototype.$md = md;

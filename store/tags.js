@@ -3,10 +3,7 @@
  * @Author: MoonCheung
  * @Github: https://github.com/MoonCheung
  * @Date: 2019-12-16 23:20:20
- * @LastEditors: MoonCheung
- * @LastEditTime: 2020-01-22 17:32:30
  */
-
 
 export const state = () => {
   return {
@@ -17,26 +14,26 @@ export const state = () => {
     appt: {
       paging: 0,
       tagList: [],
-      noMore: "",
+      noMore: '',
       fetching: false
     }
-  }
-}
+  };
+};
 
 export const getters = {
-  tagList: (state) => {
+  tagList: state => {
     return state.list.tagList;
   },
-  apptTagList: (state) => {
+  apptTagList: state => {
     return state.appt.tagList;
   },
-  loadMore: (state) => {
+  loadMore: state => {
     return state.appt.fetching;
   },
-  noMore: (state) => {
+  noMore: state => {
     return state.appt.noMore;
   }
-}
+};
 
 export const mutations = {
   // 获取所有标签列表
@@ -50,13 +47,12 @@ export const mutations = {
   // 获取指定标签文章列表
   POST_APPT_TAG(state, data) {
     if (data.length <= 4) {
-      state.appt.noMore = "没有更多了...";
+      state.appt.noMore = '没有更多了...';
       state.appt.tagList = data;
     } else {
-      state.appt.noMore = "";
+      state.appt.noMore = '';
       state.appt.tagList = data;
     }
-
   },
   UPDATE_APPT_TAG(state, actions) {
     state.list.fetching = actions;
@@ -67,7 +63,7 @@ export const mutations = {
     if (data.length <= 4) {
       state.appt.paging = 0;
       state.appt.tagList.push(...data);
-      state.appt.noMore = "没有更多了...";
+      state.appt.noMore = '没有更多了...';
     } else {
       state.appt.tagList.push(...data);
     }
@@ -81,7 +77,7 @@ export const mutations = {
       state.appt.fetching = fetching;
     }
   }
-}
+};
 
 export const actions = {
   // 获取所有标签列表
@@ -106,7 +102,7 @@ export const actions = {
       const param = {
         tag: params.name,
         page: 0
-      }
+      };
       await this.$axios.$post('/tag/fetchappttag', param).then(data => {
         if (data.code === 1) {
           commit('POST_APPT_TAG', data.result);
@@ -124,12 +120,12 @@ export const actions = {
       const isMore = {
         fetching: true,
         page: state.appt.paging + 1
-      }
+      };
       commit('UPDATE_MORE_TAGS', isMore);
       const param = {
         tag: params.name,
         page: state.appt.paging
-      }
+      };
       await this.$axios.$post('/tag/fetchappttag', param).then(data => {
         if (data.code === 1) {
           commit('POST_MORE_TAGS', data.result);
@@ -140,4 +136,4 @@ export const actions = {
       commit('POST_MORE_TAGS', null);
     }
   }
-}
+};

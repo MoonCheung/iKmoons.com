@@ -3,8 +3,6 @@
  * @Author: MoonCheung
  * @Github: https://github.com/MoonCheung
  * @Date: 2020-06-21 13:35:58
- * @LastEditors: MoonCheung
- * @LastEditTime: 2020-06-21 13:47:50
  */
 
 import Vue from 'vue';

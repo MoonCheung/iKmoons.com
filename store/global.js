@@ -3,8 +3,6 @@
  * @Author: MoonCheung
  * @Github: https://github.com/MoonCheung
  * @Date: 2020-01-13 21:33:19
- * @LastEditors: MoonCheung
- * @LastEditTime: 2020-04-05 13:27:14
  */
 
 export const state = () => ({
@@ -16,13 +14,13 @@ export const state = () => ({
   isWeChat: false,
   // 当前年份时间
   getYearTime: new Date()
-})
+});
 
 export const getters = {
   getYearTime: state => {
     return state.getYearTime.getFullYear();
   }
-}
+};
 
 export const mutations = {
   // 更新设备类型
@@ -37,4 +35,4 @@ export const mutations = {
   UPDATE_WECHAT_STATUS(state, action) {
     state.isWeChat = action;
   }
-}
+};

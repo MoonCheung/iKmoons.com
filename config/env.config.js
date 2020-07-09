@@ -3,8 +3,6 @@
  * @Author: MoonCheung
  * @Github: https://github.com/MoonCheung
  * @Date: 2019-12-09 23:10:44
- * @LastEditors: MoonCheung
- * @LastEditTime: 2020-03-25 14:44:42
  */
 
 export const ENV = process.env;
