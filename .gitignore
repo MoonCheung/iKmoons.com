@@ -89,6 +89,10 @@ sw.*
 # Vim swap files
 *.swp
 
-# 请忽略.lock文件
+# ignore lock file
 yarn.lock
 package-lock.json
+
+# ignore related XML files
+/static/sitemap.xml
+/static/rss.xml
