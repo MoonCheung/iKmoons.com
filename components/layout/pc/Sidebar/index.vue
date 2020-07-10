@@ -1,6 +1,5 @@
 <template>
-  <div class="aside"
-       v-if="!isMobile">
+  <div class="aside" v-if="!isMobile">
     <aside-hot :list="hotArtList" />
     <affix>
       <aside-catg v-if="noChildPage" />
@@ -30,11 +29,11 @@ export default {
       tagList: state => state.tags.list.tagList,
       isMobile: state => state.global.isMobile
     }),
-    noChildPage () {
+    noChildPage() {
       return ['archive', 'article-id', 'catg-name', 'tags-name'].includes(this.$route.name);
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

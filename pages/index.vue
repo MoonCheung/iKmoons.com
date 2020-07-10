@@ -333,7 +333,7 @@ export default {
 
       &:hover,
       &:active {
-        background-color: #eee;
+        background-color: var(--grey-lightest);
         .media-left {
           overflow: hidden;
           .image {

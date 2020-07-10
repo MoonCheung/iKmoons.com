@@ -7,13 +7,11 @@
       <span class="head-title">热门文章</span>
     </div>
     <div class="hot-list">
-      <div class="hot-item"
-           v-for="(item,index) in list"
-           :key="index">
+      <div class="hot-item" v-for="(item, index) in list" :key="index">
         <div class="hot-left"></div>
         <div class="hot-right">
-          <nuxt-link :to="`/article/${item.id}`">
-            {{item.title}}
+          <nuxt-link class="hot-link" :to="`/article/${item.id}`">
+            {{ item.title }}
           </nuxt-link>
         </div>
       </div>
@@ -22,7 +20,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'HotList',
   props: {
@@ -31,7 +28,7 @@ export default {
       default: () => []
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -49,8 +46,7 @@ export default {
 
       .head-icon {
         margin-right: 0.4rem;
-        flex-grow: 0;
-        flex-shrink: 0;
+        flex: 0 1;
         .icon {
           color: $accent-color;
           width: 1.25em;
@@ -58,8 +54,7 @@ export default {
         }
       }
       .head-title {
-        flex-grow: 1;
-        flex-shrink: 0;
+        flex: 1 1;
         font-weight: bold;
       }
     }
@@ -94,6 +89,13 @@ export default {
         .hot-right {
           flex-grow: 1;
           flex-shrink: 0;
+
+          & > .hot-link {
+            &:hover,
+            &:active {
+              text-decoration: underline;
+            }
+          }
         }
       }
     }

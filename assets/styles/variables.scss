@@ -29,38 +29,27 @@
 }
 
 // custom theme
-$primary-color-dark: #0288D1; // 深色背景色
-$primary-color: #03A9F4; // 主要背景色
-$primary-color-light: #B3E5FC; // 背景文字
-$primary-color-text: #FFF; // 文字/图标
-$accent-color: #9E9E9E; // 图标颜色
+$primary-color-dark: #0288d1; // 深色背景色
+$primary-color: #03a9f4; // 主要背景色
+$primary-color-light: #b3e5fc; // 背景文字
+$primary-color-text: #fff; // 文字/图标
+$accent-color: #9e9e9e; // 图标颜色
 $accent-hover-color: #828282; // 悬停图标颜色
 $primary-text-color: #212121; // 主要文字
 $secondary-text-color: #757575; // 常规文字
-$divider-color: #BDBDBD; // 次要文字
+$divider-color: #bdbdbd; // 次要文字
 $border-frame: #dcdfe6; // 一级边框
 
 // form element style
-$form-bg-color:#e0e0e0;
-$form-sub-Color: #EFEFEF;
+$form-bg-color: #e0e0e0;
+$form-sub-Color: #efefef;
 $form-icon-color: #bdbdbd;
 $form-iconTools-color: #bdbdbd;
 $form-bgBox-color: #fafafab3;
 
 // Typography style
-$family-sans-serif: BlinkMacSystemFont,
--apple-system,
-"Segoe UI",
-"Roboto",
-"Oxygen",
-"Ubuntu",
-"Cantarell",
-"Fira Sans",
-"Droid Sans",
-"Helvetica Neue",
-"Helvetica",
-"Arial",
-sans-serif;
+$family-sans-serif: BlinkMacSystemFont, -apple-system, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+  'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 $family-monospace: monospace;
 $render-mode: optimizeLegibility;
 

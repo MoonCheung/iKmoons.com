@@ -7,17 +7,16 @@
       <span class="head-title">分类</span>
     </div>
     <div class="catg-list">
-      <div class="catg-item"
-           v-for="(item,index) in catgList"
-           :key="index">
-        <nuxt-link :to="`/catg/${item.categoryname}`"
-                   no-prefetch>
+      <div class="catg-item" v-for="(item, index) in catgList" :key="index">
+        <nuxt-link :to="`/catg/${item.categoryname}`" no-prefetch>
           <div class="catg-left">
             <svg-icon :name="item.name" />
           </div>
           <div class="catg-right">
-            <span class="catg-name">{{item.categoryname}}</span>
-            <span class="catg-count">共&nbsp;{{item.catgNum === undefined? 0 : item.catgNum.count}}&nbsp;篇文章</span>
+            <span class="catg-name">{{ item.categoryname }}</span>
+            <span class="catg-count">
+              共&nbsp;{{ item.catgNum === undefined ? 0 : item.catgNum.count }}&nbsp;篇文章
+            </span>
           </div>
         </nuxt-link>
       </div>
@@ -33,9 +32,9 @@ export default {
   computed: {
     ...mapState({
       catgList: state => state.catg.list.catgList
-    }),
+    })
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -53,8 +52,7 @@ export default {
 
       .head-icon {
         margin-right: 0.4rem;
-        flex-grow: 0;
-        flex-shrink: 0;
+        flex: 0 1;
         .icon {
           width: 1.25em;
           height: 1.25em;
@@ -62,15 +60,15 @@ export default {
       }
 
       .head-title {
-        flex-grow: 1;
-        flex-shrink: 0;
+        flex: 1 1;
         font-weight: bold;
       }
     }
 
     .catg-list {
       .catg-item {
-        padding: 0.6rem 0 0.6rem 0.4rem;
+        margin-top: 0.429rem;
+        padding: 0.286rem;
 
         & > a {
           display: flex;
@@ -79,8 +77,7 @@ export default {
 
           .catg-left {
             margin-right: 0.4rem;
-            flex-grow: 0;
-            flex-shrink: 0;
+            flex: 0 1;
 
             & > .icon {
               color: $accent-color;
@@ -90,22 +87,21 @@ export default {
           }
 
           .catg-right {
-            flex-grow: 1;
-            flex-shrink: 0;
+            flex: 1 1;
             display: flex;
             flex-direction: row;
+            align-items: center;
             justify-content: space-between;
 
             .catg-name {
-              flex-grow: 1;
-              flex-shrink: 0;
-            }
-
-            .catg-count {
-              flex-grow: 0;
-              flex-shrink: 0;
+              flex: 1 1;
             }
           }
+        }
+        &:hover,
+        &:active {
+          border-radius: 0.286rem;
+          background-color: var(--grey-lightest);
         }
       }
     }

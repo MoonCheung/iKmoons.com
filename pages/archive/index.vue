@@ -1,35 +1,34 @@
 <template>
-  <div :class="[isMobile? 'mobileArch-wrap' : 'archive-wrap']">
+  <div :class="[isMobile ? 'mobileArch-wrap' : 'archive-wrap']">
     <div class="archive-main">
       <header class="archive-head">
         <i class="head-icon">
           <svg-icon name="record" />
         </i>
         <div class="head-name">归档</div>
-        <div class="head-count">目前共计&nbsp;{{archCount}}&nbsp;篇文章</div>
+        <div class="head-count">目前共计&nbsp;{{ archCount }}&nbsp;篇文章</div>
       </header>
       <article class="archive-list">
         <div class="list-content">
           <ul class="parent-child">
-            <li class="child-one"
-                v-for="oneItem in artArch"
-                :key="oneItem.id">
-              <h2>{{oneItem._id.year}}年</h2>
+            <li class="child-one" v-for="oneItem in artArch" :key="oneItem.id">
+              <h2>{{ oneItem._id.year }}年</h2>
               <ul>
-                <li class="child-two"
-                    v-for="twoItem in oneItem.secondDate"
-                    :key="twoItem.id">
-                  <h3>{{twoItem.month}}月</h3>
+                <li class="child-two" v-for="twoItem in oneItem.secondDate" :key="twoItem.id">
+                  <h3>{{ twoItem.month }}月</h3>
                   <ul>
-                    <li class="child-three"
-                        v-for="threeItem in twoItem.items"
-                        :key="threeItem.id">
-                      <span class="three-date">{{threeItem.date}}</span>
-                      <span class="three-origin"
-                            :style="originState(threeItem.origin)">{{threeItem.origin}}</span>
-                      <nuxt-link class="three-link"
-                                 :to="`/article/${threeItem.id}`"
-                                 :title="threeItem.title">{{threeItem.title}}</nuxt-link>
+                    <li class="child-three" v-for="threeItem in twoItem.items" :key="threeItem.id">
+                      <span class="three-date">{{ threeItem.date }}</span>
+                      <span class="three-origin" :style="originState(threeItem.origin)">
+                        {{ threeItem.origin }}
+                      </span>
+                      <nuxt-link
+                        class="three-link"
+                        :to="`/article/${threeItem.id}`"
+                        :title="threeItem.title"
+                      >
+                        {{ threeItem.title }}
+                      </nuxt-link>
                     </li>
                   </ul>
                 </li>
@@ -47,20 +46,16 @@ import { mapState } from 'vuex';
 import { mixin } from '@/utils/index';
 
 export default {
-  name: "Archive",
-  fetch ({ store }) {
-    return Promise.all([
-      store.dispatch('articles/fetchArtArch')
-    ])
+  name: 'Archive',
+  fetch({ store }) {
+    return Promise.all([store.dispatch('articles/fetchArtArch')]);
   },
-  head () {
+  head() {
     const { $route } = this;
     return {
-      title: "归档",
-      link: [
-        { hid: 'canonical', rel: 'canonical', href: `//ikmoons.com${$route.path}` }
-      ]
-    }
+      title: '归档',
+      link: [{ hid: 'canonical', rel: 'canonical', href: `//ikmoons.com${$route.path}` }]
+    };
   },
   mixins: [mixin],
   computed: {
@@ -70,7 +65,7 @@ export default {
       isMobile: state => state.global.isMobile
     })
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -160,6 +155,10 @@ export default {
               &-link {
                 display: inline-block;
                 font-size: 1rem;
+                &:hover,
+                &:active {
+                  text-decoration: underline;
+                }
               }
               &-origin {
                 display: inline-block;

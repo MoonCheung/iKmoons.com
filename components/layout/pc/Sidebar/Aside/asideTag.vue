@@ -7,12 +7,10 @@
       <span class="head-title">标签</span>
     </div>
     <div class="tag-all">
-      <span class="tag-item"
-            v-for="(item,index) in list"
-            :key="index">
+      <span class="tag-item" v-for="(item, index) in list" :key="index">
         <nuxt-link :to="`/tags/${item.tagname}`">
-          <span class="tag-name">{{item.tagname}}</span>
-          [<i class="tag-count">{{item.tagNum == undefined ? 0 : item.tagNum.count}}</i>]
+          <span class="tag-name">{{ item.tagname }}</span>
+          <i class="tag-count">[ {{ item.tagNum == undefined ? 0 : item.tagNum.count }} ]</i>
         </nuxt-link>
       </span>
     </div>
@@ -28,7 +26,7 @@ export default {
       default: () => []
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -44,9 +42,8 @@ export default {
       border-bottom: 0.071rem solid $border-frame;
 
       .head-icon {
+        flex: 0 1;
         margin-right: 0.4rem;
-        flex-grow: 0;
-        flex-shrink: 0;
         .icon {
           width: 1.25em;
           height: 1.25em;
@@ -55,8 +52,7 @@ export default {
       }
 
       .head-title {
-        flex-grow: 1;
-        flex-shrink: 0;
+        flex: 1 1;
         font-weight: bold;
       }
     }
@@ -73,8 +69,12 @@ export default {
 
         .tag-count {
           font-style: normal;
-          padding: 0.1rem;
           font-size: 0.857rem;
+        }
+
+        &:hover,
+        &:active {
+          background-color: var(--grey-lightest);
         }
       }
     }
