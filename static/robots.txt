@@ -1,8 +1,4 @@
-# Do not crawl the entire site
 User-agent: *
-Disallow: /
-# Allows ads to be displayed throughout the site
-User-agent: Mediapartners-Google
 Allow: /
 
 Sitemap: https://ikmoons.com/sitemap.xml
