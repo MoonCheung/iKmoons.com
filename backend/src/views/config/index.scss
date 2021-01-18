@@ -1,0 +1,55 @@
+// config的样式表
+.conf-head {
+  .el-tabs__header.is-left {
+    margin-right: 0;
+  }
+
+  .el-tabs__content {
+    left: -1px;
+    padding-left: 20px;
+    border-left: 2px solid #E4E7ED;
+  }
+}
+
+.conf-header {
+  margin-top: 10px;
+  margin-bottom: 12px;
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.avatar-uploader .el-upload {
+  border: 1px dashed #d9d9d9;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+
+  &:hover {
+    border-color: #409eff;
+  }
+
+  .avatar {
+    width: 178px;
+    height: 178px;
+    display: block;
+  }
+
+  .avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 178px;
+    height: 178px;
+    line-height: 178px;
+    text-align: center;
+  }
+}
+
+.el-siteform {
+  .el-inputform {
+    min-width: 40%;
+    width: 40%;
+  }
+}

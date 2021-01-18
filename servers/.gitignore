@@ -1,0 +1,14 @@
+# ignore file and folder
+node_modules/
+
+# ignore Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ignore lock file
+package-lock.json
+yarn.lock
+
+# ignore bash
+bash.js

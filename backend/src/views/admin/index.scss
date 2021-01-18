@@ -1,0 +1,168 @@
+$textColor: #fff;
+$cardHeader: #606266;
+
+.card-panel {
+  height: 108px;
+  cursor: pointer;
+  font-size: 12px;
+  position: relative;
+  overflow: hidden;
+  color: #606266;
+  background: #fff;
+  border-color: rgba(0, 0, 0, .05);
+
+  .el-card__body {
+    padding: 0px;
+
+    //hover
+    &:hover {
+      .card-panel-icon-wrapper {
+        color: #fff;
+      }
+
+      // 全站文章数
+      .icon-list {
+        background-color: #303030
+      }
+
+      // 全站标签数
+      .icon-tags {
+        background-color: #303030
+      }
+
+      // 全站阅读数
+      .icon-eye {
+        background-color: #303030
+      }
+
+      // 全站评论数
+      .icon-textsms {
+        background-color: #303030
+      }
+    }
+
+    .icon-list {
+      color: #303030
+    }
+
+    // 全站标签数
+    .icon-tags {
+      color: #303030
+    }
+
+    // 全站阅读数
+    .icon-eye {
+      color: #303030
+    }
+
+    // 全站评论数
+    .icon-textsms {
+      color: #303030
+    }
+
+    .card-panel-icon-wrapper {
+      float: left;
+      margin: 14px 0 0 14px;
+      padding: 16px;
+      transition: all 0.38s ease-out;
+      border-radius: 6px;
+    }
+
+    .card-panel-icon {
+      float: left;
+      font-size: 48px;
+    }
+
+    .card-panel-desc {
+      float: right;
+      font-weight: bold;
+      margin: 26px;
+      margin-left: 0px;
+
+      .card-panel-text {
+        line-height: 18px;
+        color: rgba(48, 49, 51, 0.45);
+        font-size: 16px;
+        margin-bottom: 12px;
+      }
+
+      .card-panel-num {
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+//本机统计数据
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+}
+
+.box-card {
+  margin-top: 20px;
+
+  .card-header {
+    font-weight: bold;
+    color: $cardHeader;
+  }
+
+  .card-status {
+    .card-tag {
+      color: $textColor;
+    }
+
+    div {
+      &:first-of-type {
+        margin-top: 0;
+      }
+
+      margin-top: 10px;
+    }
+  }
+
+  .card-progress {
+    text-align: center;
+
+    .card-progress-text {
+      &>h1 {
+        color: #3f414d;
+        font-size: 21px;
+        font-weight: normal;
+        font-weight: bold;
+      }
+
+      &>p {
+        color: #657180;
+        font-size: 12px;
+        margin: 10px 0 15px;
+      }
+
+      &>span {
+        display: inline-block;
+        height: 40px;
+        padding-top: 12px;
+        color: #657180;
+        font-size: 14px;
+
+        &:before {
+          content: '';
+          display: block;
+          width: 50px;
+          height: 1px;
+          margin: 0 auto;
+          background: #e0e3e6;
+          position: relative;
+          top: -8px;
+        }
+      }
+
+      &>span>i {
+        line-height: 35px;
+        font-style: normal;
+        color: #3f414d;
+      }
+    }
+  }
+}

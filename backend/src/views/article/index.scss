@@ -1,0 +1,51 @@
+//articlePub.vue的样式表
+.el-formupload {
+  height: 100px;
+  line-height: 100px;
+}
+
+.el-upload-list--picture-card .el-upload-list__item {
+  height: 100px;
+  width: 240px;
+}
+
+.el-upload--picture-card {
+  height: 100px;
+  width: 240px;
+  line-height: 100px;
+  border-radius: 2px;
+}
+
+.el-formLoader {
+  .el-upload {
+    position: relative;
+    overflow: hidden;
+  }
+}
+
+.el-formbanner {
+  height: 100px;
+  width: 240px;
+  line-height: 100px;
+}
+
+//articleList.vue的样式表
+.art-table-expand {
+  font-size: 0;
+}
+
+.art-table-expand label {
+  width: 80px;
+  color: #99a9bf;
+}
+
+.art-table-expand .el-form-item {
+  margin-right: 0;
+  margin-bottom: 0;
+  width: 100%;
+}
+
+// 通用样式表
+.art-card {
+  margin-top: 0;
+}
