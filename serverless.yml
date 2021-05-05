@@ -1,0 +1,16 @@
+app: ikmoons_cloud
+component: nextjs
+name: ikmoons_cloud
+inputs:
+  src:
+    hook: npm run build
+    dist: ./
+    exclude:
+      - .env
+  region: ap-guangzhou
+  runtime: Nodejs12.16
+  apigatewayConf:
+    protocols:
+      - http
+      - https
+    environment: release
