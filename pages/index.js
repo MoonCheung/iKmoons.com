@@ -1,11 +1,27 @@
 import { Post } from "../layouts/Post";
-import { posts } from "../getAllPosts";
+import { getAllPosts } from "./api/index";
 
-export default function IndexPage() {
+export async function getStaticProps() {
+  const posts = await getAllPosts([
+    'route',
+    'title',
+    'description',
+    'date',
+    'readTime'
+  ])
+
+  return {
+    props:{
+      posts
+    }
+  };
+}
+
+export default function IndexPage({posts}) {
   return (
     <>
-      {posts.map((post) => (
-        <Post key={post.link} post={post} />
+      {posts.map((post,index) => (
+        <Post post={post} key={index} />
       ))}
     </>
   );
