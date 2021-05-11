@@ -37,10 +37,13 @@ export function getPostBySlug(slug, fields = []) {
   // 监听该文件是否有变化
   chokidar.watch(fullPath).on('change', (path, stats) => {
     if (stats) {
+      // 读取该文件内容
+      const fileContents = fs.readFileSync(path, "utf8")
       const newFileContent = matter.stringify(fileContents, { updatedAt: new Date().toISOString() })
+      // 更新日期字段名来覆盖原有文件
       fs.writeFile(path, newFileContent, (err) => {
         if (err) throw err;
-        console.info('日期字段已更新该文件', stats);
+        console.info('更新日期字段已保存该文件');
       });
     };
   });
