@@ -1,6 +1,7 @@
 import { Post } from "../layouts/Post";
 import { getAllPosts } from "./api/index";
 
+// 该页面导出该方法返回props
 export async function getStaticProps() {
   const posts = await getAllPosts([
     'route',
