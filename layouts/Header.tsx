@@ -1,14 +1,14 @@
-import Link from 'next/link'
+import Link from 'next/link';
 
-export default function Header(){
+export default function Header() {
   return (
     <nav>
       <h1>Next'Blog</h1>
       <div>
-        <Link href="/">
+        <Link href='/'>
           <a>Blog</a>
         </Link>
-        <Link href="/">
+        <Link href='/about'>
           <a>About</a>
         </Link>
       </div>
@@ -31,5 +31,5 @@ export default function Header(){
         }
       `}</style>
     </nav>
-  )
+  );
 }
