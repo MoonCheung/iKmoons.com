@@ -16,8 +16,6 @@ export default function Layout({ children, pageTitle, description }) {
         body {
           margin: 0;
           padding: 0;
-          font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-            Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
           background: #333;
           color: #fff;
           font-size: 1rem;

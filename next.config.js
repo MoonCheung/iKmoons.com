@@ -6,6 +6,9 @@ const withMdxEnhanced = require('next-mdx-enhanced')
 
 const nextConfig = {
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
+  sassOptions: {
+    includePaths: [path.join(__dirname, 'styles')],
+  },
   webpack: (config, options) => {
     const { isServer } = options
     // Fixes npm packages (mdx) that depend on `fs` module

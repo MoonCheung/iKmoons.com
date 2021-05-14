@@ -1,0 +1,126 @@
+html {
+  font-family: $family-sans-serif;
+  font-size: $font-size-root;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  box-shadow: none;
+  border-radius: 0;
+  font-size: inherit;
+  line-height: inherit;
+  background-repeat: no-repeat;
+}
+
+*,
+*:before,
+*:after {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+audio,
+canvas,
+iframe,
+img,
+video {
+  vertical-align: middle;
+}
+
+a {
+  text-decoration: none;
+  color: $secondary-text-color;
+  font-weight: $weight-semibold;
+}
+
+a:hover {
+  color: $primary-text-color;
+  font-weight: $weight-semibold;
+}
+
+// 导航栏
+.navbar {
+  background-color: var(--white);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+
+  & > .container {
+    display: flex;
+    width: $width-size;
+    align-items: center;
+    min-height: 3.25rem;
+  }
+}
+
+.section {
+  padding: 0.428rem 0.428rem 0 0.428rem;
+}
+
+.header {
+  margin-bottom: 1rem;
+}
+
+// svg 样式
+.icon {
+  width: $svg-width;
+  height: $svg-height;
+}
+
+.section,
+.art-main,
+.cmt-main,
+.hot-wrap,
+.tag-wrap,
+.tags-wrap,
+.catg-wrap,
+.search-wrap,
+.archive-wrap {
+  background-color: var(--white-bis);
+  color: $secondary-text-color;
+}
+
+// 页脚栏
+.footer,
+.mobile-foot {
+  background-color: var(--white-bis);
+
+  & > .container {
+    display: flex;
+    padding: 1.5rem;
+    align-items: center;
+    flex-flow: column wrap;
+    justify-content: center;
+  }
+}
+
+// markdown-it样式表
+.hljs {
+  margin: 0.286rem 0;
+  border-radius: 0.143rem;
+}
+
+// 制作粒子背景样式表
+.hero {
+  .particles-js-canvas-el {
+    background-color: var(--grey-lightest);
+    display: inline-flex;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+  }
+}

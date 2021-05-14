@@ -2,6 +2,7 @@ import App from 'next/app';
 import Layout from '../layouts';
 import normalize from 'normalize.css';
 import NextNprogress from 'nextjs-progressbar';
+import "tailwindcss/tailwind.css";
 
 function MyApp({ Component, pageProps }) {
   return (
