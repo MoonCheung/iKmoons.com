@@ -1,16 +1,5 @@
 @charset "UTF-8";
-
-// variable style
-@import './variables.scss';
-
-// icon style
-// @import './icon.scss';
-
 // base style
 @import './base.scss';
-
-// mixin style
-// @import './mixin.scss';
-
 // component style
-// @import './components.scss';
+@import './components.scss';
