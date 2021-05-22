@@ -1,13 +1,10 @@
 const colors = require('tailwindcss/colors');
 const tailwindForms = require('@tailwindcss/forms');
-const plugin = require('tailwindcss/plugin')
+const plugin = require('tailwindcss/plugin');
 
 module.exports = {
   mode: 'jit',
-  purge: [
-    "./pages/**/*.{js,ts,jsx,tsx}", 
-    "./components/**/*.{js,ts,jsx,tsx}"
-  ],
+  purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   darkMode: 'media', // or 'media' or 'class'
   theme: {
     colors: {
@@ -16,16 +13,29 @@ module.exports = {
       blue: colors.lightBlue,
       red: colors.rose,
       green: colors.lime,
-      yellow: colors.amber,
+      yellow: colors.amber
     },
     fontFamily: {
-      sans: ['BlinkMacSystemFont', '-apple-system', '"Segoe UI"', '"Roboto"', '"Oxygen"', '"Ubuntu"',
-      '"Cantarell"', '"Fira Sans"', '"Droid Sans"', '"Helvetica Neue"', '"Helvetica"', '"Arial"', 'sans-serif'],
+      sans: [
+        'BlinkMacSystemFont',
+        '-apple-system',
+        '"Segoe UI"',
+        '"Roboto"',
+        '"Oxygen"',
+        '"Ubuntu"',
+        '"Cantarell"',
+        '"Fira Sans"',
+        '"Droid Sans"',
+        '"Helvetica Neue"',
+        '"Helvetica"',
+        '"Arial"',
+        'sans-serif'
+      ]
     },
-    extend: {},
+    extend: {}
   },
   variants: {
-    extend: {},
+    extend: {}
   },
   plugins: [tailwindForms]
   // plugin(function({ addBase, config }) {
@@ -39,4 +49,4 @@ module.exports = {
   //     // }
   //   })
   // })
-}
+};

@@ -3,7 +3,7 @@
  * @Author: MoonCheung
  * @Date: 2021-05-13 00:05:25
  * @Copyright 2021 MoonCheung
- * @FilePath: \web_practice\ikmoons_mdx\config\app.config.ts
+ * @FilePath: /weiwang_project/Users/mooncheung/Documents/mooncheung/my_project/iKmoons.com/config/app.config.ts
  */
 
 export const constant = {
@@ -33,7 +33,7 @@ export const constant = {
     keys: 'iKmoons,MoonCheung,Blog,前端开发者,自由开发者,Javascript技术',
     desc:
       '人生路漫漫，何曾有坦途 - 保持学习态度重要,技术随着时间日异月新,不能落后于前沿技术,没有捷径之路,只有靠自己不断努力学,突破自我',
-    email: 'salvador23@163.com'
+    email: 'ikmoons.is@gmail.com'
   }
 };
 

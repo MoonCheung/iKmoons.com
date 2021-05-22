@@ -1,23 +1,23 @@
-const path = require('path')
-const images = require('remark-images')
-const emoji = require('remark-emoji')
-const withPlugins = require("next-compose-plugins");
-const withMdxEnhanced = require('next-mdx-enhanced')
+const path = require('path');
+const images = require('remark-images');
+const emoji = require('remark-emoji');
+const withPlugins = require('next-compose-plugins');
+const withMdxEnhanced = require('next-mdx-enhanced');
 
 const nextConfig = {
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
   sassOptions: {
-    includePaths: [path.join(__dirname, 'styles')],
+    includePaths: [path.join(__dirname, 'styles')]
   },
   webpack: (config, options) => {
-    const { isServer } = options
+    const { isServer } = options;
     // Fixes npm packages (mdx) that depend on `fs` module
     if (!isServer) {
       config.node = {
-        fs: "empty",
-      }
+        fs: 'empty'
+      };
     }
-    return config
+    return config;
   }
 };
 
@@ -30,11 +30,9 @@ const mdxEnhancedConfig = {
   usesSrc: false,
   extendFrontMatter: {
     process: (mdxContent, frontMatter) => {},
-    phase: 'prebuild|loader|both',
+    phase: 'prebuild|loader|both'
   },
-  reExportDataFetching: false,
-}
+  reExportDataFetching: false
+};
 
-module.exports = withPlugins([
-  withMdxEnhanced(mdxEnhancedConfig)
-],nextConfig)
+module.exports = withPlugins([withMdxEnhanced(mdxEnhancedConfig)], nextConfig);

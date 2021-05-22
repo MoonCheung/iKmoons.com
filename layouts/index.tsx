@@ -1,15 +1,11 @@
-import Head from 'next/head';
+import DocHead from './Head';
 import Header from './Header';
+import Footer from './Footer';
 
 export default function Layout({ children, pageTitle, description }) {
   return (
     <>
-      <Head>
-        <meta name='viewport' content='width=device-width, initial-scale=1' />
-        <meta charSet='utf-8' />
-        <meta name='Description' content={description}></meta>
-        <title>{pageTitle}</title>
-      </Head>
+      <DocHead pageTitle={pageTitle} description={description} />
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap|Roboto:wght@400;700&display=swap');
         html,
@@ -27,8 +23,8 @@ export default function Layout({ children, pageTitle, description }) {
         h5,
         h6 {
           font-weight: 700;
-          font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-            Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+          font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+            'Open Sans', 'Helvetica Neue', sans-serif;
         }
         a {
           color: #fff;
@@ -42,6 +38,7 @@ export default function Layout({ children, pageTitle, description }) {
       <main>
         <Header />
         <div className='content'>{children}</div>
+        <Footer />
       </main>
     </>
   );
