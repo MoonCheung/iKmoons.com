@@ -1,13 +1,9 @@
-:root{
+:root {
   --primary-color: #03a9f4;
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @layer base {
-  html{
+  html {
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
     box-sizing: border-box;

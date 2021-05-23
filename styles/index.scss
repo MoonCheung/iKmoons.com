@@ -1,5 +1,7 @@
 @charset "UTF-8";
+// tailwindcss style
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 // base style
 @import './base.scss';
-// component style
-@import './components.scss';

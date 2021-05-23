@@ -3,18 +3,18 @@ const tailwindForms = require('@tailwindcss/forms');
 const plugin = require('tailwindcss/plugin');
 
 module.exports = {
-  mode: 'jit',
+  // mode: 'jit',
   purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   darkMode: 'media', // or 'media' or 'class'
   theme: {
-    colors: {
-      primary: '#03a9f4',
-      gray: colors.blueGray,
-      blue: colors.lightBlue,
-      red: colors.rose,
-      green: colors.lime,
-      yellow: colors.amber
-    },
+    // colors: {
+    //   primary: '#03a9f4',
+    //   gray: colors.blueGray,
+    //   blue: colors.lightBlue,
+    //   red: colors.rose,
+    //   green: colors.lime,
+    //   yellow: colors.amber
+    // },
     fontFamily: {
       sans: [
         'BlinkMacSystemFont',
