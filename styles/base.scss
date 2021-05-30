@@ -1,5 +1,7 @@
 :root {
   --primary-color: #03a9f4;
+  --black-color: #000;
+  --white-color: #fff;
 }
 
 @layer base {
@@ -11,5 +13,53 @@
     // overflow-y: scroll;
     text-size-adjust: 100%;
     text-rendering: optimizeLegibility;
+  }
+}
+
+@layer components {
+  .hero {
+    @apply flex flex-col h-screen max-h-screen;
+    // 头部
+    .navbar {
+      @apply fixed top-0 left-0 right-0 z-10 bg-gray-50;
+      & > .container {
+        height: 45px;
+        max-height: 45px;
+        // 顶部导航菜单-logo图标
+        .navbar-brand {
+          @apply overflow-hidden px-2.5;
+
+          .logo {
+            width: 120px;
+            height: 1em;
+            font-size: 1.3em;
+            color: var(--white-color);
+            text-indent: -9999px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background: url('https://static.ikmoons.com/logo.svg');
+          }
+        }
+        .navbar-menu {
+          @apply flex-1 h-full;
+          .navbar-start {
+            @apply flex h-full mr-auto justify-start items-center;
+            .navbar-link {
+              @apply px-4 leading-10 text-gray-500 font-semibold;
+              font-size: 14px;
+            }
+          }
+        }
+      }
+    }
+    // 主体
+    &-body {
+      @apply flex-auto container mx-auto;
+      margin-top: 45px;
+    }
+    // 尾部
+    .footer {
+      @apply bg-gray-50;
+    }
   }
 }

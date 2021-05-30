@@ -3,7 +3,6 @@
  * @Author: MoonCheung
  * @Date: 2021-05-13 00:05:25
  * @Copyright 2021 MoonCheung
- * @FilePath: \web_practice\ikmoons_mdx\config\env.config.ts
  */
 
 export const ENV = process.env;

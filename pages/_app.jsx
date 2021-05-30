@@ -2,8 +2,7 @@ import App from 'next/app';
 import Layout from '../layouts';
 import NextNprogress from 'nextjs-progressbar';
 import 'normalize.css';
-import '../styles/index.scss'
-
+import '../styles/index.scss';
 function MyApp({ Component, pageProps }) {
   return (
     <Layout pageTitle='Blog' description='My Personal Blog'>
