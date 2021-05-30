@@ -9,13 +9,21 @@ const nextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')]
   },
+  // future: {
+  //   webpack5: true
+  // },
   webpack: (config, options) => {
     const { isServer } = options;
     // Fixes npm packages (mdx) that depend on `fs` module
     if (!isServer) {
+      // webpack 4版本
       config.node = {
         fs: 'empty'
       };
+      // webpack 5版本
+      // config.resolve.fallback = {
+      //   fs: false
+      // };
     }
     return config;
   }
