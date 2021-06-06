@@ -12,6 +12,12 @@ export const constant = {
     { route: '/archive', name: '归档' },
     { route: '/about', name: '关于' }
   ],
+  catgIcon: [
+    { icon: 'Outdoor', name: '生活心得', link: '//static.ikmoons.com/travel.jpg' },
+    { icon: 'SettingTwo', name: '技术心得', link: '//static.ikmoons.com/code.jpg' },
+    { icon: 'BookOne', name: '开卷益处', link: '//static.ikmoons.com/book.jpg' },
+    { icon: 'Code', name: '码不停蹄', link: '//static.ikmoons.com/gear.jpg' }
+  ],
   about: {
     name: 'MoonCheung',
     desc: '90后，热衷于新技术的学习，较喜欢折腾和阅读，轻微强迫症，对代码有一些洁癖👋',

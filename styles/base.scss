@@ -16,50 +16,73 @@
   }
 }
 
-@layer components {
-  .hero {
-    @apply flex flex-col h-screen max-h-screen;
-    // 头部
-    .navbar {
-      @apply fixed top-0 left-0 right-0 z-10 bg-gray-50;
-      & > .container {
-        height: 45px;
-        max-height: 45px;
-        // 顶部导航菜单-logo图标
-        .navbar-brand {
-          @apply overflow-hidden px-2.5;
+.hero {
+  @apply flex flex-col h-screen max-h-screen;
+  // 头部
+  .navbar {
+    @apply fixed top-0 left-0 right-0 z-10 bg-gray-50;
+    & > .container {
+      height: 45px;
+      max-height: 45px;
+      // 顶部导航菜单-logo图标
+      .navbar-brand {
+        @apply overflow-hidden px-2.5;
 
-          .logo {
-            width: 120px;
-            height: 1em;
-            font-size: 1.3em;
-            color: var(--white-color);
-            text-indent: -9999px;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background: url('https://static.ikmoons.com/logo.svg');
-          }
+        .logo {
+          width: 120px;
+          height: 1em;
+          font-size: 1.3em;
+          color: var(--white-color);
+          text-indent: -9999px;
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-image: url('//static.ikmoons.com/logo.svg');
         }
-        .navbar-menu {
-          @apply flex-1 h-full;
-          .navbar-start {
-            @apply flex h-full mr-auto justify-start items-center;
-            .navbar-link {
-              @apply px-4 leading-10 text-gray-500 font-semibold;
-              font-size: 14px;
+      }
+      .navbar-menu {
+        @apply flex-1 h-full;
+        .navbar-start {
+          @apply flex h-full mr-auto justify-start items-center;
+          .navbar-link {
+            @apply px-4 leading-10 text-gray-700 font-semibold;
+            font-size: 14px;
+            &:hover,
+            &:active {
+              @apply text-gray-900;
             }
           }
         }
       }
     }
-    // 主体
-    &-body {
-      @apply flex-auto container mx-auto;
-      margin-top: 45px;
+  }
+  // 主体
+  &-body {
+    @apply flex-auto container mx-auto py-5;
+    margin-top: 45px;
+    .main-wrap {
+      width: 760px;
+      max-width: 760px;
     }
-    // 尾部
-    .footer {
-      @apply bg-gray-50;
+    .aside {
+      @apply ml-auto;
+      width: 304px;
+      min-width: 304px;
+    }
+  }
+  // 尾部
+  .footer {
+    @apply bg-gray-50 p-5;
+    & > .container {
+      .foot-text {
+        font-size: 14px;
+        @apply mb-1 text-center text-gray-700;
+        &:last-child {
+          @apply mb-0;
+        }
+        & > a {
+          @apply font-semibold;
+        }
+      }
     }
   }
 }
