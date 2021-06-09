@@ -11,6 +11,7 @@
     box-sizing: border-box;
     // overflow-x: hidden;
     // overflow-y: scroll;
+    font-size: 14px;
     text-size-adjust: 100%;
     text-rendering: optimizeLegibility;
   }
@@ -84,5 +85,10 @@
         }
       }
     }
+  }
+  // 粒子效果
+  #tsparticles {
+    @apply bg-gray-200 bg-opacity-50 fixed inset-0;
+    z-index: -1;
   }
 }

@@ -10,5 +10,5 @@ export default function DocHead({ pageTitle, description }) {
         <title>{pageTitle}</title>
       </Head>
     </>
-  )
+  );
 }

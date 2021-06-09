@@ -1,7 +1,8 @@
 import DocHead from './Head';
 import Header from './Header';
 import Footer from './Footer';
-import { constant } from '../config/app.config';
+import ParticlesContainer from '../components/particles/index';
+import { constant, partConfig } from '../config/app.config';
 
 export default function Layout({ children, pageTitle, description }) {
   return (
@@ -11,6 +12,7 @@ export default function Layout({ children, pageTitle, description }) {
         <Header posts={constant.menus} />
         <div className='hero-body'>{children}</div>
         <Footer />
+        <ParticlesContainer options={partConfig} />
       </main>
     </>
   );
