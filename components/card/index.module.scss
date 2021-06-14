@@ -1,0 +1,17 @@
+.card {
+  &-wrap {
+    @apply p-2 mb-2 bg-gray-50;
+    .card-head {
+      @apply flex flex-row justify-start items-center p-1 border-b border-gray-200;
+      .i-icon {
+        @apply text-gray-700 mr-2;
+      }
+      .head-title {
+        @apply text-gray-700 font-bold;
+      }
+    }
+    .card-list {
+      // @apply;
+    }
+  }
+}

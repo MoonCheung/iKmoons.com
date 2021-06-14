@@ -14,9 +14,9 @@ export const constant = {
   ],
   catgIcon: [
     { icon: 'Outdoor', name: '生活心得', link: '//static.ikmoons.com/travel.jpg' },
-    { icon: 'SettingTwo', name: '技术心得', link: '//static.ikmoons.com/code.jpg' },
+    { icon: 'SettingTwo', name: '技术心得', link: '//static.ikmoons.com/gear.jpg' },
     { icon: 'BookOne', name: '开卷益处', link: '//static.ikmoons.com/book.jpg' },
-    { icon: 'Code', name: '码不停蹄', link: '//static.ikmoons.com/gear.jpg' }
+    { icon: 'Code', name: '码不停蹄', link: '//static.ikmoons.com/code.jpg' }
   ],
   about: {
     name: 'MoonCheung',
