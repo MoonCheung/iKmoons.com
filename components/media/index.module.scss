@@ -1,0 +1,82 @@
+@import '../../styles/mixin.scss';
+
+.section {
+  .media {
+    @apply flex flex-row justify-start p-2 mb-2 w-full bg-gray-50 text-gray-700;
+    .media-left {
+      @apply overflow-hidden mr-2 border-4 border-gray-300;
+      & > .image {
+        & > img {
+          @apply object-cover;
+          width: 160px;
+          max-width: 160px;
+          height: 110px;
+          max-height: 110px;
+          transition: transform 0.4s ease;
+        }
+      }
+    }
+    .media-content {
+      @apply flex-1 flex flex-col justify-between;
+      .media-link {
+        @apply flex-1;
+        .link-header {
+          @apply font-bold;
+          transition: margin 0.25s;
+        }
+        .link-content {
+          font-size: 13px;
+          @include line-clamp-2;
+        }
+        &:hover,
+        &:active {
+          & > .link-header {
+            @apply text-gray-900 ml-2 underline;
+          }
+        }
+      }
+      .media-level {
+        @apply flex flex-row justify-between;
+        .level-left {
+          @apply flex-1;
+          @extend .level-right;
+          & > span {
+            @apply ml-2;
+            &:first-child {
+              margin-left: 0;
+            }
+          }
+        }
+        .level-right {
+          @apply flex flex-row items-center;
+          font-size: 12px;
+          & > time,
+          & > span {
+            @apply ml-2;
+            &:first-child {
+              margin-left: 0;
+            }
+          }
+        }
+      }
+    }
+    &:hover,
+    &:active {
+      .media-left {
+        @apply overflow-hidden;
+        .image {
+          & > img {
+            transform: scale(1.1);
+          }
+        }
+      }
+    }
+  }
+  .btn {
+    @apply relative w-full bg-gray-50 p-1 mb-2 text-gray-700;
+    &:hover,
+    &:active {
+      @apply text-gray-900;
+    }
+  }
+}

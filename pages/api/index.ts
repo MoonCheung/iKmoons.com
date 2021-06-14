@@ -59,13 +59,15 @@ export function getPostBySlug(slug, fields = []) {
 
   // Ensure only the minimal needed data is exposed
   fields.forEach((field) => {
-    if (field === 'route') {
+    if (field === 'router') {
       items[field] = realSlug;
     }
     if (field === 'content') {
       items[field] = content;
     }
-
+    if (field === 'origin') {
+      items[field] = data[field];
+    }
     if (data[field]) {
       items[field] = data[field];
     }
