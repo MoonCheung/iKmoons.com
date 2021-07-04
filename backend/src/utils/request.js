@@ -6,8 +6,8 @@ import { getToken } from '@/utils/auth';
 // 创建axios实例
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
-  withCredentials: true, // send cookies when cross-domain requests
-  timeout: 90000 // request timeout
+  withCredentials: false, // send cookies when cross-domain requests
+  timeout: 60000 // request timeout
 });
 
 // request拦截器

@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: 'nuxt-blog',
-      cwd: '/www/nuxt-blog/',
+      cwd: '/www/iKmoons/frontend',
       script: './server/index.js',
       instances: 1,
       autorestart: true,
