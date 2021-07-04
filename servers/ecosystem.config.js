@@ -2,6 +2,7 @@ module.exports = {
   apps: [
     {
       name: 'node-server',
+      cwd: '/www/iKmoons/servers',
       script: './app.js',
       instances: 1,
       autorestart: true,

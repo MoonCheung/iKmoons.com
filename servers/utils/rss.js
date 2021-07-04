@@ -13,7 +13,7 @@ const app = require('../package');
 const articleModel = require('../models/article');
 
 const createXmlFilePath = path.format({
-  root: path.join(__dirname, '../../', '/nuxt-blog/static/'),
+  root: path.join(__dirname, '../../', '/frontend/static/'),
   name: 'rss',
   ext: '.xml'
 });
