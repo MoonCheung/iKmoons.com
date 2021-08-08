@@ -30,8 +30,8 @@ const nextConfig = {
 };
 
 const mdxEnhancedConfig = {
-  layoutPath: 'layouts',
-  defaultLayout: false,
+  layoutPath: 'template',
+  defaultLayout: true,
   fileExtensions: ['mdx'],
   remarkPlugins: [images, emoji],
   rehypePlugins: [],
@@ -40,7 +40,7 @@ const mdxEnhancedConfig = {
     process: (mdxContent, frontMatter) => {},
     phase: 'prebuild|loader|both'
   },
-  reExportDataFetching: false
+  reExportDataFetching: true
 };
 
 module.exports = withPlugins([withMdxEnhanced(mdxEnhancedConfig)], nextConfig);

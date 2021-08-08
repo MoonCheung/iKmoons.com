@@ -2,6 +2,19 @@
   --primary-color: #03a9f4;
   --black-color: #000;
   --white-color: #fff;
+  --juejin-color: #007fff;
+
+  --orange: hsl(14, 100%, 53%);
+  --orange-opacity: hsl(14, 100%, 53%, 0.2);
+  --yellow: hsl(48, 100%, 67%);
+  --green: hsl(141, 53%, 53%);
+  --turquoise: hsl(171, 100%, 41%);
+  --turquoise-opacity: hsl(171, 100%, 41%, 0.2);
+  --cyan: hsl(204, 71%, 53%);
+  --cyan-opacity: hsl(204, 71%, 53%, 0.2);
+  --blue: hsl(217, 71%, 53%);
+  --purple: hsl(271, 100%, 71%);
+  --red: hsl(348, 86%, 61%);
 }
 
 @layer base {
@@ -58,16 +71,13 @@
   }
   // 主体
   &-body {
-    @apply flex-auto container mx-auto py-5;
+    @apply container flex-auto mx-auto py-5;
     margin-top: 45px;
     .main-wrap {
-      width: 760px;
-      max-width: 760px;
+      @apply w-width max-w-width;
     }
     .aside {
-      @apply ml-auto;
-      width: 304px;
-      min-width: 304px;
+      @apply ml-auto w-aside max-w-aside;
     }
   }
   // 尾部

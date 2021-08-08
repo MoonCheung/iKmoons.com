@@ -1,0 +1,75 @@
+@import '../../styles/mixin.scss';
+
+.about {
+  &-wrap {
+    @apply flex flex-row justify-start;
+    .about-main {
+      @apply flex-1 flex flex-col;
+      .about-info {
+        @apply p-5 pb-0 mb-4 bg-gray-50 text-gray-700 text-center;
+        .info-image {
+          @apply inline-block rounded-full w-32 border-4 border-gray-300;
+        }
+        .info-name {
+          @apply font-bold my-3;
+        }
+        .middleLine-level {
+          @include middleLine-level;
+        }
+        .info-wrap {
+          .info-list {
+            @apply text-left;
+            .info-item {
+              @apply my-3 flex flex-row items-center;
+              .i-icon {
+                @apply mr-3;
+              }
+              .info-desc{
+                &>span{
+                  &::after{
+                    content: '、'
+                  }
+                  &:last-child{
+                    &::after{
+                      content: none;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      .about-chart {
+        @apply p-5 bg-gray-50;
+        .chart-image {
+          @apply w-full;
+        }
+      }
+    }
+    .about-aside {
+      @apply ml-aside w-aside max-w-aside;
+      .about-icon {
+        @apply p-5 bg-gray-50 text-gray-700;
+        .middleLine-level {
+          @include middleLine-level;
+        }
+        .icon-wrap {
+          @apply pt-2;
+          .icon-list {
+            @apply flex flex-row items-center justify-center;
+            .icon-item {
+              @apply px-1;
+              &:nth-child(3) {
+                :hover,
+                :active {
+                  color: var(--juejin-color);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

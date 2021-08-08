@@ -42,7 +42,28 @@ module.exports = {
         'sans-serif'
       ]
     },
-    extend: {}
+    extend: {
+      width: {
+        width: '760px',
+        aside: '304px'
+      },
+      maxWidth: {
+        width: '760px',
+        aside: '304px'
+      },
+      height: {
+        image: '400px'
+      },
+      maxHeight:{
+        image: '400px'
+      },
+      margin: {
+        aside: '1.143rem'
+      },
+      borderWidth: {
+        '6': '6px'
+      }
+    }
   },
   variants: {
     extend: {}

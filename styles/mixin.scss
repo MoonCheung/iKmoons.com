@@ -43,3 +43,20 @@
 @mixin line-clamp-none {
   -webkit-line-clamp: unset;
 }
+
+@mixin middleLine-level {
+  @apply relative text-center m-2.5;
+  .middleLine-text {
+    @apply inline-block relative bg-gray-50 px-5 font-bold;
+  }
+  &::before {
+    @apply bg-gray-200;
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 10px;
+    height: 1px;
+    width: 100%;
+  }
+}

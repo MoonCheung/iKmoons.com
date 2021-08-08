@@ -1,0 +1,72 @@
+.art{
+  &-wrap{
+    @apply flex-1 flex flex-col;
+    .art-main{
+      @apply relative overflow-hidden p-3 bg-gray-50 text-gray-700;
+      .art-origin{
+        @apply absolute inline-block text-center;
+        top: -.4em;
+        left: -2em;
+        width: 6em;
+        height: 3em;
+        line-height: 4em;
+        font-size: .857rem;
+        transform: rotate(-45deg);
+      }
+      // 文章标题自定义样式
+      .art-head{
+        .head-title{
+          @apply text-center font-semibold text-gray-900;
+          font-size: 2em;
+          margin: .67em 0;
+        }
+        .head-level{
+          @apply my-4 flex flex-row items-center justify-center select-none;
+          &>span{
+            @apply ml-1 text-xs self-center;
+          }
+        }
+      }
+      // 文章内容自定义样式
+      .art-body{
+        @apply flex flex-col justify-start pb-3 border-b border-dashed border-gray-200; 
+        .body-img{
+          @apply w-full mb-2 border-6 border-gray-200 h-image max-h-image object-cover;
+        }
+      }
+      // 文章尾部自定义样式
+      .art-foot{
+        @apply flex flex-col flex-wrap justify-between p-2 mt-3 border-l-4 border-gray-400 bg-gray-200;
+        .foot-two{
+          .two-tag{
+            @apply mx-1 font-semibold;
+            &::after{
+              content: '、';
+            }
+            &:hover,
+            &:active{
+              @apply text-gray-900;
+            }
+            &:last-child{
+              &::after{
+                content: none;
+              }
+            }
+          }
+        }
+        .foot-three{
+          .foot-link{
+            @apply font-semibold;
+            &:hover,
+            &:active{
+              @apply text-gray-900;
+            }
+          }
+        }
+      }
+    }
+  }
+  &-aside{
+    @apply ml-aside w-aside max-w-aside;
+  }
+}

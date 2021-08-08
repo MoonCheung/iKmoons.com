@@ -48,14 +48,16 @@
           }
         }
         .level-right {
-          @apply flex flex-row items-center;
-          font-size: 12px;
+          @apply flex flex-row items-center text-xs;
           & > time,
           & > span {
             @apply ml-2;
             &:first-child {
               margin-left: 0;
             }
+          }
+          &> .right-origin {
+            padding: calc(.3em - 1px) calc(.5em - 1px);
           }
         }
       }

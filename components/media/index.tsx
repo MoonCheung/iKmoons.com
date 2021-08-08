@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import dayjs from 'dayjs';
-import { originState } from '../../utils/index';
+import { originState,originColor } from '../../utils/index';
 import { ListCheckbox, Time } from '@icon-park/react';
 import styles from './index.module.scss';
 
@@ -34,7 +34,7 @@ export default function medialist({ posts }) {
                   <div className={styles['level-right']}>
                     <Time theme='outline' size='14' strokeWidth={4} />
                     <time className={styles['right-time']}>{dayjs(item.createdAt).format('YYYY年MM月DD日')}</time>
-                    <span className={styles['right-origin']}>{originState(item.origin)}</span>
+                    <span className={styles['right-origin']} style={originColor(item.origin)}>{originState(item.origin)}</span>
                   </div>
                 </div>
               </div>
