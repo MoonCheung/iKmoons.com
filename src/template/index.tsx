@@ -1,9 +1,9 @@
 import dayjs from 'dayjs';
-import Card from '../components/card/index';
-import { originState, originColor } from '../utils/index';
+import { getAllPosts } from '@/pages/api/index';
+import Card from '@/components/card/index';
+import { originState, originColor } from '@/utils/index';
 import { ListCheckbox } from '@icon-park/react';
 import styles from './index.module.scss';
-
 
 export default function content({ children, frontMatter }) {
   // React hooks, for example `useState` or `useEffect`, go here.
@@ -19,6 +19,8 @@ export default function content({ children, frontMatter }) {
               <div className={styles['head-level']}>
                 <ListCheckbox theme='outline' size='12' strokeWidth={4} />
                 <span>{frontMatter.catg}</span>
+                <span>阅读时间:{Math.round(frontMatter.readingTime.minutes)}分钟</span>
+                <span>字数:{frontMatter.readingTime.words}</span>
               </div>
             </div>
             <div className={styles['art-body']}>

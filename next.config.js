@@ -1,6 +1,7 @@
 const path = require('path');
 const images = require('remark-images');
 const emoji = require('remark-emoji');
+const readingTime = require('reading-time');
 const withPlugins = require('next-compose-plugins');
 const withMdxEnhanced = require('next-mdx-enhanced');
 
@@ -30,15 +31,17 @@ const nextConfig = {
 };
 
 const mdxEnhancedConfig = {
-  layoutPath: 'template',
+  layoutPath: './src/template',
   defaultLayout: true,
   fileExtensions: ['mdx'],
   remarkPlugins: [images, emoji],
   rehypePlugins: [],
   usesSrc: false,
   extendFrontMatter: {
-    process: (mdxContent, frontMatter) => {},
-    phase: 'prebuild|loader|both'
+    process: (mdxContent, frontMatter) => ({
+      readingTime: readingTime(mdxContent)
+    }),
+    // phase: 'prebuild|loader|both'
   },
   reExportDataFetching: true
 };

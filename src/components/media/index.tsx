@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import dayjs from 'dayjs';
-import { originState,originColor } from '../../utils/index';
+import { originState,originColor } from '@/utils/index';
 import { ListCheckbox, Time } from '@icon-park/react';
 import styles from './index.module.scss';
 
@@ -27,6 +27,7 @@ export default function medialist({ posts }) {
                   <div className={styles['level-left']}>
                     <ListCheckbox theme='outline' size='14' strokeWidth={4} />
                     <span>{item.catg}</span>
+                    {/* <span>{item.readTime}</span> */}
                     {/* <span>323 次阅读</span>
                     <span>1 人喜欢</span>
                     <span>0 评论</span> */}

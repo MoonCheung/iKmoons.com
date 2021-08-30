@@ -4,7 +4,7 @@ import matter from 'gray-matter';
 import readingTime from 'reading-time';
 import chokidar from 'chokidar';
 
-const postsDirectory = join(process.cwd(), 'pages/article');
+const postsDirectory = join(process.cwd(), './src/pages/article');
 
 /**
  * 获取该文件名称

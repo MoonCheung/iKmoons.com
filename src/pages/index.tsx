@@ -13,9 +13,9 @@ export async function getStaticProps() {
     'description',
     'catg',
     'banner',
+    'readTime',
     'origin',
     'createdAt',
-    'origin'
   ]);
 
   return {

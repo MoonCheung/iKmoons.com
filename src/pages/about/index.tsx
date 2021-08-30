@@ -1,5 +1,5 @@
 import { People, Like, Config, TagOne } from '@icon-park/react';
-import { constant } from '../../config/app.config';
+import { constant } from '@/config/app.config';
 import styles from './index.module.scss';
 export default function aboutPage({ posts }) {
   const { about } = constant;
