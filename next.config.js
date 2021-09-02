@@ -31,7 +31,7 @@ const nextConfig = {
 };
 
 const mdxEnhancedConfig = {
-  layoutPath: './src/template',
+  layoutPath: './src/pages/content',
   defaultLayout: true,
   fileExtensions: ['mdx'],
   remarkPlugins: [images, emoji],
