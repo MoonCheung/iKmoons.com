@@ -1,18 +1,15 @@
 const path = require('path');
+const withMDX = require("@next/mdx")
 const images = require('remark-images');
 const emoji = require('remark-emoji');
-const readingTime = require('reading-time');
 const withPlugins = require('next-compose-plugins');
-const withMdxEnhanced = require('next-mdx-enhanced');
 
 const nextConfig = {
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')]
   },
-  // future: {
-  //   webpack5: true
-  // },
+  webpack5: true,
   webpack: (config, options) => {
     const { isServer } = options;
     // Fixes npm packages (mdx) that depend on `fs` module
@@ -30,20 +27,13 @@ const nextConfig = {
   }
 };
 
-const mdxEnhancedConfig = {
-  layoutPath: './src/pages/content',
-  defaultLayout: true,
-  fileExtensions: ['mdx'],
-  remarkPlugins: [images, emoji],
-  rehypePlugins: [],
-  usesSrc: false,
-  extendFrontMatter: {
-    process: (mdxContent, frontMatter) => ({
-      readingTime: readingTime(mdxContent)
-    }),
-    // phase: 'prebuild|loader|both'
-  },
-  reExportDataFetching: true
-};
+const withMDXConfig = {
+  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
+  extension: /\.mdx$/,
+  options: {
+    remarkPlugins: [images, emoji],
+    rehypePlugins: []
+  }
+}
 
-module.exports = withPlugins([withMdxEnhanced(mdxEnhancedConfig)], nextConfig);
+module.exports = withPlugins([withMDX(withMDXConfig)], nextConfig);

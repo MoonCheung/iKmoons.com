@@ -1,12 +1,46 @@
 import dayjs from 'dayjs';
-import { getAllPosts } from '@/pages/api/index';
+import { getAllCatg } from '@/pages/api/catg'
 import Card from '@/components/card/index';
 import { originState, originColor } from '@/utils/index';
 import { ListCheckbox } from '@icon-park/react';
+// import { MDXProvider } from '@next/mdx'
+import { MDXRemote } from 'next-mdx-remote'
+import { getMdxContent } from '@/utils/content'
 import styles from './index.module.scss';
 
-export default function content({ children, frontMatter }) {
-  // React hooks, for example `useState` or `useEffect`, go here.
+// 自定义组件
+const components = {}
+export async function getStaticPaths() {
+  const posts = await getMdxContent('./src/pages/content');
+  const paths = posts.map(({ slug }) => ({
+    params: {
+      slug: slug.split('/'),
+    },
+  }));
+
+  return {
+    paths,
+    fallback: false,
+  }
+}
+export async function getStaticProps({ params: { slug } }) {
+  const posts = await getMdxContent('./src/pages/content');
+  const postSlug = slug.join('/');
+  const [ post ] = posts.filter((post) => post.slug === postSlug);
+
+  if (!post) {
+    console.warn(`没有找到 slug 的内容:${postSlug}`);
+  }
+  return { 
+    props: { 
+      source: post.source, 
+      frontMatter: post.data 
+    } 
+  }
+}
+
+export default function article({ source, frontMatter }){
+  // console.log('watch frontMatter:', frontMatter)
   return (
     <>
       <article className='flex flex-row justify-start'>
@@ -19,13 +53,15 @@ export default function content({ children, frontMatter }) {
               <div className={styles['head-level']}>
                 <ListCheckbox theme='outline' size='12' strokeWidth={4} />
                 <span>{frontMatter.catg}</span>
-                <span>阅读时间:{Math.round(frontMatter.readingTime.minutes)}分钟</span>
-                <span>字数:{frontMatter.readingTime.words}</span>
+                <span>阅读时间:{Math.round(frontMatter.readTime.minutes)}分钟</span>
+                <span>字数:{frontMatter.readTime.words}</span>
               </div>
             </div>
             <div className={styles['art-body']}>
               <img className={styles['body-img']} src={frontMatter.banner} alt='banner' />
-              <div className={styles['markdown-body']}>{children}</div>
+              <div className={styles['markdown-body']}>
+                <MDXRemote {...source} components={components} />
+              </div>
             </div>
             <div className={styles['art-foot']}>
               <div className={styles['foot-one']}>发布时间:{dayjs(frontMatter.createdAt).format('YYYY年MM月DD日')}</div>
@@ -61,5 +97,5 @@ export default function content({ children, frontMatter }) {
         </aside>
       </article>
     </>
-  );
+  )
 }

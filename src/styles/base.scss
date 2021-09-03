@@ -78,6 +78,16 @@
     }
     .aside {
       @apply ml-auto w-aside max-w-aside;
+      .card-list{
+        @apply flex flex-row flex-wrap justify-start items-center mt-2;
+        .tags-item{
+          @apply text-gray-700 px-1 border-2 border-gray-300 mr-2 mb-2 cursor-pointer;
+          &:hover,
+          &:active{
+            @apply bg-gray-300 text-gray-900;
+          }
+        }
+      }
     }
   }
   // 尾部

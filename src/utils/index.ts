@@ -14,7 +14,7 @@ export function originColor(param) {
     [2, ['--orange', '--orange-opacity']]
   ]);
   return {
-    color: `var(${mapOrigin.get(param)[0]})`,
-    'backgroundColor': `var(${mapOrigin.get(param)[1]})`
+    color: `var(${mapOrigin.get(param)?.[0]})`,
+    'backgroundColor': `var(${mapOrigin.get(param)?.[1]})`
   };
 }
