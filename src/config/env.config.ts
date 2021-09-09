@@ -12,3 +12,4 @@ export const isProdMode = Object.is(NODE_ENV, 'production');
 
 export const isServer = process && process.server;
 export const isBrowser = process && process.browser;
+export const CONTENT_PATH = './src/pages/content';

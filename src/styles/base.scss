@@ -34,7 +34,7 @@
   @apply flex flex-col h-screen max-h-screen;
   // 头部
   .navbar {
-    @apply fixed top-0 left-0 right-0 z-10 bg-gray-50;
+    @apply fixed top-0 left-0 right-0 z-20 bg-gray-50;
     & > .container {
       height: 45px;
       max-height: 45px;

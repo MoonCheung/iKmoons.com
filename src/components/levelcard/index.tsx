@@ -10,7 +10,7 @@ export default function levelcard({ posts }) {
           {posts.map((item, index) => (
             <div className={styles.card} key={index}>
               <div className={styles['card-wrap']}>
-                <Link href='/'>
+                <Link href={`/catg/${item.name}`}>
                   <a className={styles['card-link']} title='link'>
                     <img className={styles['card-img']} src={item.link} />
                     <div className={styles['card-item']}>

@@ -40,18 +40,18 @@
         .foot-two{
           .two-tag{
             @apply mx-1 font-semibold;
-            &::after{
-              content: '、';
+            &::before{
+              content: '#';
             }
             &:hover,
             &:active{
               @apply text-gray-900;
             }
-            &:last-child{
-              &::after{
-                content: none;
-              }
-            }
+            // &:last-child{
+            //   &::before{
+            //     content: none;
+            //   }
+            // }
           }
         }
         .foot-three{
@@ -68,5 +68,18 @@
   }
   &-aside{
     @apply ml-aside w-aside max-w-aside;
+    .card-item{
+      @apply flex flex-row justify-between text-gray-700 p-1 mt-1;
+      &>.name{
+        .i-icon{
+          @apply mr-1;
+          vertical-align: text-bottom;
+        }
+      }
+      &:hover,
+      &:active{
+        @apply text-gray-900 bg-gray-300;
+      }
+    }
   }
 }

@@ -1,46 +1,63 @@
 import dayjs from 'dayjs';
-import { getAllCatg } from '@/pages/api/catg'
-import Card from '@/components/card/index';
-import { originState, originColor } from '@/utils/index';
-import { ListCheckbox } from '@icon-park/react';
-// import { MDXProvider } from '@next/mdx'
+import Link from 'next/link';
 import { MDXRemote } from 'next-mdx-remote'
-import { getMdxContent } from '@/utils/content'
+import Card from '@/components/card/index';
+import { getAllCatg } from '@/pages/api/catg'
+import { constant } from '@/config/app.config'
+import { ListCheckbox } from '@icon-park/react';
+import { serialize } from 'next-mdx-remote/serialize'
+import { originState, originColor } from '@/utils/index';
+import { Outdoor, BookOne, SettingTwo, Code } from '@icon-park/react';
+import { getPostSlugPath, getPostBySlug, getPostItemSlug } from '@/pages/api/index'
 import styles from './index.module.scss';
 
 // 自定义组件
 const components = {}
 export async function getStaticPaths() {
-  const posts = await getMdxContent('./src/pages/content');
-  const paths = posts.map(({ slug }) => ({
-    params: {
-      slug: slug.split('/'),
-    },
-  }));
-
+  const paths = await getPostSlugPath()
   return {
     paths,
     fallback: false,
   }
 }
 export async function getStaticProps({ params: { slug } }) {
-  const posts = await getMdxContent('./src/pages/content');
   const postSlug = slug.join('/');
-  const [ post ] = posts.filter((post) => post.slug === postSlug);
+  const {content, ...data} = await getPostBySlug(postSlug,[
+    'title',
+    'description',
+    'origin',
+    'catg',
+    'tags',
+    'readTime',
+    'banner',
+    'content',
+    'createdAt',
+  ])
+  // 获取所有分类方法
+  const catg = await getPostItemSlug('catg').reduce((acc,cur) => {
+    const key = [...new Set(cur)]; 
+    acc[key] = cur.length 
+    return  acc;
+  },{})
 
-  if (!post) {
+  if (!content) {
     console.warn(`没有找到 slug 的内容:${postSlug}`);
   }
+
+  const source = await serialize(content, { scope: data });
+
   return { 
     props: { 
-      source: post.source, 
-      frontMatter: post.data 
+      source,
+      catg,
+      frontMatter:{
+        ...data
+      }
     } 
   }
 }
 
-export default function article({ source, frontMatter }){
-  // console.log('watch frontMatter:', frontMatter)
+export default function article({ source, frontMatter, catg}){
   return (
     <>
       <article className='flex flex-row justify-start'>
@@ -89,10 +106,25 @@ export default function article({ source, frontMatter }){
         </div>
         <aside className={styles['art-aside']}>
           <Card icon='catg' title='分类'>
-            <div className='card-item'>hello 嵌套组件1</div>
-            <div className='card-item'>hello 嵌套组件2</div>
-            <div className='card-item'>hello 嵌套组件3</div>
-            <div className='card-item'>hello 嵌套组件4</div>
+          {constant.catgIcon.map(({name, icon}, index) => (
+            <Link href={`/catg/${name}`} key={index}>
+              <a className={styles['card-item']}>
+                <span className={styles["name"]}>
+                  {icon === 'Outdoor' ? (
+                    <Outdoor className={styles['i-icon']} theme='outline' size='16' strokeWidth={4} />
+                  ) : icon === 'BookOne' ? (
+                    <BookOne className={styles['i-icon']} theme='outline' size='16' strokeWidth={4} />
+                  ) : icon === 'SettingTwo' ? (
+                    <SettingTwo className={styles['i-icon']} theme='outline' size='16' strokeWidth={4} />
+                  ) : icon === 'Code' ? (
+                    <Code className={styles['i-icon']} theme='outline' size='16' strokeWidth={4} />
+                  ) : null}
+                  {name}
+                </span>
+                <span className={styles["count"]}>共{ catg[name] || 0 }篇文章</span>
+              </a>
+            </Link>
+          ))}
           </Card>
         </aside>
       </article>
