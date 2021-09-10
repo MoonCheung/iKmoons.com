@@ -9,7 +9,6 @@ export const constant = {
   logos: 'iKmoons - 个人博客会随时撰写技术文章以及个人生活，分享他人',
   menus: [
     { route: '/', name: '首页' },
-    { route: '/archive', name: '归档' },
     { route: '/about', name: '关于' }
   ],
   catgIcon: [

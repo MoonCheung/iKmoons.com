@@ -9,7 +9,7 @@ export default function medialist({ posts }) {
     <>
       <section className={styles.section}>
         <div className='container flex flex-col items-center justify-start'>
-          {posts.map((item, index) => (
+          {posts && posts.length ? posts.map((item, index) => (
             <div className={styles.media} key={index}>
               <div className={styles['media-left']}>
                 <figure className={styles.image}>
@@ -40,8 +40,8 @@ export default function medialist({ posts }) {
                 </div>
               </div>
             </div>
-          ))}
-          <button className={styles.btn}>下一页</button>
+          )) : <div className={styles['no-media']}>暂无文章，请你小憩一会儿～🙂</div> }
+          {posts && posts.length? (<button className={styles.btn}>下一页</button>) : null }
         </div>
       </section>
     </>

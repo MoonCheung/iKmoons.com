@@ -2,7 +2,6 @@ import dayjs from 'dayjs';
 import Link from 'next/link';
 import { MDXRemote } from 'next-mdx-remote'
 import Card from '@/components/card/index';
-import { getAllCatg } from '@/pages/api/catg'
 import { constant } from '@/config/app.config'
 import { ListCheckbox } from '@icon-park/react';
 import { serialize } from 'next-mdx-remote/serialize'

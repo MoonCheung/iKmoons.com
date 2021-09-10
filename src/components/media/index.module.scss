@@ -74,6 +74,11 @@
       }
     }
   }
+
+  .no-media{
+    @apply w-full bg-gray-50 text-gray-700 py-20 text-center;
+  }
+
   .btn {
     @apply relative w-full bg-gray-50 p-1 mb-2 text-gray-700;
     &:hover,

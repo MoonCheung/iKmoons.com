@@ -1,0 +1,14 @@
+.tags{
+  &-main{
+    .tags-head{
+      @apply flex flex-col items-center justify-center py-5 mb-2 bg-gray-50 text-gray-700;
+      .i-icon {
+        @apply text-gray-700 mr-2;
+      }
+
+      .head-name{
+        @apply font-bold my-3 text-lg;
+      }
+    }
+  }
+}

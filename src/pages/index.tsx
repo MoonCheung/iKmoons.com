@@ -7,6 +7,7 @@ import { constant } from '@/config/app.config';
 
 // 该页面导出该方法返回props
 export async function getStaticProps() {
+  // 获取所有文件
   const posts = await getAllPosts([
     'router',
     'title',

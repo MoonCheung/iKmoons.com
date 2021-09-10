@@ -1,4 +1,6 @@
-import { getPostSlugs, getPostBySlug } from '@/pages/api/index'
+import MediaList from '@/components/media/index';
+import { TagOne } from '@icon-park/react';
+import { getPostSlugs, getPostBySlug, getAllPosts } from '@/pages/api/index'
 import styles from './index.module.scss';
 
 export async function getStaticPaths() {
@@ -17,17 +19,39 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params: { name } }) {
-  return { 
+  // 获取所有文件
+  const posts = await getAllPosts([
+    'router',
+    'title',
+    'description',
+    'catg',
+    'banner',
+    'origin',
+    'tags',
+    'createdAt',
+  ]).filter(({tags}) => tags.includes(name))
+
+  return {
     props: {
-      name
-    } 
+      name,
+      posts
+    }
   }
 }
 
-export default function tagsPage({name}) {
+export default function tagsPage({name, posts}) {
   return (
     <>
-      <div>hello 这是标签: {name}</div>
+      <div className={styles['tags-main']}>
+        <header className={styles['tags-head']}>
+          <TagOne className={styles['i-icon']} theme='outline' size='48' strokeWidth={3} />
+          <div className={styles['head-name']}>{name.toUpperCase()}</div>
+          <div className={styles['head-count']}>共搜索到&nbsp;{ posts?.length || 0 }&nbsp;篇文章</div>
+        </header>
+        <article className={styles['tags-list']}>
+          <MediaList posts={posts} />  
+        </article>
+      </div>
     </>
   );
 }
