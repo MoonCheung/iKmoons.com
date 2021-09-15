@@ -103,7 +103,7 @@ export function getPostBySlug(slug, fields = []) {
 export function getAllPosts(fields = []) {
   const slugs = getPostSlugs();
   // sort posts by createdAt in descending order
-  const posts = slugs.map((slug) => getPostBySlug(slug, fields)).sort((post1, post2) => (post1.createdAt > post2.createdAt ? '1' : '-1'));
+  const posts = slugs.map((slug) => getPostBySlug(slug, fields)).sort((post1, post2) => (post1.createdAt > post2.createdAt ? '1' : '-1'))
   return posts;
 }
 
