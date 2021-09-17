@@ -1,8 +1,8 @@
-const path = require('path')
-const withMDX = require('@next/mdx')
-const images = require('remark-images')
-const emoji = require('remark-emoji')
-const withPlugins = require('next-compose-plugins')
+const path = require('path');
+const withMDX = require('@next/mdx');
+const images = require('remark-images');
+const emoji = require('remark-emoji');
+const withPlugins = require('next-compose-plugins');
 
 const nextConfig = {
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
@@ -18,10 +18,10 @@ const nextConfig = {
     // webpack 5版本
     config.resolve.fallback = {
       fs: false
-    }
-    return config
+    };
+    return config;
   }
-}
+};
 
 const withMDXConfig = {
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
@@ -30,6 +30,6 @@ const withMDXConfig = {
     remarkPlugins: [images, emoji],
     rehypePlugins: []
   }
-}
+};
 
-module.exports = withPlugins([withMDX(withMDXConfig)], nextConfig)
+module.exports = withPlugins([withMDX(withMDXConfig)], nextConfig);
