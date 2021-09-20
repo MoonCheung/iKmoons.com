@@ -1,16 +1,16 @@
 import fs from 'fs';
 import glob from 'fast-glob';
 import chokidar from 'chokidar';
-import { join,extname,sep } from 'path';
+import { join, extname, sep } from 'path';
 import matter from 'gray-matter';
 import readingTime from 'reading-time';
-import { CONTENT_PATH } from '@/config/env.config'
+import { CONTENT_PATH } from '@/config/env.config';
 
 const postsDirectory = join(process.cwd(), CONTENT_PATH);
 
 /**
  * 获取该文件名称
- * @returns 
+ * @returns
  */
 export function getPostSlugs() {
   return glob.sync(`${CONTENT_PATH}/**/*.mdx`);
@@ -18,15 +18,19 @@ export function getPostSlugs() {
 
 /**
  * 获取所有文件路由
- * @returns 
+ * @returns
  */
-export function getPostSlugPath(){
+export function getPostSlugPath() {
   const file = glob.sync(`${CONTENT_PATH}/**/*.mdx`);
-  return file.map(path => ({
+  return file.map((path) => ({
     params: {
-      slug: path.replace(CONTENT_PATH, '').replace(/^\/+/, '').replace(new RegExp(extname(path) + '$'), '').split(sep)
+      slug: path
+        .replace(CONTENT_PATH, '')
+        .replace(/^\/+/, '')
+        .replace(new RegExp(extname(path) + '$'), '')
+        .split(sep)
     }
-  }))
+  }));
 }
 
 /**
@@ -71,7 +75,7 @@ export function getPostBySlug(slug, fields = []) {
   // });
 
   const { data, content } = matter(fileContents);
-  const readTime = readingTime(content)
+  const readTime = readingTime(content);
   const items = {};
 
   // Ensure only the minimal needed data is exposed
@@ -85,8 +89,8 @@ export function getPostBySlug(slug, fields = []) {
     if (field === 'origin') {
       items[field] = data[field];
     }
-    if(field === 'readTime'){
-      items[field] = readTime
+    if (field === 'readTime') {
+      items[field] = readTime;
     }
     if (data[field]) {
       items[field] = data[field];
@@ -103,37 +107,40 @@ export function getPostBySlug(slug, fields = []) {
 export function getAllPosts(fields = []) {
   const slugs = getPostSlugs();
   // sort posts by createdAt in descending order
-  const posts = slugs.map((slug) => getPostBySlug(slug, fields)).sort((post1, post2) => (post1.createdAt > post2.createdAt ? '1' : '-1'))
+  const posts = slugs
+    .map((slug) => getPostBySlug(slug, fields))
+    .sort((post1, post2) => (post1.createdAt > post2.createdAt ? '1' : '-1'));
   return posts;
 }
 
 /**
  * 获取内容解析数据
- * @param param 
- * @returns 
+ * @param param
+ * @returns
  */
-export function getPostItemSlug(param = ""){
-  if(!param) return;
+export function getPostItemSlug(param = '') {
+  if (!param) return;
   const slugs = getPostSlugs();
   const data = slugs.flatMap((slug) => {
-    const item = getPostBySlug(slug, [param])
-    return item[param]
-  })
+    const item = getPostBySlug(slug, [param]);
+    return item[param];
+  });
 
   // 新数组
-  const arr = []
+  const arr = [];
   // 扁平化经过排序得到一维数组转化字符串
-  const newStr = data.sort().join()
+  const newStr = data.sort().join();
   // 提取连续重复的值
-  const regex = /(.[\u4e00-\u9fa5a-zA-z]+)\1+/g
+  const regex = /(.[\u4e00-\u9fa5a-zA-z]+)\1+/g;
   newStr.replace(regex, (match) => {
-    return match && arr.push(match.replace(/^,/,'').split(','))
-  })
+    return match && arr.push(match.replace(/^,/, '').split(','));
+  });
   // 过滤非唯一性的值,推送到新数组
-  const filterNonUnique = flat => [...new Set(flat)].filter(i => flat.indexOf(i) === flat.lastIndexOf(i)).forEach(item => arr.push([item]))
-  filterNonUnique(data)
+  const filterNonUnique = (flat) =>
+    [...new Set(flat)].filter((i) => flat.indexOf(i) === flat.lastIndexOf(i)).forEach((item) => arr.push([item]));
+  filterNonUnique(data);
 
-  return arr
+  return arr;
 }
 
 /**

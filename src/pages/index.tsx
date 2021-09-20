@@ -8,21 +8,13 @@ import { constant } from '@/config/app.config';
 // 该页面导出该方法返回props
 export async function getStaticProps() {
   // 获取所有文件
-  const posts = await getAllPosts([
-    'router',
-    'title',
-    'description',
-    'catg',
-    'banner',
-    'origin',
-    'createdAt',
-  ]);
+  const posts = await getAllPosts(['router', 'title', 'description', 'catg', 'banner', 'origin', 'createdAt']);
   // 获取所有标签方法
-  const allTag = await getPostItemSlug('tags').map((item,index) => ({
+  const allTag = await getPostItemSlug('tags').map((item, index) => ({
     name: Array.from(new Set(item)).join().toUpperCase(),
     router: Array.from(new Set(item)).join(),
     len: item.length
-  }))
+  }));
 
   return {
     props: {
@@ -32,7 +24,7 @@ export async function getStaticProps() {
   };
 }
 
-export default function IndexPage({ posts,allTag }) {
+export default function IndexPage({ posts, allTag }) {
   return (
     <>
       <article className='container flex justify-start'>
@@ -42,9 +34,11 @@ export default function IndexPage({ posts,allTag }) {
         </div>
         <div className='aside'>
           <Card icon='tag' title='标签'>
-            {allTag.map((item,index) => (
+            {allTag.map((item, index) => (
               <Link href={`/tags/${item.router}`} key={index}>
-                <div className="tags-item">{item.name}&nbsp;[&nbsp;{item.len}&nbsp;]</div>  
+                <div className='tags-item'>
+                  {item.name}&nbsp;[&nbsp;{item.len}&nbsp;]
+                </div>
               </Link>
             ))}
           </Card>

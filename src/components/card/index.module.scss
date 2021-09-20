@@ -12,3 +12,18 @@
     }
   }
 }
+
+:global(.dark) .card{
+  &-wrap {
+    @apply bg-gray-800;
+    .catd-head{
+      @apply border-gray-50;
+    }
+    .i-icon {
+      @apply text-gray-50;
+    }
+    .head-title{
+      @apply text-gray-50;
+    }
+  }
+}

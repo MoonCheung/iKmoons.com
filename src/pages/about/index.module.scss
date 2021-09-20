@@ -73,3 +73,38 @@
     }
   }
 }
+
+:global(.dark) .about {
+  &-wrap {
+    .about-main {
+      .about-info {
+        @apply bg-gray-800 text-gray-50;
+        .middleLine-level{
+          .middleLine-text{
+            @apply bg-gray-800 text-gray-50;
+          }
+          &::before {
+            @apply bg-gray-50;
+          }
+        }
+      }
+
+      .about-chart {
+        @apply bg-gray-800;
+      }
+    }
+    .about-aside {
+      .about-icon {
+        @apply bg-gray-800 text-gray-50;
+        .middleLine-level{
+          .middleLine-text{
+            @apply bg-gray-800 text-gray-50;
+          }
+          &::before {
+            @apply bg-gray-50;
+          }
+        }
+      }
+    }
+  }
+}

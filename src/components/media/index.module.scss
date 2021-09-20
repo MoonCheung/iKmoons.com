@@ -87,3 +87,28 @@
     }
   }
 }
+
+:global(.dark) .section {
+  .media{
+    @apply bg-gray-800 text-gray-50;
+    .media-link{
+      &:hover,
+      &:active {
+        & > .link-header {
+          @apply text-gray-200;
+        }
+      }
+    }
+  }
+  .no-media{
+    @apply bg-gray-800 text-gray-50;
+  }
+
+  .btn{
+    @apply bg-gray-800 text-gray-50;
+    &:hover,
+    &:active {
+      @apply text-gray-200;
+    }
+  }
+}

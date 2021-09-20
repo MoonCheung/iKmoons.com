@@ -1,12 +1,24 @@
 const colors = require('tailwindcss/colors');
 const tailwindForms = require('@tailwindcss/forms');
+const typography = require('@tailwindcss/typography');
 const plugin = require('tailwindcss/plugin');
 
 module.exports = {
   mode: 'jit',
   // 删除未使用样式
-  purge: ['./src/pages/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}', './src/layouts/**/*.{js,ts,jsx,tsx}'],
-  darkMode: 'media', // or 'media' or 'class'
+  purge: {
+    enabled: true,
+    content: [
+      './src/pages/**/*.{js,ts,jsx,tsx}',
+      './src/components/**/*.{js,ts,jsx,tsx}',
+      './src/layouts/**/*.{js,ts,jsx,tsx}'
+    ],
+    // These options are passed through directly to PurgeCSS
+    options: {
+      safelist: ['dark'] // specific classes
+    }
+  },
+  darkMode: 'class', // or 'media' or 'class'
   theme: {
     screens: {
       sm: '480px',
@@ -17,7 +29,7 @@ module.exports = {
     colors: {
       primary: 'var(--primary-color)',
       transparent: 'transparent',
-      gray: colors.blueGray,
+      gray: colors.gray,
       blue: colors.sky,
       red: colors.rose,
       green: colors.lime,
@@ -43,6 +55,7 @@ module.exports = {
       ]
     },
     extend: {
+      typography: (theme) => ({}),
       width: {
         width: '760px',
         aside: '304px'
@@ -54,30 +67,30 @@ module.exports = {
       height: {
         image: '400px'
       },
-      maxHeight:{
+      maxHeight: {
         image: '400px'
       },
       margin: {
         aside: '1.143rem'
       },
       borderWidth: {
-        '6': '6px'
+        6: '6px'
       }
     }
   },
   variants: {
     extend: {}
   },
-  plugins: [tailwindForms]
+  plugins: [tailwindForms, typography]
   // plugin(function({ addBase, config }) {
   //   addBase({
-  //     // 'html': {
-  //     //   'box-sizing': 'border-box',
-  //     //   'overflow-x': 'hidden',
-  //     //   'overflow-y': 'scroll',
-  //     //   'text-size-adjust': '100%',
-  //     //   'text-rendering': 'optimizeLegibility'
-  //     // }
+  //     'html': {
+  //       'box-sizing': 'border-box',
+  //       'overflow-x': 'hidden',
+  //       'overflow-y': 'scroll',
+  //       'text-size-adjust': '100%',
+  //       'text-rendering': 'optimizeLegibility'
+  //     }
   //   })
   // })
 };

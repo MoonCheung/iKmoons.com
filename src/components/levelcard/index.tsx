@@ -11,8 +11,8 @@ export default function levelcard({ posts }) {
             <div className={styles.card} key={index}>
               <div className={styles['card-wrap']}>
                 <Link href={`/catg/${item.name}`}>
-                  <a className={styles['card-link']} title='link'>
-                    <img className={styles['card-img']} src={item.link} />
+                  <a href={`/catg/${item.name}`} className={styles['card-link']} title={item.name}>
+                    <img className={styles['card-img']} src={item.link} alt={item.name} />
                     <div className={styles['card-item']}>
                       {item.icon === 'Outdoor' ? (
                         <Outdoor className={styles['i-icon']} theme='outline' size='28' strokeWidth={4} />

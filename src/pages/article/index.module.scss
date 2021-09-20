@@ -83,3 +83,52 @@
     }
   }
 }
+
+:global(.dark) .art{
+  &-wrap{
+    .art-main{
+      @apply bg-gray-800 text-gray-50;
+      // 文章头部自定义样式
+      .art-head{
+        .head-title{
+          @apply text-gray-50;
+        }
+      }
+      // 文章尾部自定义样式
+      .art-foot{
+        @apply border-gray-900 bg-gray-700;
+        .foot-two{
+          .two-tag{
+            &:hover,
+            &:active{
+              @apply text-gray-200;
+            }
+          }
+        }
+        .foot-three{
+          .foot-link{
+            &:hover,
+            &:active{
+              @apply text-gray-200;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &-aside{
+    .card-item{
+      @apply text-gray-50;
+      &>.name{
+        .i-icon{
+          @apply text-gray-50;
+        }
+      }
+      &:hover,
+      &:active{
+        @apply bg-gray-700;
+      }
+    }
+  }
+}

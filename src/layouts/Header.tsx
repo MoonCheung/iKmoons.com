@@ -1,12 +1,15 @@
 import Link from 'next/link';
+import Logo from '@/assets/svg/logo.svg';
+
 export default function Header({ posts }) {
   return (
     <>
       <nav className='navbar hero-head'>
         <div className='container mx-auto flex flex-row justify-start items-center'>
           <div className='navbar-brand'>
+            <h1 className='brand-name'>iKmoons - 个人博客会随时撰写技术文章以及个人生活，分享他人</h1>
             <Link href='/'>
-              <h1 className='logo'>iKmoons - 个人博客会随时撰写技术文章以及个人生活，分享他人</h1>
+              <Logo className='brand-logo' />
             </Link>
           </div>
           <div className='navbar-menu'>

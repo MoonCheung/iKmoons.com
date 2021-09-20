@@ -12,3 +12,14 @@
     }
   }
 }
+
+:global(.dark) .catg{
+  &-main{
+    .catg-head{
+      @apply bg-gray-800 text-gray-50;
+      .i-icon {
+        @apply text-gray-50;
+      }
+    }
+  }
+}

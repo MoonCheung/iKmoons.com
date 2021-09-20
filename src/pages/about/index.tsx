@@ -72,12 +72,16 @@ export default function aboutPage({ posts }) {
                   </a>
                 </li>
                 <li className={styles['icon-item']}>
-                  <a className='icon-link' target='_blank' href='https://github.com/MoonCheung'>
+                  <a className='icon-link' target='_blank' href='https://github.com/MoonCheung' rel='noreferrer'>
                     Github
                   </a>
                 </li>
                 <li className={styles['icon-item']}>
-                  <a className='icon-link' target='_blank' href='https://juejin.im/user/57df412ba0bb9f0058a3f23a'>
+                  <a
+                    className='icon-link'
+                    target='_blank'
+                    href='https://juejin.im/user/57df412ba0bb9f0058a3f23a'
+                    rel='noreferrer'>
                     掘金
                   </a>
                 </li>

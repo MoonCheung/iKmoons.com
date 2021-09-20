@@ -5,6 +5,9 @@ const emoji = require('remark-emoji');
 const withPlugins = require('next-compose-plugins');
 
 const nextConfig = {
+  images: {
+    domains: ['static.ikmoons.com']
+  },
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')]
@@ -16,6 +19,10 @@ const nextConfig = {
     // if(!isServer) config.node = { fs:'empty' }
     // Fixes npm packages (mdx) that depend on `fs` module
     // webpack 5版本
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ['@svgr/webpack']
+    });
     config.resolve.fallback = {
       fs: false
     };

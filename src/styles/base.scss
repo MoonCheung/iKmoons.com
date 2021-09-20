@@ -31,26 +31,33 @@
 }
 
 .hero {
-  @apply flex flex-col h-screen max-h-screen;
+  @apply flex flex-col h-screen max-h-screen relative;
   // 头部
   .navbar {
-    @apply fixed top-0 left-0 right-0 z-20 bg-gray-50;
+    @apply fixed top-0 left-0 right-0 z-20 bg-gray-50 dark:bg-gray-800;
     & > .container {
       height: 45px;
       max-height: 45px;
       // 顶部导航菜单-logo图标
       .navbar-brand {
-        @apply overflow-hidden px-2.5;
+        @apply overflow-hidden px-2.5 cursor-pointer;
 
-        .logo {
+        .brand-name {
+          display: none;
           width: 120px;
-          height: 1em;
-          font-size: 1.3em;
+          height: 2em;
           color: var(--white-color);
           text-indent: -9999px;
-          background-size: contain;
-          background-repeat: no-repeat;
-          background-image: url('//static.ikmoons.com/logo.svg');
+        }
+
+        .brand-logo{
+          @apply dark:fill-current dark:text-gray-50;
+          width: 120px;
+          height: 2em;
+          &:hover,
+          &:active{
+            @apply dark:text-gray-200;
+          }
         }
       }
       .navbar-menu {
@@ -58,11 +65,11 @@
         .navbar-start {
           @apply flex h-full mr-auto justify-start items-center;
           .navbar-link {
-            @apply px-4 leading-10 text-gray-700 font-semibold;
+            @apply px-4 leading-10 text-gray-700 font-semibold dark:text-gray-50;
             font-size: 14px;
             &:hover,
             &:active {
-              @apply text-gray-900;
+              @apply text-gray-900 dark:text-gray-200;
             }
           }
         }
@@ -81,34 +88,56 @@
       .card-list{
         @apply flex flex-row flex-wrap justify-start items-center mt-2;
         .tags-item{
-          @apply text-gray-700 px-1 border-2 border-gray-300 mr-2 mb-2 cursor-pointer;
+          @apply text-gray-700 px-1 border-2 border-gray-300 mr-2 mb-2 cursor-pointer dark:text-gray-50 dark:border-gray-200;
           &:hover,
           &:active{
-            @apply bg-gray-300 text-gray-900;
+            @apply bg-gray-300 text-gray-900 dark:bg-gray-200;
           }
         }
       }
     }
   }
+  // 固定栏
+  .affix{
+    @apply fixed bg-gray-50 py-1 w-12 flex flex-col flex-wrap justify-center items-center dark:bg-gray-800;
+    right: 20rem;
+    bottom: 17.142rem;
+    .button{
+      @apply p-2;
+
+      &:hover,
+      &:active{
+        @apply bg-gray-100 dark:bg-gray-700;
+      }
+      .i-icon{
+        @apply align-middle dark:text-gray-50;
+      }
+    }
+  }
+
   // 尾部
   .footer {
-    @apply bg-gray-50 p-5;
+    @apply bg-gray-50 p-5 dark:bg-gray-800;
     & > .container {
       .foot-text {
         font-size: 14px;
-        @apply mb-1 text-center text-gray-700;
+        @apply mb-1 text-center text-gray-700 dark:text-gray-50;
         &:last-child {
           @apply mb-0;
         }
         & > a {
           @apply font-semibold;
+          &:hover,
+          &:active{
+            @apply text-gray-900 dark:text-gray-200;
+          }
         }
       }
     }
   }
   // 粒子效果
   #tsparticles {
-    @apply bg-gray-200 bg-opacity-50 fixed inset-0;
+    @apply bg-gray-200 bg-opacity-50 fixed inset-0 dark:bg-gray-900;
     z-index: -1;
   }
 }
