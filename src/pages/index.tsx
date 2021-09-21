@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Layout from '@/layouts';
 import Card from '@/components/card/index';
 import MediaList from '@/components/media/index';
 import LevelCard from '@/components/levelcard/index';
@@ -27,23 +28,25 @@ export async function getStaticProps() {
 export default function IndexPage({ posts, allTag }) {
   return (
     <>
-      <article className='container flex justify-start'>
-        <div className='main-wrap'>
-          <LevelCard posts={constant.catgIcon} />
-          <MediaList posts={posts} />
-        </div>
-        <div className='aside'>
-          <Card icon='tag' title='标签'>
-            {allTag.map((item, index) => (
-              <Link href={`/tags/${item.router}`} key={index}>
-                <div className='tags-item'>
-                  {item.name}&nbsp;[&nbsp;{item.len}&nbsp;]
-                </div>
-              </Link>
-            ))}
-          </Card>
-        </div>
-      </article>
+      <Layout title='' description=''>
+        <article className='container flex justify-start'>
+          <div className='main-wrap'>
+            <LevelCard posts={constant.catgIcon} />
+            <MediaList posts={posts} />
+          </div>
+          <div className='aside'>
+            <Card icon='tag' title='标签'>
+              {allTag.map((item, index) => (
+                <Link href={`/tags/${item.router}`} key={index}>
+                  <div className='tags-item'>
+                    {item.name}&nbsp;[&nbsp;{item.len}&nbsp;]
+                  </div>
+                </Link>
+              ))}
+            </Card>
+          </div>
+        </article>
+      </Layout>
     </>
   );
 }

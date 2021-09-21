@@ -2,15 +2,23 @@ import DocHead from './Head';
 import Header from './Header';
 import Footer from './Footer';
 import { useTheme } from 'next-themes';
+import { useState, useEffect } from 'react';
 import { constant, partConfig } from '@/config/app.config';
 import ParticlesContainer from '@/components/particles/index';
 import { Up, Down, SunOne, Moon } from '@icon-park/react';
 
-export default function Layout({ children, pageTitle, description }) {
+export default function Layout({ children, title, description }) {
+  const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
+
+  // 安装在客户端上时，现在我们可以显示 UI
+  useEffect(() => setMounted(true), []);
+
+  if (!mounted) return null;
+
   return (
     <>
-      <DocHead pageTitle={pageTitle} description={description} />
+      <DocHead title={title} description={description} />
       <main className='hero'>
         <Header posts={constant.menus} />
         <div className='hero-body'>{children}</div>

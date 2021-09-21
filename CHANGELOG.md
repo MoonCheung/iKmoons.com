@@ -9,3 +9,4 @@
 -- 添加ESLint+Prettier配置
 -- 升级Webpack 5版本
 -- 增加暗光模式
+-- 添加next-seo配置

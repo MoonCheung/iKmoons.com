@@ -1,3 +1,4 @@
+import Layout from '@/layouts';
 import { constant } from '@/config/app.config';
 import MediaList from '@/components/media/index';
 import { CategoryManagement } from '@icon-park/react';
@@ -28,16 +29,18 @@ export async function getStaticProps({ params: { name } }) {
 export default function catgPage({ name, posts }) {
   return (
     <>
-      <div className={styles['catg-main']}>
-        <header className={styles['catg-head']}>
-          <CategoryManagement className={styles['i-icon']} theme='outline' size='48' strokeWidth={3} />
-          <div className={styles['head-name']}>{name}</div>
-          <div className={styles['head-count']}>共搜索到&nbsp;{posts?.length || 0}&nbsp;篇文章</div>
-        </header>
-        <article className={styles['catg-list']}>
-          <MediaList posts={posts} name={name} />
-        </article>
-      </div>
+      <Layout title={name} description=''>
+        <div className={styles['catg-main']}>
+          <header className={styles['catg-head']}>
+            <CategoryManagement className={styles['i-icon']} theme='outline' size='48' strokeWidth={3} />
+            <div className={styles['head-name']}>{name}</div>
+            <div className={styles['head-count']}>共搜索到&nbsp;{posts?.length || 0}&nbsp;篇文章</div>
+          </header>
+          <article className={styles['catg-list']}>
+            <MediaList posts={posts} name={name} />
+          </article>
+        </div>
+      </Layout>
     </>
   );
 }

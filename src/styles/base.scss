@@ -88,10 +88,10 @@
       .card-list{
         @apply flex flex-row flex-wrap justify-start items-center mt-2;
         .tags-item{
-          @apply text-gray-700 px-1 border-2 border-gray-300 mr-2 mb-2 cursor-pointer dark:text-gray-50 dark:border-gray-200;
+          @apply text-gray-700 px-1 border-2 border-gray-200 mr-2 mb-2 cursor-pointer dark:text-gray-50 dark:border-gray-200;
           &:hover,
           &:active{
-            @apply bg-gray-300 text-gray-900 dark:bg-gray-200;
+            @apply bg-gray-100 text-gray-900 dark:bg-gray-200;
           }
         }
       }
