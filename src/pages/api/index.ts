@@ -42,38 +42,7 @@ export function getPostBySlug(slug, fields = []) {
   const realSlug = /\.mdx$/.test(slug) ? slug.replace(/\.mdx$/, '') : join(CONTENT_PATH, slug);
   // 读取该文件内容
   const fileContents = fs.readFileSync(`${realSlug}.mdx`, 'utf8');
-  // const fullPath = join(postsDirectory, `${realSlug}.mdx`);
-  // 解构别名
-  // const { data: fileData } = matter.read(slug);
-  // if (!fileData?.createdAt && !fileData?.updatedAt) {
-  //   const newFileContent = matter.stringify(fileContents, {
-  //     createdAt: new Date().toISOString(),
-  //     updatedAt: new Date().toISOString()
-  //   });
-  //   // 如没有创建日期和更新日期字段，来覆盖原有文件
-  //   fs.writeFile(slug, newFileContent, (err) => {
-  //     if (err) throw err;
-  //     console.info('日期字段已保存该文件');
-  //   });
-  // }
-
-  // // 监听该文件是否有变化
-  // chokidar.watch(slug).on('change', (path, stats) => {
-  //   if (stats) {
-  //     // 读取该文件内容
-  //     const fileContents = fs.readFileSync(path, 'utf8');
-  //     const newFileContent = matter.stringify(fileContents, {
-  //       updatedAt: new Date().toISOString()
-  //     });
-  //     // 更新日期字段名来覆盖原有文件
-  //     fs.writeFileSync(path, newFileContent);
-  //     // fs.writeFile(path, newFileContent, (err) => {
-  //     //   if (err) throw err;
-  //     //   console.info('更新日期字段已保存该文件');
-  //     // });
-  //   }
-  // });
-
+  // 解析数据、文件内容
   const { data, content } = matter(fileContents);
   const readTime = readingTime(content);
   const items = {};
@@ -106,6 +75,46 @@ export function getPostBySlug(slug, fields = []) {
  */
 export function getAllPosts(fields = []) {
   const slugs = getPostSlugs();
+  // 初始化观察者
+  const watcher = chokidar.watch(slugs, {
+    ignored: /(^|[\\/\\])\../, // ignore dotfiles
+    persistent: true,
+    alwaysStat: true
+  });
+  // 监听文件变化方法
+  watcher.on('change', (path, stats) => {
+    console.log('watch 新增文件:', path, stats);
+    // 解构别名
+    const { data: fileData } = matter.read(path);
+    const fileContents = fs.readFileSync(path, 'utf8');
+    if (!fileData?.createdAt && !fileData?.updatedAt) {
+      const newFileContent = matter.stringify(fileContents, {
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      });
+      // 如没有创建日期和更新日期字段，来覆盖原有文件
+      fs.writeFile(path, newFileContent, (err) => {
+        if (err) throw err;
+        console.info('日期字段已保存该文件');
+      });
+    } else if (stats) {
+      // 更新日期字段名
+      const newFileContent = matter.stringify(fileContents, {
+        updatedAt: new Date().toISOString()
+      });
+      // 更新日期字段名来覆盖原有文件
+      fs.writeFileSync(path, newFileContent);
+      // fs.writeFile(path, newFileContent, (err) => {
+      //   if (err) throw err;
+      //   console.info('更新日期字段已保存该文件');
+      // });
+      // 停止监视该文件;
+      watcher.unwatch(path);
+    }
+  });
+  // 关闭观察者
+  // watcher.close().then(() => console.log('closed watcher!'));
+
   // sort posts by createdAt in descending order
   const posts = slugs
     .map((slug) => getPostBySlug(slug, fields))
