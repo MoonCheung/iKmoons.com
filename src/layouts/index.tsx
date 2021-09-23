@@ -3,6 +3,7 @@ import Header from './Header';
 import Footer from './Footer';
 import { useTheme } from 'next-themes';
 import { useState, useEffect } from 'react';
+import { scrollToTop, toBottom } from '@/utils/index';
 import { constant, partConfig } from '@/config/app.config';
 import ParticlesContainer from '@/components/particles/index';
 import { Up, Down, SunOne, Moon } from '@icon-park/react';
@@ -32,10 +33,10 @@ export default function Layout({ children, title, description }) {
               <Moon theme='outline' size='20' strokeWidth={3} />
             </button>
           )}
-          <button className='button'>
+          <button className='button' onClick={scrollToTop}>
             <Up theme='outline' size='24' strokeWidth={3} />
           </button>
-          <button className='button'>
+          <button className='button' onClick={toBottom}>
             <Down theme='outline' size='24' strokeWidth={3} />
           </button>
         </div>

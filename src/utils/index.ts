@@ -1,3 +1,5 @@
+import { scrollTo, Easing } from './scroller';
+
 export function originState(param) {
   const mapOrigin = new Map([
     [0, '原创'],
@@ -15,6 +17,14 @@ export function originColor(param) {
   ]);
   return {
     color: `var(${mapOrigin.get(param)?.[0]})`,
-    'backgroundColor': `var(${mapOrigin.get(param)?.[1]})`
+    backgroundColor: `var(${mapOrigin.get(param)?.[1]})`
   };
 }
+
+export const scrollToTop = () => {
+  scrollTo('body', 300, { easing: Easing.easeIn });
+};
+
+export const toBottom = () => {
+  scrollTo(window.scrollY + window.innerHeight, 300, { easing: Easing.easeIn });
+};
