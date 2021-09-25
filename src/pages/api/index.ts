@@ -104,17 +104,15 @@ export function getAllPosts(fields = []) {
         updatedAt: new Date().toISOString()
       });
       // 更新日期字段名来覆盖原有文件
-      fs.writeFileSync(path, newFileContent);
-      // fs.writeFile(path, newFileContent, (err) => {
-      //   if (err) throw err;
-      //   console.info('更新日期字段已保存该文件');
-      // });
+      // fs.writeFileSync(path, newFileContent);
+      fs.writeFile(path, newFileContent, (err) => {
+        if (err) throw err;
+        console.info('更新日期字段已保存该文件');
+      });
       // 停止监视该文件;
       watcher.unwatch(path);
     }
   });
-  // 关闭观察者
-  // watcher.close().then(() => console.log('closed watcher!'));
 
   // sort posts by createdAt in descending order
   const posts = slugs
