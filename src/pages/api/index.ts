@@ -1,4 +1,5 @@
 import fs from 'fs';
+import dayjs from 'dayjs';
 import glob from 'fast-glob';
 import chokidar from 'chokidar';
 import { join, extname, sep } from 'path';
@@ -83,7 +84,7 @@ export function getAllPosts(fields = []) {
   });
   // 监听文件变化方法
   watcher.on('change', (path, stats) => {
-    console.log('watch 新增文件:', path, stats);
+    // console.log('watch 新增文件:', path, stats);
     // 解构别名
     const { data: fileData } = matter.read(path);
     const fileContents = fs.readFileSync(path, 'utf8');
@@ -118,7 +119,10 @@ export function getAllPosts(fields = []) {
   // sort posts by createdAt in descending order
   const posts = slugs
     .map((slug) => getPostBySlug(slug, fields))
-    .sort((post1, post2) => (post1.createdAt > post2.createdAt ? '1' : '-1'));
+    .sort(
+      (post1: { createdAt: string }, post2: { createdAt: string }): number =>
+        dayjs(post2.createdAt).valueOf() - dayjs(post1.createdAt).valueOf()
+    );
   return posts;
 }
 
@@ -141,7 +145,7 @@ export function getPostItemSlug(param = '') {
   const newStr = data.sort().join();
   // 提取连续重复的值
   const regex = /(.[\u4e00-\u9fa5a-zA-z]+)\1+/g;
-  newStr.replace(regex, (match) => {
+  newStr.replace(regex, (match: string): any => {
     return match && arr.push(match.replace(/^,/, '').split(','));
   });
   // 过滤非唯一性的值,推送到新数组

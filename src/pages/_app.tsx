@@ -16,7 +16,6 @@ function MyApp({ Component, pageProps }) {
         title={`${constant.meta.title} - ${constant.meta.desc.split('-')[0]}`}
         titleTemplate={`%s | ${constant.meta.site}`}
         additionalMetaTags={[
-          { charSet: 'utf-8' },
           { name: 'viewport', content: 'width=device-width, initial-scale=1,user-scalable=no' },
           { name: 'MobileOptimized', content: '320' },
           { name: 'HandheldFriendly', content: 'true' },

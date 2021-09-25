@@ -21,7 +21,7 @@ export async function getStaticPaths() {
 }
 export async function getStaticProps({ params: { slug } }) {
   const postSlug = slug.join('/');
-  const { content, ...data } = await getPostBySlug(postSlug, [
+  const { content, ...data }: any = await getPostBySlug(postSlug, [
     'title',
     'description',
     'origin',
@@ -35,7 +35,7 @@ export async function getStaticProps({ params: { slug } }) {
   // 获取所有分类方法
   const catg = await getPostItemSlug('catg').reduce((acc, cur) => {
     const key = [...new Set(cur)];
-    acc[key] = cur.length;
+    acc[key.join('')] = cur.length;
     return acc;
   }, {});
 

@@ -11,7 +11,7 @@ const Articles = ({ post }) => {
       <div className={styles.media} key={post}>
         <div className={styles['media-left']}>
           <figure className={styles.image}>
-            <img src={post.banner} alt='Placeholder image' />
+            <img src={post.banner} aria-hidden alt='Placeholder image' />
           </figure>
         </div>
         <div className={styles['media-content']}>
@@ -57,7 +57,9 @@ export default function medialist({ posts }) {
               {posts && posts.length ? (
                 posts.map((item, index) => <Articles post={item} key={index} />)
               ) : (
-                <div className={styles['no-media']}>暂无文章，请你小憩一会儿～🙂</div>
+                <span className={styles['no-media']} role='img' aria-label='暂无文章'>
+                  暂无文章，请你小憩一会儿～🙂
+                </span>
               )}
             </>
           ) : (
@@ -73,7 +75,9 @@ export default function medialist({ posts }) {
                   })}
                 </>
               ) : (
-                <div className={styles['no-media']}>暂无文章，请你小憩一会儿～🙂</div>
+                <span className={styles['no-media']} role='img' aria-label='暂无文章'>
+                  暂无文章，请你小憩一会儿～🙂
+                </span>
               )}
               {posts && posts.length ? (
                 <button className={styles.btn} onClick={() => setFullArticle(true)}>

@@ -1,11 +1,11 @@
 /*
- * @Description: App配置
+ * @Description: App config
  * @Author: MoonCheung
  * @Date: 2021-05-13 00:05:25
  * @Copyright 2021 MoonCheung
  */
 
-export const constant = {
+export const constant: any = {
   logos: 'iKmoons - 个人博客会随时撰写技术文章以及个人生活，分享他人',
   menus: [
     { route: '/', name: '首页' },
@@ -34,7 +34,7 @@ export const constant = {
 };
 
 // 粒子效果配置
-export const partConfig = {
+export const partConfig: object = {
   particles: {
     number: {
       value: 160,
@@ -146,7 +146,7 @@ export const partConfig = {
 };
 
 // Plyr 多媒体配置
-export const plyrConfig = {
+export const plyrConfig: object = {
   invertTime: false,
   settings: ['captions', 'quality', 'speed', 'loop'],
   i18n: {

@@ -7,7 +7,7 @@ import styles from './index.module.scss';
 export async function getStaticPaths() {
   const slugs = getPostSlugs();
   const tags = slugs.flatMap((slug) => {
-    const { tags } = getPostBySlug(slug, ['tags']);
+    const { tags }: any = getPostBySlug(slug, ['tags']);
     return tags;
   });
   // 标签路由方法
@@ -30,7 +30,7 @@ export async function getStaticProps({ params: { name } }) {
     'origin',
     'tags',
     'createdAt'
-  ]).filter(({ tags }) => tags.includes(name));
+  ]).filter(({ tags }: { tags: string | string[] }) => tags.includes(name));
 
   return {
     props: {

@@ -5,6 +5,8 @@ const emoji = require('remark-emoji');
 const withPlugins = require('next-compose-plugins');
 
 const nextConfig = {
+  // target: 'serverless',
+  // distDir: 'dist',
   images: {
     domains: ['static.ikmoons.com']
   },

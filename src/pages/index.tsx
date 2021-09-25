@@ -37,7 +37,7 @@ export default function IndexPage({ posts, allTag }) {
           <div className='aside'>
             <Card icon='tag' title='标签'>
               {allTag.map((item, index) => (
-                <Link href={`/tags/${item.router}`} key={index}>
+                <Link href={`/tags/${item.router}`} key={index} passHref>
                   <div className='tags-item'>
                     {item.name}&nbsp;[&nbsp;{item.len}&nbsp;]
                   </div>

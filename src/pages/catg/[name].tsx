@@ -16,7 +16,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params: { name } }) {
   // 获取所有文件
   const posts = await getAllPosts(['router', 'title', 'description', 'catg', 'banner', 'origin', 'createdAt']).filter(
-    ({ catg }) => catg === name
+    ({ catg }: { catg: string }) => catg === name
   );
 
   return {
@@ -37,7 +37,7 @@ export default function catgPage({ name, posts }) {
             <div className={styles['head-count']}>共搜索到&nbsp;{posts?.length || 0}&nbsp;篇文章</div>
           </header>
           <article className={styles['catg-list']}>
-            <MediaList posts={posts} name={name} />
+            <MediaList posts={posts} />
           </article>
         </div>
       </Layout>
