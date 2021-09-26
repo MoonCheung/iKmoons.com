@@ -11,17 +11,37 @@ inputs:
       - "node_modules/**"
   region: ap-guangzhou
   layers:
-    - name: ${output:${stage}:${app}:${name}-layer.name} # 层名称
-      version: ${output:${stage}:${app}:${name}-layer.version} # 版本号
+    - name: ${output:${stage}:${app}:${name}_layer.name} # 层名称
+      version: ${output:${stage}:${app}:${name}_layer.version} # 版本号
   functionConf:
-    name: ikmoons_func
+    name: ${name}
+    timeout: 10
     runtime: Nodejs12.16
     # memorySize: 512 # 内存大小，单位MB
   staticConf:  # 静态资源相关配置
     cosConf:
-      bucket: ikmoons-1251523818 # 这里创建的 COS 桶名称
+      bucket: ${env:BUCKET} # 这里创建的 COS 桶名称
+    cdnConf:
+      area: global
+      domain: ${env:CDN_DOMAIN}
+      onlyRefresh: true
+      https:
+        http2: on
+        certId: ${env:CDN_DOMAIN_CERTID}
   apigatewayConf:
+    # id: ${env:APIGW_CUSTOM_SERVICE}
     protocols:
       - http
       - https
     environment: release
+    cors: true #  允许跨域
+    customDomains:
+      - domain: ${env:APIGW_CUSTOM_DOMAIN}
+        certificateId: ${env:APIGW_CUSTOM_DOMAIN_CERTID}
+        isDefaultMapping: false
+        pathMappingSet: # 这里将 API 网关的 release 环境映射到根路径
+          - path: /
+            environment: release
+        protocols:
+          - http
+          - https

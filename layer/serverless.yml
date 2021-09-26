@@ -10,4 +10,4 @@ inputs:
   runtimes:
     - Nodejs10.15
     - Nodejs12.16
-  description: ikmoons_cloud project layer
+  description: iKmoons_cloud project layer
