@@ -5,10 +5,21 @@ inputs:
   src:
     hook: npm run build
     dist: ./
-    exclude:
+    exclude: # 被排除的文件或目录
       - .env
+      - '.next/cache/**'
+      - "node_modules/**"
   region: ap-guangzhou
-  runtime: Nodejs12.16
+  layers:
+    - name: ${output:${stage}:${app}:${name}-layer.name} # 层名称
+      version: ${output:${stage}:${app}:${name}-layer.version} # 版本号
+  functionConf:
+    name: ikmoons_func
+    runtime: Nodejs12.16
+    # memorySize: 512 # 内存大小，单位MB
+  staticConf:  # 静态资源相关配置
+    cosConf:
+      bucket: ikmoons-1251523818 # 这里创建的 COS 桶名称
   apigatewayConf:
     protocols:
       - http

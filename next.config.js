@@ -1,12 +1,19 @@
+// import { isProdMode } from '@/config/env.config';
 const path = require('path');
 const withMDX = require('@next/mdx');
 const images = require('remark-images');
 const emoji = require('remark-emoji');
 const withPlugins = require('next-compose-plugins');
 
+const isProd = process.env.NODE_ENV === 'production';
+
 const nextConfig = {
   // target: 'serverless',
   // distDir: 'dist',
+  env: {
+    STATIC_URL: isProd ? process.env.STATIC_URL : ''
+  },
+  assetPrefix: isProd ? process.env.STATIC_URL : '',
   images: {
     domains: ['static.ikmoons.com']
   },

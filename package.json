@@ -13,6 +13,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "deploy": "serverless deploy",
+    "deploy:layer": "serverless deploy --target=./layer",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\""
   },
   "dependencies": {
