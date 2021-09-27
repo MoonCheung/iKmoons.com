@@ -7,7 +7,7 @@ import styles from './index.module.scss';
 
 export async function getStaticPaths() {
   // 分类路由方法
-  const paths = constant.catgIcon.map(({ name }) => ({ params: { name } }));
+  const paths = constant.catgIcon.map(({ name }) => ({ params: { name: encodeURIComponent(name) } }));
   return {
     paths,
     fallback: false
@@ -16,7 +16,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params: { name } }) {
   // 获取所有文件
   const posts = await getAllPosts(['router', 'title', 'description', 'catg', 'banner', 'origin', 'createdAt']).filter(
-    ({ catg }: { catg: string }) => catg === name
+    ({ catg }: { catg: string }) => catg === decodeURIComponent(name)
   );
 
   return {
@@ -27,13 +27,14 @@ export async function getStaticProps({ params: { name } }) {
   };
 }
 export default function catgPage({ name, posts }) {
+  const parseName = decodeURIComponent(name);
   return (
     <>
-      <Layout title={name} description=''>
+      <Layout title={parseName} description=''>
         <div className={styles['catg-main']}>
           <header className={styles['catg-head']}>
             <CategoryManagement className={styles['i-icon']} theme='outline' size='48' strokeWidth={3} />
-            <div className={styles['head-name']}>{name}</div>
+            <div className={styles['head-name']}>{parseName}</div>
             <div className={styles['head-count']}>共搜索到&nbsp;{posts?.length || 0}&nbsp;篇文章</div>
           </header>
           <article className={styles['catg-list']}>

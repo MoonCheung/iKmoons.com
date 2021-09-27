@@ -10,8 +10,12 @@ export default function levelcard({ posts }) {
           {posts.map((item, index) => (
             <div className={styles.card} key={index}>
               <div className={styles['card-wrap']}>
-                <Link href={`/catg/${item.name}`}>
-                  <a href={`/catg/${item.name}`} className={styles['card-link']} title={item.name}>
+                <Link
+                  href={{
+                    pathname: '/catg/[name]',
+                    query: { name: encodeURIComponent(item.name) }
+                  }}>
+                  <a href={`/catg/${encodeURIComponent(item.name)}`} className={styles['card-link']} title={item.name}>
                     <img className={styles['card-img']} src={item.link} alt={item.name} />
                     <div className={styles['card-item']}>
                       {item.icon === 'Outdoor' ? (

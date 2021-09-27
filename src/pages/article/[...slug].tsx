@@ -111,8 +111,13 @@ export default function article({ source, frontMatter, catg }) {
           <aside className={styles['art-aside']}>
             <Card icon='catg' title='分类'>
               {constant.catgIcon.map(({ name, icon }, index) => (
-                <Link href={`/catg/${name}`} key={index}>
-                  <a className={styles['card-item']} href={`/catg/${name}`}>
+                <Link
+                  href={{
+                    pathname: '/catg/[name]',
+                    query: { name: encodeURIComponent(name) }
+                  }}
+                  key={index}>
+                  <a href={`/catg/${name}`} className={styles['card-item']}>
                     <span className={styles.name}>
                       {icon === 'Outdoor' ? (
                         <Outdoor className={styles['i-icon']} theme='outline' size='16' strokeWidth={4} />
