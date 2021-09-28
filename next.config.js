@@ -11,7 +11,7 @@ const nextConfig = {
   // target: 'serverless',
   // distDir: 'dist',
   env: {
-    CDN_URL: isProd ? process.env.CDN_URL : 'http://localhost:3000'
+    STATIC_URL: isProd ? process.env.CDN_URL : 'http://localhost:3000'
   },
   assetPrefix: isProd ? process.env.CDN_URL : '',
   images: {
