@@ -30,7 +30,8 @@ inputs:
     cdnConf:
       area: global
       domain: ${env:CDN_DOMAIN}
-      onlyRefresh: true
+      autoRefresh: true
+      refreshType: delete
       https:
         http2: on
         certId: ${env:CDN_DOMAIN_CERTID}

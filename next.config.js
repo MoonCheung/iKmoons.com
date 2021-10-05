@@ -11,9 +11,9 @@ const nextConfig = {
   // target: 'serverless',
   // distDir: 'dist',
   env: {
-    STATIC_URL: isProd ? process.env.CDN_URL : 'http://localhost:3000'
+    STATIC_URL: isProd ? process.env.STATIC_URL : 'http://localhost:3000'
   },
-  assetPrefix: isProd ? process.env.CDN_URL : '',
+  assetPrefix: isProd ? process.env.STATIC_URL : '',
   images: {
     domains: ['static.ikmoons.com']
   },
