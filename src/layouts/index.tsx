@@ -26,11 +26,11 @@ export default function Layout({ children, title, description }) {
         <div className='affix'>
           {theme === 'light' ? (
             <button className='button' onClick={() => setTheme('dark')}>
-              <SunOne theme='outline' size='24' strokeWidth={3} />
+              <Moon theme='outline' size='20' strokeWidth={3} />
             </button>
           ) : (
             <button className='button' onClick={() => setTheme('light')}>
-              <Moon theme='outline' size='20' strokeWidth={3} />
+              <SunOne theme='outline' size='24' strokeWidth={3} />
             </button>
           )}
           <button className='button' onClick={scrollToTop}>

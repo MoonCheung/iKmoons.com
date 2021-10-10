@@ -112,6 +112,8 @@ export function getAllPosts(fields = []) {
       // 停止监视该文件;
       watcher.unwatch(path);
     }
+    // 停止监视该文件;
+    watcher.unwatch(path);
   });
 
   // sort posts by createdAt in descending order

@@ -1,17 +1,16 @@
 import App from 'next/app';
 import { DefaultSeo } from 'next-seo';
 import { ThemeProvider } from 'next-themes';
-// import NextNprogress from 'nextjs-progressbar';
+import NextNprogress from 'nextjs-progressbar';
 // import { MDXProvider } from '@next/mdx'
 import { constant } from '@/config/app.config';
-import 'normalize.css';
 import '@icon-park/react/styles/index.css';
 import '@/styles/index.scss';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <ThemeProvider forcedTheme={Component.theme || undefined} attribute='class'>
-      {/* <NextNprogress color='#03a9f4' startPosition={0.3} stopDelayMs={200} height={2} /> */}
+    <ThemeProvider enableSystem={true} forcedTheme={Component.theme || undefined} attribute='class'>
+      <NextNprogress color='#03a9f4' startPosition={0.3} stopDelayMs={200} height={2} />
       <DefaultSeo
         title={`${constant.meta.title} - ${constant.meta.desc.split('-')[0]}`}
         titleTemplate={`%s | ${constant.meta.site}`}

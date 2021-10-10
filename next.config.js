@@ -14,9 +14,6 @@ const nextConfig = {
     STATIC_URL: isProd ? process.env.STATIC_URL : 'http://localhost:3000'
   },
   assetPrefix: isProd ? process.env.STATIC_URL : '',
-  images: {
-    domains: ['static.ikmoons.com']
-  },
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')]
