@@ -4,6 +4,7 @@ import { ThemeProvider } from 'next-themes';
 import NextNprogress from 'nextjs-progressbar';
 // import { MDXProvider } from '@next/mdx'
 import { constant } from '@/config/app.config';
+import 'github-markdown-css/github-markdown.css';
 import '@icon-park/react/styles/index.css';
 import '@/styles/index.scss';
 

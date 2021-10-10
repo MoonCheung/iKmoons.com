@@ -78,7 +78,7 @@ export default function article({ source, frontMatter, catg }) {
               </div>
               <div className={styles['art-body']}>
                 <img className={styles['body-img']} src={frontMatter.banner} alt='banner' />
-                <div className={styles['markdown-body']}>
+                <div className='markdown-body'>
                   <MDXRemote {...source} components={components} />
                 </div>
               </div>

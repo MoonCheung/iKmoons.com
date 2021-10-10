@@ -83,6 +83,34 @@
     .main-wrap {
       @apply w-width max-w-width;
     }
+
+    // markdown body style
+    .markdown-body {
+      @apply text-base;
+      
+      &>ol,
+      &>ul{
+        padding-left: 0;
+      }
+
+      p {
+        overflow: hidden;
+        & > img {
+          @extend .extendImg;
+        }
+      }
+
+      img {
+        @extend .extendImg;
+      }
+
+      .extendImg {
+        @apply block relative mx-auto border-solid border-4 border-gray-200 object-cover;
+        max-width: 60%;
+        min-width: 80%;
+      }
+    }
+
     .aside {
       @apply ml-auto w-aside max-w-aside;
       .card-list{
