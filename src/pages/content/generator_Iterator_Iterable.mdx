@@ -1,0 +1,119 @@
+---
+title: 理解Generator、Iterator、Iterable
+description: 整理下这些Generator、Iterator、Iterable的用处.
+tags:
+  - javascript
+catg: 码不停蹄
+banner: 'https://static.ikmoons.com/blogs/image/158702319832950.jpg'
+origin: 0
+createdAt: '2020-04-16T07:46:47.667Z'
+updatedAt: '2021-09-24T15:28:34.464Z'
+---
+
+1. **什么是迭代器(Iterator)？**
+    * 迭代器(Iterator) 是一种机制。它是一种接口，为各种不同数据结构(Array、Map、Set、String、TypedArray、函数的 arguments 对象、NodeList 对象等)提供统一访问机制，任何数据结构只要部署Iterator接口就可以完成遍历操作
+        * 作用：
+            1. 是为各种数据结构，提供一个统一的简便的访问接口
+            2. 是使得数据结构的成员能够按某种次序排列
+            3. 是 ES6 创造了一种新的遍历命令for...of循环，Iterator 接口主要供for...of消费
+    * 当一个对象满足[迭代器协议](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Iteration_protocols#%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%8D%8F%E8%AE%AE)的条件：一个对象的`next()`方法是个无参函数，拥有2个属性分别为`done`,`value`
+        * `done(boolean)`:
+            * true: 迭代器已经超过了可迭代次数。这种情况下,value的值可以被省略，比如undefined
+            * 如果迭代器可以产生序列中的下一个值，则为 false。这等效于没有指定done这个属性
+        * `value`: 
+            * 迭代器返回的任何 JavaScript 值。done 为 true 时可省略
+        * `next()`方法必须返回一个对象，该对象有两个必要属性分别为`done`和`value`，返回非一个对象值就会报错
+ 
+    ES6的迭代器实现简单例子：
+     ```javascript
+    function creIterator(arr) {
+        let i = 0;
+        return {
+            next: function () {
+                let done = (i >= arr.length);
+                let value = !done ? arr[i++] : undefined;
+                return {
+                    done: done,
+                    value: value
+                }
+            }
+        }
+    }
+    let iterator = creIterator(['a','b','c'])
+    iterator.next() //{done: false, value: "a"}
+    iterator.next() //{done: false, value: "b"}
+    iterator.next() //{done: false, value: "c"}
+    iterator.next() //{done: true, value: undefined}
+    ```
+
+2. **什么是可迭代对象(Iterable)？**
+    * 可迭代(Iterable)是具有Symbol.iterator属性本身是一个函数，就是当前数据结构默认的遍历器生成函数。当执行一个函数，就会返回一个遍历器(Symbol对象的iterator属性)，这是一个预定义好的、类型为特殊值，所以必须要放在方括号里面
+    * 满足[可迭代](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Iteration_protocols#%E5%8F%AF%E8%BF%AD%E4%BB%A3%E5%8D%8F%E8%AE%AE)的对象是可迭代对象：对象的`[Symbol.iterator]`值是一个无参函数，该函数返回一个迭代器
+    * 在ES6中，所有的集合对象（`Array`、 `Set` 与 `Map`）以及`String`、`arguments`都是可迭代对象，它们都有默认的迭代器
+
+    ES6的迭代器可迭代实现简单例子：
+    ```javascript
+    function creIterator(arr) {
+    let i = 0;
+    return {
+        next: function () {
+            let done = (i >= arr.length);
+            let value = !done ? arr[i++] : undefined;
+            return {
+                done: done,
+                value: value
+            }
+        },
+        //该函数生成迭代器没有实现可迭代，为此对象添加可迭代对象实现返回用于在迭代中获得迭代器的值
+        [Symbol.iterator]:function() { return this; }
+        }
+    }
+    let iterator = creIterator(['a','b','c'])
+    [...iterator] //["a", "b", "c"]
+    ```
+
+3. **什么是生成器(Generator)？**
+    1. 生成器函数：能返回一个生成器（generator）的函数。生成器函数由放在 function 关键字之后的一个星号（ * ）来表示，并能使用新的 yield 关键字
+        * 特性：
+            1. function关键字与函数名之间有一个星号；
+            2. 函数体内部使用yield表达式，定义不同的内部状态（yield在英语里的意思就是“产出”）
+    ES6的生成器对象是迭代器，又是可迭代对象的：
+    ```javascript
+    function* creGenerator() {
+        yield "a";
+        yield "b";
+        return "c" + "d";
+    }
+    let myGenerator = creGenerator();
+    myGenerator.next(); //{value: "a", done: false}
+    myGenerator.next(); //{value: "b", done: false}
+    myGenerator.next(); //{value: "cd", done: true}
+    // instanceof方法：测试该对象在其原型链中是否存在一个构造函数的 prototype 属性
+    // [Symbol.iterator]()是一个无参函数，该函数添加可迭代执行后返回生成器对象本身(迭代器)，所以是可迭代对象
+    myGenerator[Symbol.iterator]() instanceof creGenerator //true
+    
+    myGenerator = creGenerator();
+    [...myGenerator] //得到返回 ["a","b"]
+    ```
+
+    生成器简化代码：
+     ```javascript
+    Object.prototype[Symbol.iterator] = function* (){
+        for(let key in this){
+            //hasOwnProperty方法：会返回一个布尔值，指示该对象自身属性是否有指定属性
+            if(this.hasOwnProperty(key)){
+                yield [key, this[key]]
+            }
+        }
+    }
+
+    let gets = {
+        name: 'mooncheung',
+        age: 28,
+        job: 'actor'
+    }
+    [...gets] //得到返回数组如下：
+    // 0: (2) ["name", "mooncheung"]
+    // 1: (2) ["age", 28]
+    // 2: (2) ["job", "actor"]
+    ```

@@ -1,0 +1,63 @@
+---
+title: 模块化方案
+description: 模块化主要是用来抽离公共代码，隔离作用域，避免变量冲突等等
+tags:
+  - javascript
+  - node
+catg: 码不停蹄
+banner: 'https://static.ikmoons.com/blogs/image/158367943217631.jpg'
+origin: 0
+createdAt: '2019-08-25T14:49:07.354Z'
+updatedAt: '2021-10-10T09:07:10.837Z'
+---
+
+### **AMD**
+> 使用 RequireJS 编写模块化定义规范产生，主要是用于浏览器端，**特点:依赖必须提前声明好**。
+```javascript
+define('./index.js', function(code) {
+    // code 就是index.js 返回的内容
+});
+```
+
+### **CMD**
+> 使用 SeaJS 编写模块化定义规范产生，也主要是用于浏览器端，**特点:支持引入动态依赖文件**。
+```javascript
+define(function(require, exports, module) {
+  var indexCode = require('./index.js');
+});
+```
+
+### **UMD**
+> UMD：兼容 AMD，CommonJS 模块化语法。
+```javascript
+webpack(require.ensure)：webpack 2.x 版本中的代码分割。  
+```
+
+### **CommonJS**
+> nodejs 中自带的模块化如下：
+> 1. require,ES6 : 支持引入
+> 2. module.exports : 对外批量导出
+> 3. exports: 对外一个一个导出
+```javascript
+//nodejs自带模块：require
+const fs = require('fs');
+//nodejs自带模块：module.exports, exports
+const EventEmitter = require('events');
+module.exports = new EventEmitter();
+// 处理一些工作，并在一段时间后从模块自身触发 'ready' 事件。
+setTimeout(() => {
+  module.exports.emit('ready');
+}, 1000);
+```
+
+### **ES Modules**
+> * export 和 import 两个命令分别如下：
+> * export 导出你定义的模块变量
+> * import 引入一个模块变量
+```javascript
+//ES6 export 导出a.js文件:export { one,two }
+export default three
+//ES6 import 引入文件:
+import  { one, two }  three from 'a.js'
+```
+### 摘取以上AMD，CMD，UMD的内容来自原文[Github](https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/28)
