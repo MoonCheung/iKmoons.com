@@ -8,6 +8,7 @@ const withPlugins = require('next-compose-plugins');
 const isProd = process.env.NODE_ENV === 'production';
 
 const nextConfig = {
+  swcMinify: true,
   // target: 'serverless',
   // distDir: 'dist',
   env: {
@@ -30,7 +31,8 @@ const nextConfig = {
       use: ['@svgr/webpack']
     });
     config.resolve.fallback = {
-      fs: false
+      fs: false,
+      process: require.resolve('process/browser')
     };
     return config;
   }

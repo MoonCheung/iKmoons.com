@@ -28,3 +28,10 @@ export const scrollToTop = () => {
 export const toBottom = () => {
   scrollTo(window.scrollY + window.innerHeight, 300, { easing: Easing.easeIn });
 };
+
+/**
+ * 开头小写转换大写方法
+ * @param param
+ * @returns
+ */
+export const firstUpperCase = ([first, ...rest]) => first?.toUpperCase() + rest.join('');
