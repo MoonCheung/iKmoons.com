@@ -49,9 +49,8 @@
           color: var(--white-color);
           text-indent: -9999px;
         }
-
         .brand-logo{
-          @apply dark:fill-current dark:text-gray-50;
+          @apply dark:fill-white dark:text-gray-50;
           width: 120px;
           height: 2em;
           &:hover,

@@ -4,20 +4,13 @@ const typography = require('@tailwindcss/typography');
 const plugin = require('tailwindcss/plugin');
 
 module.exports = {
-  mode: 'jit',
-  // 删除未使用样式
-  purge: {
-    enabled: true,
-    content: [
-      './src/pages/**/*.{js,ts,jsx,tsx}',
-      './src/components/**/*.{js,ts,jsx,tsx}',
-      './src/layouts/**/*.{js,ts,jsx,tsx}'
-    ],
-    // These options are passed through directly to PurgeCSS
-    options: {
-      safelist: ['dark'] // specific classes
-    }
-  },
+  content: [
+    './src/pages/**/*.{js,ts,jsx,tsx}',
+    './src/components/**/*.{js,ts,jsx,tsx}',
+    './src/layouts/**/*.{js,ts,jsx,tsx}'
+  ],
+  // These options are passed through directly to PurgeCSS
+  safelist: ['dark'], // specific classes
   darkMode: 'class', // or 'media' or 'class'
   theme: {
     screens: {
@@ -27,6 +20,7 @@ module.exports = {
       xl: '1080px'
     },
     colors: {
+      current: 'currentColor',
       primary: 'var(--primary-color)',
       transparent: 'transparent',
       gray: colors.gray,
