@@ -4,14 +4,13 @@ import Layout from '@/layouts';
 import { MDXRemote } from 'next-mdx-remote';
 import Card from '@/components/card/index';
 import { constant } from '@/config/app.config';
-import { ListCheckbox, Outdoor, BookOne, SettingTwo, Code } from '@icon-park/react';
 import { serialize } from 'next-mdx-remote/serialize';
 import { originState, originColor } from '@/utils/index';
+import { ListCheckbox, Outdoor, BookOne, SettingTwo, Code } from '@icon-park/react';
 import { getPostSlugPath, getPostBySlug, getPostItemSlug } from '@/pages/api/index';
+import components from '@/components/MDXComponent/index';
 import styles from './index.module.scss';
 
-// 自定义组件
-const components = {};
 export async function getStaticPaths() {
   const paths = await getPostSlugPath();
   return {

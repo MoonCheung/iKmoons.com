@@ -3,6 +3,8 @@ const path = require('path');
 const withMDX = require('@next/mdx');
 const images = require('remark-images');
 const emoji = require('remark-emoji');
+// const prism = require('remark-prism');
+// const rehypePrism = require('@mapbox/rehype-prism');
 const withPlugins = require('next-compose-plugins');
 
 const isProd = process.env.NODE_ENV === 'production';

@@ -13,3 +13,4 @@
 -- 增加滚动条功能
 -- 增加serverless配置部署无服务器
 -- 增加github-markdown-css
+-- 增加 Prism 荧光笔高亮

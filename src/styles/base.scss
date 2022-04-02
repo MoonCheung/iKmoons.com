@@ -85,11 +85,14 @@
 
     // markdown body style
     .markdown-body {
-      @apply text-base;
+      @apply text-base dark:text-gray-50;
       
       &>ol,
       &>ul{
         padding-left: 0;
+        code{
+          @apply dark:bg-gray-700;
+        }
       }
 
       p {
@@ -104,7 +107,7 @@
       }
 
       .extendImg {
-        @apply block relative mx-auto border-solid border-4 border-gray-200 object-cover;
+        @apply block relative mx-auto border-solid border-4 border-gray-200 dark:border-gray-200 object-cover;
         max-width: 60%;
         min-width: 80%;
       }
