@@ -22,8 +22,6 @@
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
     box-sizing: border-box;
-    // overflow-x: hidden;
-    // overflow-y: scroll;
     font-size: 14px;
     text-size-adjust: 100%;
     text-rendering: optimizeLegibility;
@@ -86,6 +84,11 @@
     // markdown body style
     .markdown-body {
       @apply text-base dark:text-gray-50;
+
+      pre{
+        padding: 0;
+        margin-bottom: 0;
+      }
       
       &>ol,
       &>ul{
@@ -97,6 +100,8 @@
 
       p {
         overflow: hidden;
+        margin-top: 6px;
+        margin-bottom: 6px;
         & > img {
           @extend .extendImg;
         }

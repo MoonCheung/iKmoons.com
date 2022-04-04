@@ -10,10 +10,10 @@ createdAt: '2019-11-20T10:05:55.219Z'
 updatedAt: '2021-10-10T08:58:12.525Z'
 ---
 
-1. **什么是Symbol?**
 > ES6引入一种新的原始数据类型`Symbol`,表示独一无二的值。它是 JavaScript 语言的第七种数据类型，前六种是：`undefined`、`null`、布尔值（`Boolean`）、字符串（`String`）、数值（`Number`）、对象（`Object`）
 
-    1. Symbol值通过`Symbol`函数生成，凡是属性名属于Symbol类型是独一无二的，可保证不会和其他数据类型冲突的
+1. **什么是Symbol?**
+    1. Symbol值通过 `Symbol` 函数生成，凡是属性名属于Symbol类型是独一无二的，可保证不会和其他数据类型冲突的
     2. 使用`Symbol`的话，请注意：
         1. Symbol函数前不能使用new命令，否则会报错，因为生成Symbol本身是一个原始数据类型的值，而不是对象
         2. Symbol值不能与其他数据类型的值进行运算，否则会报错，可显示转为字符串或者布尔值，但是不能转为数组
@@ -100,15 +100,15 @@ updatedAt: '2021-10-10T08:58:12.525Z'
             * size：返回Set实例的成员总数
         2. Set的方法分为两大类：
             1. 操作方法（用于操作数据）
-                * Set.prototype.add(value)：添加某个值，返回 Set 结构本身
-                * Set.prototype.delete(value)：删除某个值，返回一个布尔值，表示删除是否成功
-                * Set.prototype.has(value)：返回一个布尔值，表示该值是否为Set的成员
-                * Set.prototype.clear()：清除所有成员，没有返回值
+                * `Set.prototype.add(value)`：添加某个值，返回 Set 结构本身
+                * `Set.prototype.delete(value)`：删除某个值，返回一个布尔值，表示删除是否成功
+                * `Set.prototype.has(value)`：返回一个布尔值，表示该值是否为Set的成员
+                * `Set.prototype.clear()`：清除所有成员，没有返回值
             2. 遍历方法（用于遍历成员）
-                * Set.prototype.keys()：返回键名的遍历器
-                * Set.prototype.values()：返回键值的遍历器
-                * Set.prototype.entries()：返回键值对的遍历器
-                * Set.prototype.forEach()：使用回调函数遍历每个成员
+                * `Set.prototype.keys()`：返回键名的遍历器
+                * `Set.prototype.values()`：返回键值的遍历器
+                * `Set.prototype.entries()`：返回键值对的遍历器
+                * `Set.prototype.forEach()`：使用回调函数遍历每个成员
     
 3. **什么是Map?**
     1. ES6提供新的数据结构`Map`，类似于对象，也是键值对的集合，但是键名的范围不限于字符串，各种数据类型的值(包括对象)都可以当作键
@@ -123,16 +123,16 @@ updatedAt: '2021-10-10T08:58:12.525Z'
             * size: 返回 Map 结构的成员总数
         2. Map的方法分为两大类：
             1. 操作方法：
-                * Map.prototype.set(key, value)：向映射添加新元素键值对，返回整个Map结构
-                * Map.prototype.get(key)： 从映射中读取key对应的键值，如找不到key，返回undefined
-                * Map.prototype.has(key)： 返回一个布尔值，某个键存在当前映射中返回true，否则返回false
-                * Map.prototype.delete(key)：通过键值对从映射中移除key对应键值对
-                * Map.prototype.clear()：将映射中删除所有键值对
+                * `Map.prototype.set(key, value)`：向映射添加新元素键值对，返回整个Map结构
+                * `Map.prototype.get(key)`： 从映射中读取key对应的键值，如找不到key，返回undefined
+                * `Map.prototype.has(key)`： 返回一个布尔值，某个键存在当前映射中返回true，否则返回false
+                * `Map.prototype.delete(key)`：通过键值对从映射中移除key对应键值对
+                * `Map.prototype.clear()`：将映射中删除所有键值对
             2. 遍历方法：
-                * Map.prototype.keys()：返回键名的遍历器
-                * Map.prototype.values()：返回键值的遍历器
-                * Map.prototype.entries()：返回所有成员的遍历器，不过该方法表示Map结构的默认遍历器接口（Symbol.iterator属性）
+                * `Map.prototype.keys()`：返回键名的遍历器
+                * `Map.prototype.values()`：返回键值的遍历器
+                * `Map.prototype.entries()`：返回所有成员的遍历器，不过该方法表示Map结构的默认遍历器接口（Symbol.iterator属性）
                     ```javascript
                     Map.prototype[Symbol.iterator] === Map.prototype.entries
                     ```
-                * Map.prototype.forEach()：遍历Map的所有成员 类似于数组的forEach方法，可实现遍历
+                * `Map.prototype.forEach()`：遍历Map的所有成员 类似于数组的forEach方法，可实现遍历
