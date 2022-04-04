@@ -8,12 +8,10 @@ const withPlugins = require('next-compose-plugins');
 const isProd = process.env.NODE_ENV === 'production';
 
 const nextConfig = {
-  swcMinify: true, // 开启swc压缩
-  reactStrictMode: true, // 严格模式
   // target: 'serverless',
   // distDir: 'dist',
   env: {
-    STATIC_URL: isProd ? process.env.STATIC_URL : 'http://localhost:3000'
+    STATIC_URL: isProd ? process.env.STATIC_URL : 'http://localhost:9000'
   },
   assetPrefix: isProd ? process.env.STATIC_URL : '',
   eslint: {
@@ -35,8 +33,7 @@ const nextConfig = {
       use: ['@svgr/webpack']
     });
     config.resolve.fallback = {
-      fs: false,
-      process: require.resolve('process/browser')
+      fs: false
     };
     return config;
   }
