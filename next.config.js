@@ -3,20 +3,22 @@ const path = require('path');
 const withMDX = require('@next/mdx');
 const images = require('remark-images');
 const emoji = require('remark-emoji');
-// const prism = require('remark-prism');
-// const rehypePrism = require('@mapbox/rehype-prism');
 const withPlugins = require('next-compose-plugins');
 
 const isProd = process.env.NODE_ENV === 'production';
 
 const nextConfig = {
-  swcMinify: true,
+  swcMinify: true, // 开启swc压缩
+  reactStrictMode: true, // 严格模式
   // target: 'serverless',
   // distDir: 'dist',
   env: {
     STATIC_URL: isProd ? process.env.STATIC_URL : 'http://localhost:3000'
   },
   assetPrefix: isProd ? process.env.STATIC_URL : '',
+  eslint: {
+    ignoreDuringBuilds: true
+  },
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')]

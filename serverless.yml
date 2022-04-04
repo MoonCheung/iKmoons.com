@@ -1,6 +1,7 @@
-app: ikmoons_cloud
-component: nextjs
-name: ikmoons_cloud
+app: ikmoons-cloud
+stage: dev
+component: http
+name: ikmoons-cloud
 inputs:
   src:
     hook: npm run build
@@ -9,25 +10,52 @@ inputs:
       - .env
       - '.next/cache/**'
       - "node_modules/**"
-  region: ap-guangzhou
   serviceId: ${env:APIGW_CUSTOM_SERVICE} # api网关服务ID
-  layers:
-    - name: ${output:${stage}:${app}:${name}_layer.name} # 层名称
-      version: ${output:${stage}:${app}:${name}_layer.version} # 版本号
-  functionConf:
+  faas:
+    runtime: Nodejs14.18
+    framework: nextjs
     name: ${name}
-    timeout: 10
-    runtime: Nodejs12.16
-    # memorySize: 512 # 内存大小，单位MB
-  staticConf:  # 静态资源相关配置
-    cosConf:
+    eip: false
+    timeout: 3
+    memorySize: 512
+    tags: []
+    environments:
+      - key: STATIC_URL
+        value: ${env:STATIC_URL}
+    layers:
+      - name: '${output:${stage}:${app}:${name}-layer.name}'
+        version: '${output:${stage}:${app}:${name}-layer.version}'
+  apigw:
+    protocols:
+      - http
+      - https
+    timeout: 60
+    environment: release
+    enableCORS: true # 允许跨域
+    customDomains:
+      - domain: ${env:APIGW_CUSTOM_DOMAIN}
+        certId: ${env:APIGW_CUSTOM_DOMAIN_CERTID}
+        pathMap: # 这里将 API 网关的 release 环境映射到根路径
+          - path: /
+            environment: release
+        customMap: true
+        isDefaultMapping: false
+        protocols:
+          - http
+          - https
+  region: ap-guangzhou
+  isAutoCiDeploy: false
+  assets: # 静态资源相关配置
+    cos:
       bucket: ${env:BUCKET} # 这里创建的 COS 桶名称
       sources:
         - src: .next/static
           targetDir: /_next/static
         - src: public
           targetDir: /
-    cdnConf:
+      # acl:
+      # permissions: public-read
+    cdn:
       area: global
       domain: ${env:CDN_DOMAIN}
       autoRefresh: true
@@ -35,19 +63,3 @@ inputs:
       https:
         http2: on
         certId: ${env:CDN_DOMAIN_CERTID}
-  apigatewayConf:
-    protocols:
-      - http
-      - https
-    environment: release
-    enableCORS: true #  允许跨域
-    customDomains:
-      - domain: ${env:APIGW_CUSTOM_DOMAIN}
-        certificateId: ${env:APIGW_CUSTOM_DOMAIN_CERTID}
-        isDefaultMapping: false
-        pathMappingSet: # 这里将 API 网关的 release 环境映射到根路径
-          - path: /
-            environment: release
-        protocols:
-          - http
-          - https

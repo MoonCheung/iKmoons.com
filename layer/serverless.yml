@@ -1,13 +1,14 @@
-app: ikmoons_cloud
-component: layer
-name: ikmoons_cloud_layer
+app: ikmoons-cloud
 stage: dev
-
+component: layer
+name: ikmoons-cloud-layer
 inputs:
   name: ${name}
   region: ap-guangzhou
-  src: ../node_modules
+  src:
+    src: ../node_modules
+    targetDir: /node_modules
   runtimes:
-    - Nodejs10.15
     - Nodejs12.16
+    - Nodejs14.18
   description: iKmoons_cloud project layer
