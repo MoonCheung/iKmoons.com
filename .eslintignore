@@ -1,0 +1,5 @@
+#ignore files
+.next
+src/assets/*
+serverless.yml
+layer/*
