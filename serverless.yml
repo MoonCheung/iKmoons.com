@@ -1,5 +1,5 @@
 app: ikmoons-cloud
-stage: dev
+stage: prod
 component: http
 name: ikmoons-cloud
 inputs:
@@ -9,7 +9,7 @@ inputs:
     exclude: # 被排除的文件或目录
       - .env
       - '.next/cache/**'
-      - "node_modules/**"
+      - 'node_modules/**'
   serviceId: ${env:APIGW_CUSTOM_SERVICE} # api网关服务ID
   faas:
     runtime: Nodejs14.18
@@ -30,7 +30,7 @@ inputs:
       - http
       - https
     timeout: 60
-    environment: release
+    environment: release # 环境变量
     enableCORS: true # 允许跨域
     customDomains:
       - domain: ${env:APIGW_CUSTOM_DOMAIN}
