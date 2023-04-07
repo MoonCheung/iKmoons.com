@@ -15,9 +15,10 @@
     "jsx": "preserve",
     "downlevelIteration": true, // 对迭代器支持
     "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"]
-    },
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "incremental": true
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
