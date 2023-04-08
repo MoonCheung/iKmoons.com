@@ -4,8 +4,7 @@ import Footer from './Footer';
 import { useTheme } from 'next-themes';
 import { useState, useEffect } from 'react';
 import { scrollToTop, toBottom } from '@/utils/index';
-import { constant, partConfig } from '@/config/app.config';
-import ParticlesContainer from '@/components/particles/index';
+import { constant } from '@/config/app.config';
 import { Up, Down, SunOne, Moon } from '@icon-park/react';
 
 export default function Layout({ children, title, description }) {
@@ -41,7 +40,6 @@ export default function Layout({ children, title, description }) {
           </button>
         </div>
         <Footer />
-        <ParticlesContainer options={partConfig} />
       </main>
     </>
   );
