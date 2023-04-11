@@ -82,7 +82,7 @@
     }
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,yaml,yml}": "eslint --cache",
-    "*.**": "prettier --check --ignore-unknown"
+    "*.{js,jsx,ts,tsx,css,scss,yaml,yml}": "eslint --cache",
+    "*.{js,jsx,ts,tsx,css,scss}": "prettier --check --ignore-unknown"
   }
 }

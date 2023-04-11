@@ -1,15 +1,25 @@
-// import { isProdMode } from '@/config/env.config';
 const path = require('path');
 const withMDX = require('@next/mdx');
 const images = require('remark-images');
 const emoji = require('remark-emoji');
-const withPlugins = require('next-compose-plugins');
 
 const isProd = process.env.NODE_ENV === 'production';
 
+const withMDXConfig = withMDX({
+  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
+  extension: /\.mdx$/,
+  options: {
+    remarkPlugins: [images, emoji],
+    rehypePlugins: [],
+    providerImportSource: '@mdx-js/react'
+  }
+});
+
+const plugins = [withMDXConfig];
+
+/** @type {import('next').NextConfig} */
 const nextConfig = {
   // target: 'serverless',
-  // distDir: 'dist',
   env: {
     STATIC_URL: isProd ? process.env.STATIC_URL : 'http://localhost:9000'
   },
@@ -39,13 +49,4 @@ const nextConfig = {
   }
 };
 
-const withMDXConfig = {
-  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
-  extension: /\.mdx$/,
-  options: {
-    remarkPlugins: [images, emoji],
-    rehypePlugins: []
-  }
-};
-
-module.exports = withPlugins([withMDX(withMDXConfig)], nextConfig);
+module.exports = () => plugins.reduce((acc, next) => next(acc), nextConfig);
