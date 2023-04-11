@@ -4,6 +4,7 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 // base style
+@import './components.scss';
 @import './base.scss';
 // mixin style
 @import './mixin.scss';

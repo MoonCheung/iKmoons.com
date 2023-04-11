@@ -82,12 +82,13 @@
     }
 
     // markdown body style
-    .markdown-body {
+    .mdx-body {
       @apply text-base dark:text-gray-50;
 
       pre{
-        padding: 0;
-        margin-bottom: 0;
+        .line{
+          @apply dark:bg-[#1e1e1e];
+        }
       }
       
       &>ol,
@@ -169,10 +170,5 @@
         }
       }
     }
-  }
-  // 粒子效果
-  #tsparticles {
-    @apply bg-gray-200 bg-opacity-50 fixed inset-0 dark:bg-gray-900;
-    z-index: -1;
   }
 }

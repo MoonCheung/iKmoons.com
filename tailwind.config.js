@@ -3,6 +3,7 @@ const tailwindForms = require('@tailwindcss/forms');
 const typography = require('@tailwindcss/typography');
 const plugin = require('tailwindcss/plugin');
 
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx}',
@@ -76,15 +77,4 @@ module.exports = {
     extend: {}
   },
   plugins: [tailwindForms, typography]
-  // plugin(function({ addBase, config }) {
-  //   addBase({
-  //     'html': {
-  //       'box-sizing': 'border-box',
-  //       'overflow-x': 'hidden',
-  //       'overflow-y': 'scroll',
-  //       'text-size-adjust': '100%',
-  //       'text-rendering': 'optimizeLegibility'
-  //     }
-  //   })
-  // })
 };

@@ -8,8 +8,14 @@ import { serialize } from 'next-mdx-remote/serialize';
 import { originState, originColor } from '@/utils/index';
 import { ListCheckbox, Outdoor, BookOne, SettingTwo, Code } from '@icon-park/react';
 import { getPostSlugPath, getPostBySlug, getPostItemSlug } from '@/pages/api/index';
-import components from '@/components/MDXComponent/index';
+import { rehypeAccessibleEmojis } from 'rehype-accessible-emojis';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypePrettyCode from 'rehype-pretty-code';
+import rehypeSlug from 'rehype-slug';
+import remarkGfm from 'remark-gfm';
 import styles from './index.module.scss';
+
+import { shikiOptions } from '@/components/mdx/shiki';
 
 export async function getStaticPaths() {
   const paths = await getPostSlugPath();
@@ -42,7 +48,14 @@ export async function getStaticProps({ params: { slug } }) {
     console.warn(`没有找到 slug 的内容:${postSlug}`);
   }
 
-  const source = await serialize(content, { scope: data });
+  const source = await serialize(content, {
+    scope: data,
+    mdxOptions: {
+      format: 'mdx',
+      remarkPlugins: [remarkGfm],
+      rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings], [rehypePrettyCode, shikiOptions], rehypeAccessibleEmojis]
+    }
+  });
 
   return {
     props: {
@@ -77,8 +90,8 @@ export default function article({ source, frontMatter, catg }) {
               </div>
               <div className={styles['art-body']}>
                 <img className={styles['body-img']} src={frontMatter.banner} alt='banner' />
-                <div className='markdown-body'>
-                  <MDXRemote {...source} components={components} />
+                <div className='mdx-body'>
+                  <MDXRemote {...source} />
                 </div>
               </div>
               <div className={styles['art-foot']}>

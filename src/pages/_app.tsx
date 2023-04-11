@@ -1,10 +1,8 @@
-import App from 'next/app';
 import { DefaultSeo } from 'next-seo';
 import { ThemeProvider } from 'next-themes';
 import NextNprogress from 'nextjs-progressbar';
-// import { MDXProvider } from '@next/mdx'
+// import { MDXTheme } from '@/components/MDXTheme/index';
 import { constant } from '@/config/app.config';
-import 'github-markdown-css/github-markdown.css';
 import '@icon-park/react/styles/index.css';
 import '@/styles/index.scss';
 
@@ -38,14 +36,11 @@ function MyApp({ Component, pageProps }) {
           { rel: 'canonical', href: '//ikmoons.com' }
         ]}
       />
+      {/* <MDXTheme> */}
       <Component {...pageProps} />
+      {/* </MDXTheme> */}
     </ThemeProvider>
   );
 }
-
-// MyApp.getInitialProps = async (appContext) => {
-//   const appProps = await App.getInitialProps(appContext);
-//   return { ...appProps };
-// };
 
 export default MyApp;
